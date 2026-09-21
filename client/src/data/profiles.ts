@@ -6,6 +6,13 @@ export interface ChildProfile {
   name: string;
   avatar_emoji: string;
   cefr_level: string | null;
+  // The highest level whose books this child has actually unlocked, via
+  // completing the level below and passing its level-up quiz. Distinct
+  // from cefr_level (the parent's starting pick for the child) - a
+  // parent setting cefr_level to B1 for an advanced child unlocks B1
+  // immediately (see createProfile), but from then on only passing a
+  // level-up quiz advances it further.
+  unlocked_level: string;
   created_at: string;
 }
 
@@ -36,7 +43,13 @@ export async function createProfile(
   if (!parentId) throw new Error("Not signed in");
   const { data, error } = await supabase
     .from("profiles")
-    .insert({ name, avatar_emoji: avatarEmoji, cefr_level: cefrLevel, parent_id: parentId })
+    .insert({
+      name,
+      avatar_emoji: avatarEmoji,
+      cefr_level: cefrLevel,
+      unlocked_level: cefrLevel ?? "A1",
+      parent_id: parentId,
+    })
     .select()
     .single();
   if (error) throw error;
@@ -90,5 +103,12 @@ export async function saveQuizScore(
     .update({ quiz_correct: correct, quiz_total: total, completed: true, updated_at: new Date().toISOString() })
     .eq("profile_id", profileId)
     .eq("book_id", bookId);
+  if (error) throw error;
+}
+
+// Called after a child passes a level's "big quiz" - raises the ceiling
+// on which levels' books they can see at all.
+export async function unlockNextLevel(profileId: number, nextLevel: string): Promise<void> {
+  const { error } = await supabase.from("profiles").update({ unlocked_level: nextLevel }).eq("id", profileId);
   if (error) throw error;
 }

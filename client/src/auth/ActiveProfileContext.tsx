@@ -8,6 +8,10 @@ const STORAGE_KEY = "cefr-reader:activeProfileId";
 interface ActiveProfileContextValue {
   activeProfile: ChildProfile | null;
   setActiveProfileId: (id: number | null) => void;
+  // Re-fetches the active profile's own row - used after a write that
+  // changes it server-side but isn't reflected in local state yet, e.g.
+  // unlocking the next level after passing a level-up quiz.
+  refreshActiveProfile: () => void;
 }
 
 const ActiveProfileContext = createContext<ActiveProfileContextValue | null>(null);
@@ -55,8 +59,19 @@ export function ActiveProfileProvider({ children }: { children: ReactNode }) {
       .catch(() => setActiveProfile(null));
   }
 
+  function refreshActiveProfile() {
+    if (!activeProfile) return;
+    const id = activeProfile.id;
+    listProfiles()
+      .then((profiles) => {
+        const match = profiles.find((p) => p.id === id);
+        if (match) setActiveProfile(match);
+      })
+      .catch(() => {});
+  }
+
   return (
-    <ActiveProfileContext.Provider value={{ activeProfile, setActiveProfileId }}>
+    <ActiveProfileContext.Provider value={{ activeProfile, setActiveProfileId, refreshActiveProfile }}>
       {children}
     </ActiveProfileContext.Provider>
   );

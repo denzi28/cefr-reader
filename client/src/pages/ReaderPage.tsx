@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { api } from "../api/client";
 import type { Book, VocabEntry } from "../types/book";
@@ -14,6 +14,7 @@ import { BookIntroScreen } from "../components/BookIntroScreen";
 import { BookQuiz } from "../components/BookQuiz";
 import { BookScoreScreen } from "../components/BookScoreScreen";
 import { useActiveProfile } from "../auth/ActiveProfileContext";
+import { useChildProgression } from "../hooks/useChildProgression";
 import { saveProgress, saveQuizScore } from "../data/profiles";
 
 const pageVariants = {
@@ -32,6 +33,7 @@ export function ReaderPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { activeProfile } = useActiveProfile();
+  const progression = useChildProgression(activeProfile);
   const [book, setBook] = useState<Book | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pageIndex, setPageIndex] = useState(0);
@@ -77,8 +79,18 @@ export function ReaderPage() {
     );
   }
 
-  if (!book) {
+  if (!book || (activeProfile && progression.loading)) {
     return <p className="p-10 text-center font-body text-stone-400">Loading book…</p>;
+  }
+
+  // A direct link to a locked book (or a level the child hasn't unlocked
+  // yet) bounces back to that level's list instead of opening it - the
+  // book-card lock there is just a courtesy, this is the real gate.
+  if (
+    activeProfile &&
+    (!progression.isLevelUnlocked(book.level) || progression.isBookLocked(book.id, book.level))
+  ) {
+    return <Navigate to={`/levels/${book.level}`} replace />;
   }
 
   const page = book.pages[pageIndex];
