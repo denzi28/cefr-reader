@@ -29,6 +29,11 @@ export interface BookPage {
   text: string;
   scene: Scene;
   vocab: VocabEntry[];
+  // Optional AI-generated (or hand-illustrated) artwork for this page,
+  // e.g. "/images/the-red-ball/page-1.png". When present, the client
+  // shows this image instead of rendering `scene` as vector art. See
+  // server/scripts/generate-images.mjs for how these get created.
+  imageUrl?: string;
 }
 
 export interface Book {
@@ -37,6 +42,7 @@ export interface Book {
   level: CEFRLevel;
   summary: string;
   coverScene: Scene;
+  coverImageUrl?: string;
   pages: BookPage[];
 }
 
@@ -47,6 +53,7 @@ export interface BookSummary {
   level: CEFRLevel;
   summary: string;
   coverScene: Scene;
+  coverImageUrl?: string;
   pageCount: number;
 }
 

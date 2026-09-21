@@ -1,14 +1,21 @@
 import express from "express";
 import cors from "cors";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { BOOKS } from "./data/books.js";
 import { LEVEL_META, LEVEL_ORDER } from "./data/levels.js";
 import type { Book, BookSummary, LevelInfo } from "./types.js";
 
 const PORT = Number(process.env.PORT) || 4000;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serves generated/hand-illustrated page artwork, e.g.
+// GET /images/the-red-ball/page-1.png (see server/scripts/generate-images.mjs).
+app.use("/images", express.static(path.join(__dirname, "data", "images")));
 
 function toSummary(book: Book): BookSummary {
   return {
@@ -17,6 +24,7 @@ function toSummary(book: Book): BookSummary {
     level: book.level,
     summary: book.summary,
     coverScene: book.coverScene,
+    coverImageUrl: book.coverImageUrl,
     pageCount: book.pages.length,
   };
 }

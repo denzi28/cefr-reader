@@ -27,6 +27,9 @@ export interface BookPage {
   text: string;
   scene: Scene;
   vocab: VocabEntry[];
+  // Optional AI-generated (or hand-illustrated) artwork for this page.
+  // When present, the reader shows this instead of the vector scene.
+  imageUrl?: string;
 }
 
 export interface Book {
@@ -35,6 +38,7 @@ export interface Book {
   level: CEFRLevel;
   summary: string;
   coverScene: Scene;
+  coverImageUrl?: string;
   pages: BookPage[];
 }
 
@@ -44,6 +48,7 @@ export interface BookSummary {
   level: CEFRLevel;
   summary: string;
   coverScene: Scene;
+  coverImageUrl?: string;
   pageCount: number;
 }
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api/client";
 import type { Book, VocabEntry } from "../types/book";
-import { Scene } from "../illustrations/Scene";
+import { PageArt } from "../components/PageArt";
 import { PageText } from "../components/PageText";
 import { VocabPanel } from "../components/VocabPanel";
 import { LevelBadge } from "../components/LevelBadge";
@@ -62,7 +62,7 @@ export function ReaderPage() {
       </div>
 
       <div className="overflow-hidden rounded-3xl border-4 border-white shadow-lg ring-1 ring-stone-200">
-        <Scene scene={page.scene} className="w-full bg-white" />
+        <PageArt imageUrl={page.imageUrl} scene={page.scene} className="aspect-[5/3] w-full bg-white" />
         <div className="bg-white px-6 py-8 text-center">
           <PageText
             text={page.text}

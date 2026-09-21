@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "tsc && mkdir -p dist/data/images && cp -r src/data/images/. dist/data/images/",
     "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:images": "node scripts/generate-images.mjs"
   },
   "keywords": [],
   "author": "",

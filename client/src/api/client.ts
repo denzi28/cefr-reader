@@ -18,3 +18,9 @@ export const api = {
     getJson<BookSummary[]>(`/api/books${level ? `?level=${level}` : ""}`),
   getBook: (id: string) => getJson<Book>(`/api/books/${id}`),
 };
+
+// Book/page `imageUrl`s are server-relative (e.g. "/images/the-red-ball/page-1.png").
+// Resolve them against the same API base used for JSON requests.
+export function resolveAssetUrl(url: string): string {
+  return `${API_BASE}${url}`;
+}

@@ -27,8 +27,44 @@ to place and where (`server/src/data/books/*.json` → `scene`). The client
 - The same scene data could be rendered natively on a future mobile app.
 
 If you'd rather use real illustrated/AI-generated artwork per page, add an
-`imageUrl` field to a page in the book JSON and have the client render an
-`<img>` when it's present, falling back to the vector `Scene` otherwise.
+`imageUrl` field to a page (and `coverImageUrl` to the book) in the book
+JSON — the client (`client/src/components/PageArt.tsx`) already renders
+that image instead of the vector scene whenever it's present. See
+**Generating AI illustrations** below for a ready-to-run pipeline.
+
+## Generating AI illustrations
+
+This repo doesn't call any image-generation API on its own (no key is
+built in), but the plumbing is ready:
+
+- `server/scripts/art-prompts/*.json` — one file per book with a shared
+  style description, a character reference (so the same characters look
+  consistent across pages), and one scene prompt per page/cover, written
+  to match a warm, painterly children's-book illustration style.
+- `server/scripts/generate-images.mjs` — calls OpenAI's image API
+  (`gpt-image-1`) for each prompt, saves the PNGs into
+  `server/src/data/images/<bookId>/`, and patches the matching
+  `server/src/data/books/<bookId>.json` to point at them.
+
+To run it:
+
+```bash
+cd server
+export OPENAI_API_KEY=sk-...      # needs image-generation access
+npm run generate:images           # all books
+npm run generate:images -- --only the-red-ball   # just one book
+npm run generate:images -- --force               # regenerate existing images too
+```
+
+Restart the API server afterward; the client will automatically start
+showing the generated artwork instead of the vector illustrations,
+because `PageArt` prefers `imageUrl`/`coverImageUrl` when present.
+
+**Using a different provider** (Stability AI, Google Gemini/Imagen,
+Replicate, etc.) only requires rewriting the `generateImage()` function
+at the top of `generate-images.mjs` — the prompt loading, file writing,
+and JSON patching are provider-agnostic. To add a new book's worth of
+art, write a matching `server/scripts/art-prompts/<id>.json` file first.
 
 ## Getting started
 
@@ -87,8 +123,8 @@ Not built yet, but the architecture leaves room for:
 
 - **Progress tracking / child profiles** — which books were read, per level.
 - **Simple comprehension quizzes** after each book.
-- **AI-generated books**: a script that prompts an LLM for level-appropriate
-  story text and a matching list of scene/sprite placements, then writes
-  out a new book JSON file in the same format used here.
+- **AI-generated story text**: a script that prompts an LLM for a new,
+  level-appropriate story plus matching `art-prompts/<id>.json` entries,
+  then writes out a new book JSON file in the same format used here.
 - **Native mobile app** reusing the same `server` API (React Native with
   `react-native-svg` could reuse the same scene-description approach).
