@@ -1,6 +1,11 @@
 // CEFR levels supported by the library.
 export type CEFRLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 
+// TBL and CLIL require specific pedagogical structure (see the client's
+// data/methodMeta.ts for the criteria); CLT is the default for books that
+// are communicative and meaning-focused but don't meet either's specific bar.
+export type TeachingMethod = "TBL" | "CLIL" | "CLT";
+
 // One vector "sprite" placed inside a page's illustration scene.
 // Rendering the scene is a client concern; the server only describes
 // what should appear so the same data can drive a web or mobile client.
@@ -43,6 +48,8 @@ export interface Book {
   summary: string;
   coverScene: Scene;
   coverImageUrl?: string;
+  teachingMethod: TeachingMethod;
+  teachingMethodReason: string;
   pages: BookPage[];
 }
 
@@ -54,6 +61,8 @@ export interface BookSummary {
   summary: string;
   coverScene: Scene;
   coverImageUrl?: string;
+  teachingMethod: TeachingMethod;
+  teachingMethodReason: string;
   pageCount: number;
 }
 

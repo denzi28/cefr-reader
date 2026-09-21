@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { BookSummary } from "../types/book";
 import { PageArt } from "./PageArt";
 import { LevelBadge } from "./LevelBadge";
+import { MethodBadge } from "./MethodBadge";
 
 export function BookCard({ book }: { book: BookSummary }) {
   return (
@@ -16,9 +17,12 @@ export function BookCard({ book }: { book: BookSummary }) {
           <LevelBadge level={book.level} />
         </div>
         <p className="font-body text-sm text-stone-500">{book.summary}</p>
-        <p className="mt-auto font-body text-xs font-bold uppercase tracking-wide text-stone-400">
-          {book.pageCount} pages
-        </p>
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <p className="font-body text-xs font-bold uppercase tracking-wide text-stone-400">
+            {book.pageCount} pages
+          </p>
+          <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
+        </div>
       </div>
     </Link>
   );

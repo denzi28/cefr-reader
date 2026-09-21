@@ -3,6 +3,8 @@
   "title": "The Red Ball",
   "level": "A1",
   "summary": "Max the dog loses his favorite ball in the park. Can he find it again?",
+  "teachingMethod": "CLT",
+  "teachingMethodReason": "New vocabulary (dog, ball, park, tree, bench, flower) is presented through a simple communicative narrative, but the reader only reads and looks words up — there's no task with a real outcome for the reader to produce (so not TBL, per Willis 1996/Nunan 2006) and no other-subject content taught alongside the language (so not CLIL, per Coyle et al. 2010). That makes it classic Communicative Language Teaching: meaning-focused context over isolated drills.",
   "coverScene": {
     "background": "park",
     "items": [

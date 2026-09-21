@@ -3,6 +3,8 @@
   "title": "A Day at the Park",
   "level": "A2",
   "summary": "Mia and Tom spend a sunny day playing, exploring, and making a new furry friend.",
+  "teachingMethod": "CLT",
+  "teachingMethodReason": "A recount-style narrative that builds everyday communicative vocabulary in context; no task outcome for the reader and no subject content beyond English, so CLT rather than TBL or CLIL. Note: its lost-ball-over-the-fence beat is structurally close to a TBL problem-solving task (Willis, 1996) — a prompt asking the reader to guess where the ball landed before the reveal would make it genuinely TBL.",
   "coverScene": {
     "background": "park",
     "items": [

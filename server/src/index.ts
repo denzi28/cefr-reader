@@ -25,6 +25,8 @@ function toSummary(book: Book): BookSummary {
     summary: book.summary,
     coverScene: book.coverScene,
     coverImageUrl: book.coverImageUrl,
+    teachingMethod: book.teachingMethod,
+    teachingMethodReason: book.teachingMethodReason,
     pageCount: book.pages.length,
   };
 }

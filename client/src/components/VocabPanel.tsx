@@ -1,8 +1,14 @@
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { VocabEntry } from "../types/book";
 
 export function VocabPanel({ entry, onClose }: { entry: VocabEntry | null; onClose: () => void }) {
-  return (
+  // Portaled to <body>: the route-transition wrapper in App.tsx animates a
+  // `transform`, which turns it into a containing block for any descendant
+  // `position: fixed` element — pinning this sheet to that wrapper's own
+  // (content-sized) box instead of the real viewport. Rendering outside
+  // that subtree avoids the problem entirely.
+  return createPortal(
     <AnimatePresence>
       {entry && (
         <motion.div
@@ -36,6 +42,7 @@ export function VocabPanel({ entry, onClose }: { entry: VocabEntry | null; onClo
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

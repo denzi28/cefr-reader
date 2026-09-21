@@ -3,6 +3,8 @@
   "title": "My Family",
   "level": "A1",
   "summary": "Meet a happy family and learn simple words for the people you love.",
+  "teachingMethod": "CLT",
+  "teachingMethodReason": "Family vocabulary (mother, father, sister, house, home) is delivered through a short communicative narrative with glossing. There's no task for the reader to complete (not TBL) and no cross-curricular content beyond the language itself (not CLIL), so this is CLT.",
   "coverScene": {
     "background": "indoor",
     "items": [

@@ -28,6 +28,8 @@ function toSummary(book: Book): BookSummary {
     summary: book.summary,
     coverScene: book.coverScene,
     coverImageUrl: book.coverImageUrl,
+    teachingMethod: book.teachingMethod,
+    teachingMethodReason: book.teachingMethodReason,
     pageCount: book.pages.length,
   };
 }
@@ -43,9 +45,11 @@ export const api = {
     }));
   },
 
-  async getBooks(level?: string): Promise<BookSummary[]> {
+  async getBooks(level?: string, method?: string): Promise<BookSummary[]> {
     const books = await loadBooks();
-    const filtered = level ? books.filter((b) => b.level === level) : books;
+    const filtered = books
+      .filter((b) => !level || b.level === level)
+      .filter((b) => !method || b.teachingMethod === method);
     return filtered.map(toSummary);
   },
 

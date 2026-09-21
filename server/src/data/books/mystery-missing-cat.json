@@ -3,6 +3,8 @@
   "title": "The Mystery of the Missing Cat",
   "level": "B1",
   "summary": "When Anna's cat vanishes, she and her friend Ben follow the clues to solve the mystery.",
+  "teachingMethod": "CLT",
+  "teachingMethodReason": "The characters solve a problem, but the reader doesn't: per Willis (1996)/Nunan (2006), TBL requires the learner to use language to reach a real outcome themselves (e.g. listing clues, predicting the cat's location), which this text doesn't ask for yet — so it's CLT today, not TBL. It's the strongest candidate in the library to convert to genuine TBL: add a task like 'Where do you think Whiskers is? List two places to check' before the page 5 reveal, and it would qualify.",
   "coverScene": {
     "background": "mystery",
     "items": [

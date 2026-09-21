@@ -7,6 +7,7 @@ import { PageArt } from "../components/PageArt";
 import { PageText } from "../components/PageText";
 import { VocabPanel } from "../components/VocabPanel";
 import { LevelBadge } from "../components/LevelBadge";
+import { MethodBadge } from "../components/MethodBadge";
 
 const pageVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 60 : -60, opacity: 0, rotateY: direction > 0 ? 8 : -8 }),
@@ -67,7 +68,10 @@ export function ReaderPage() {
         >
           ← {book.title}
         </Link>
-        <LevelBadge level={book.level} />
+        <div className="flex items-center gap-2">
+          <LevelBadge level={book.level} />
+          <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
+        </div>
       </div>
 
       <div
