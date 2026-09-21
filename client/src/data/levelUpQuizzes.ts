@@ -28,9 +28,9 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
         id: "a1-1",
         question: "Choose the correct sentence.",
         options: [
-          { id: "right", label: "My sister is happy.", emoji: "✅", correct: true },
-          { id: "wrong1", label: "My sister are happy.", emoji: "❌", correct: false },
-          { id: "wrong2", label: "My sister am happy.", emoji: "❌", correct: false },
+          { id: "right", label: "My sister is happy.", emoji: "🔵", correct: true },
+          { id: "wrong1", label: "My sister are happy.", emoji: "🟢", correct: false },
+          { id: "wrong2", label: "My sister am happy.", emoji: "🟠", correct: false },
         ],
       },
       {
@@ -64,9 +64,9 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
         id: "a1-5",
         question: "Which sentence is correct?",
         options: [
-          { id: "wrong1", label: "She like to swim.", emoji: "❌", correct: false },
-          { id: "wrong2", label: "She liking to swim.", emoji: "❌", correct: false },
-          { id: "right", label: "She likes to swim.", emoji: "✅", correct: true },
+          { id: "wrong1", label: "She like to swim.", emoji: "🔵", correct: false },
+          { id: "wrong2", label: "She liking to swim.", emoji: "🟢", correct: false },
+          { id: "right", label: "She likes to swim.", emoji: "🟠", correct: true },
         ],
       },
       {
@@ -91,9 +91,9 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
         id: "a1-8",
         question: "Complete the command: '___ up! It's time for school.'",
         options: [
-          { id: "wakes", label: "Wakes", emoji: "❌", correct: false },
-          { id: "waking", label: "Waking", emoji: "❌", correct: false },
-          { id: "wake", label: "Wake", emoji: "✅", correct: true },
+          { id: "wakes", label: "Wakes", emoji: "🔵", correct: false },
+          { id: "waking", label: "Waking", emoji: "🟢", correct: false },
+          { id: "wake", label: "Wake", emoji: "🟠", correct: true },
         ],
       },
     ],
