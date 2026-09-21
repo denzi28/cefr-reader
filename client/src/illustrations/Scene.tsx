@@ -1,12 +1,15 @@
 import type { Scene as SceneData } from "../types/book";
 import { SPRITES } from "./sprites";
 
-const BACKGROUNDS: Record<SceneData["background"], { sky: [string, string]; ground?: string }> = {
-  day: { sky: ["#BEE3F8", "#EAF6FF"], ground: "#CFF3D6" },
-  park: { sky: ["#BEE3F8", "#EAF6FF"], ground: "#B7E4B0" },
-  indoor: { sky: ["#FFF3DC", "#FFF9EC"], ground: "#F1DDBE" },
-  night: { sky: ["#2A3466", "#1B2140"], ground: "#38406B" },
-  mystery: { sky: ["#C9C2E6", "#E7E2F7"], ground: "#B9AEDD" },
+const BACKGROUNDS: Record<
+  SceneData["background"],
+  { sky: [string, string]; ground?: string; groundLine?: string }
+> = {
+  day: { sky: ["#4FC3F7", "#8FE0FB"], ground: "#7ED957", groundLine: "#4CAF50" },
+  park: { sky: ["#4FC3F7", "#8FE0FB"], ground: "#6FCB4D", groundLine: "#43A047" },
+  indoor: { sky: ["#FFD873", "#FFE9A8"], ground: "#E3A85C", groundLine: "#B5763B" },
+  night: { sky: ["#161B4D", "#2A3494"], ground: "#2E3B78", groundLine: "#1F2A5C" },
+  mystery: { sky: ["#7C6FD1", "#B0A3EE"], ground: "#6C5FBE", groundLine: "#4E4291" },
 };
 
 const VIEW_W = 400;
@@ -43,7 +46,10 @@ export function Scene({ scene, className }: { scene: SceneData; className?: stri
           />
         ))}
       {bg.ground && (
-        <rect x="0" y={VIEW_H * 0.78} width={VIEW_W} height={VIEW_H * 0.22} fill={bg.ground} />
+        <>
+          <rect x="0" y={VIEW_H * 0.78} width={VIEW_W} height={VIEW_H * 0.22} fill={bg.ground} />
+          <rect x="0" y={VIEW_H * 0.78} width={VIEW_W} height={2.5} fill={bg.groundLine} />
+        </>
       )}
       {scene.items.map((item, i) => {
         const Sprite = SPRITES[item.sprite];
