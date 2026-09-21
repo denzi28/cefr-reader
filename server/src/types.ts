@@ -48,6 +48,23 @@ export interface PageTask {
   items: TaskItem[];
 }
 
+export interface QuizOption {
+  id: string;
+  label: string;
+  emoji: string;
+  correct: boolean;
+}
+
+// A single-choice comprehension question shown after the last page, for
+// books that have one. Distinct from PageTask (an embedded TBL task with
+// an unknown outcome mid-story) - a quiz always has one right answer and
+// just checks recall.
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: QuizOption[];
+}
+
 export interface BookPage {
   index: number;
   // Page text. Vocabulary words are wrapped like {{ball}} so the client
@@ -77,6 +94,13 @@ export interface Book {
   // Short grammar-point labels this book's text actually uses, checked
   // against its CEFR level. Shown via the reader's grammar info button.
   grammarFeatures: string[];
+  // Playful, kid-facing lines (no jargon, no images) shown before the
+  // child starts reading - a translation of grammarFeatures into
+  // language a child actually understands. Optional.
+  introFunFacts?: string[];
+  // A short comprehension quiz shown after the last page, when reading
+  // "as" a child profile. Optional.
+  quiz?: QuizQuestion[];
   pages: BookPage[];
 }
 

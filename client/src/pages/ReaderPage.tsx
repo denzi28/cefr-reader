@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { api } from "../api/client";
 import type { Book, VocabEntry } from "../types/book";
@@ -10,8 +10,11 @@ import { LevelBadge } from "../components/LevelBadge";
 import { MethodBadge } from "../components/MethodBadge";
 import { GrammarInfoButton } from "../components/GrammarInfoButton";
 import { TaskCard, compareTaskAnswer } from "../components/TaskCard";
+import { BookIntroScreen } from "../components/BookIntroScreen";
+import { BookQuiz } from "../components/BookQuiz";
+import { BookScoreScreen } from "../components/BookScoreScreen";
 import { useActiveProfile } from "../auth/ActiveProfileContext";
-import { saveProgress } from "../data/profiles";
+import { saveProgress, saveQuizScore } from "../data/profiles";
 
 const pageVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 60 : -60, opacity: 0, rotateY: direction > 0 ? 8 : -8 }),
@@ -19,8 +22,15 @@ const pageVariants = {
   exit: (direction: number) => ({ x: direction > 0 ? -60 : 60, opacity: 0, rotateY: direction > 0 ? -8 : 8 }),
 };
 
+// A book normally goes straight to "reading". When a child profile is
+// active and the book has intro facts / a quiz (only the A1 test set for
+// now), it detours through "intro" first and "quiz" -> "score" after the
+// last page, instead of the plain "The End" link.
+type ReaderPhase = "intro" | "reading" | "quiz" | "score";
+
 export function ReaderPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { activeProfile } = useActiveProfile();
   const [book, setBook] = useState<Book | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +38,8 @@ export function ReaderPage() {
   const [direction, setDirection] = useState(1);
   const [activeWord, setActiveWord] = useState<VocabEntry | null>(null);
   const [taskSelections, setTaskSelections] = useState<Record<number, string[]>>({});
+  const [phase, setPhase] = useState<ReaderPhase>("reading");
+  const [quizResult, setQuizResult] = useState<{ correct: number; total: number } | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -36,8 +48,13 @@ export function ReaderPage() {
       .then((b) => {
         setBook(b);
         setPageIndex(0);
+        setQuizResult(null);
+        setPhase(activeProfile && b.introFunFacts?.length ? "intro" : "reading");
       })
       .catch((e) => setError(String(e)));
+    // Only re-run when the book id changes - re-checking activeProfile here
+    // would restart an in-progress read every time profile state settles.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // A quiet, best-effort write - reading stays fully open to everyone, so a
@@ -67,6 +84,7 @@ export function ReaderPage() {
   const page = book.pages[pageIndex];
   const isFirst = pageIndex === 0;
   const isLast = pageIndex === book.pages.length - 1;
+  const hasQuiz = !!activeProfile && !!book.quiz?.length;
 
   // If the previous page was a task stop, show how the reader's own list
   // compares to the real answer - the "report" stage of Willis's task
@@ -99,6 +117,21 @@ export function ReaderPage() {
     });
   }
 
+  function handleQuizFinish(correct: number, total: number) {
+    setQuizResult({ correct, total });
+    setPhase("score");
+    if (activeProfile) {
+      saveQuizScore(activeProfile.id, book!.id, correct, total).catch(() => {});
+    }
+  }
+
+  function handleReadAgain() {
+    setPageIndex(0);
+    setTaskSelections({});
+    setQuizResult(null);
+    setPhase(activeProfile && book!.introFunFacts?.length ? "intro" : "reading");
+  }
+
   return (
     <div className="mx-auto flex min-h-screen max-w-3xl flex-col px-4 pb-32 pt-6">
       <div className="mb-4 flex items-center justify-between">
@@ -123,101 +156,133 @@ export function ReaderPage() {
         className="overflow-hidden rounded-3xl border-4 border-white shadow-lg ring-1 ring-stone-200"
         style={{ perspective: 1200 }}
       >
-        <AnimatePresence mode="wait" custom={direction} initial={false}>
-          <motion.div
-            key={pageIndex}
-            custom={direction}
-            variants={pageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.28, ease: "easeInOut" }}
-          >
-            {page.task ? (
-              <div className="bg-white px-6 py-8">
-                <p className="mb-5 text-center font-body text-xl font-extrabold text-stone-800">{page.text}</p>
-                <TaskCard
-                  task={page.task}
-                  selected={taskSelections[pageIndex] ?? []}
-                  onToggle={toggleTaskItem}
-                />
-              </div>
-            ) : (
-              <>
-                <PageArt imageUrl={page.imageUrl} scene={page.scene} className="aspect-[5/3] w-full bg-white" />
-                <div className="bg-white px-6 py-8 text-center">
-                  {taskComparison && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`mb-4 inline-block rounded-full border-2 px-4 py-1.5 font-body text-sm font-extrabold ${
-                        (taskComparison.mode === "single" && !taskComparison.isCorrect) ||
-                        (taskComparison.mode !== "single" && taskComparison.wrong > 0)
-                          ? "border-amber-300 bg-amber-50 text-amber-700"
-                          : "border-emerald-300 bg-emerald-50 text-emerald-700"
-                      }`}
-                    >
-                      {taskComparison.mode === "single" &&
-                        (taskComparison.isCorrect
-                          ? "Great guess! You were right! 🎉"
-                          : `Good try! It was actually ${taskComparison.correctEmoji} ${taskComparison.correctLabel}.`)}
-                      {taskComparison.mode !== "single" &&
-                        (taskComparison.wrong > 0
-                          ? `You picked ${taskComparison.correct} correct but ${taskComparison.wrong} wrong.`
-                          : `You picked ${taskComparison.correct} correct! 🎉`)}
-                    </motion.p>
-                  )}
-                  <PageText
-                    text={page.text}
-                    vocab={page.vocab}
-                    activeWord={activeWord?.word}
-                    onWordTap={setActiveWord}
+        {phase === "intro" && book.introFunFacts && (
+          <BookIntroScreen facts={book.introFunFacts} onStart={() => setPhase("reading")} />
+        )}
+
+        {phase === "quiz" && book.quiz && <BookQuiz questions={book.quiz} onFinish={handleQuizFinish} />}
+
+        {phase === "score" && quizResult && (
+          <BookScoreScreen
+            correct={quizResult.correct}
+            total={quizResult.total}
+            onReadAgain={handleReadAgain}
+            onBackToBooks={() => navigate(`/levels/${book.level}`)}
+          />
+        )}
+
+        {phase === "reading" && (
+          <AnimatePresence mode="wait" custom={direction} initial={false}>
+            <motion.div
+              key={pageIndex}
+              custom={direction}
+              variants={pageVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.28, ease: "easeInOut" }}
+            >
+              {page.task ? (
+                <div className="bg-white px-6 py-8">
+                  <p className="mb-5 text-center font-body text-xl font-extrabold text-stone-800">{page.text}</p>
+                  <TaskCard
+                    task={page.task}
+                    selected={taskSelections[pageIndex] ?? []}
+                    onToggle={toggleTaskItem}
                   />
                 </div>
-              </>
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <p className="mt-4 text-center font-body text-sm font-bold text-stone-400">
-        Page {pageIndex + 1} of {book.pages.length}
-        {page.task?.mode === "multi" && " · tap everything you think is needed, then turn the page to check"}
-        {page.task?.mode === "single" && " · pick the one you think is right, then turn the page to check"}
-        {page.task?.mode === "order" && " · tap them in the order you think they happen"}
-        {!page.task && page.vocab.length > 0 && " · tap the underlined words to see what they mean"}
-      </p>
-
-      <div className="mt-6 flex items-center justify-between gap-4">
-        <motion.button
-          whileTap={{ scale: 0.94 }}
-          type="button"
-          onClick={() => goTo(pageIndex - 1)}
-          disabled={isFirst}
-          className="flex-1 rounded-2xl border-4 border-white bg-white py-3 font-extrabold text-stone-600 shadow-sm transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          ← Back
-        </motion.button>
-        {isLast ? (
-          <motion.div whileTap={{ scale: 0.94 }} className="flex-1">
-            <Link
-              to={`/levels/${book.level}`}
-              className="block rounded-2xl bg-emerald-500 py-3 text-center font-extrabold text-white shadow-sm transition hover:bg-emerald-600"
-            >
-              The End 🎉
-            </Link>
-          </motion.div>
-        ) : (
-          <motion.button
-            whileTap={{ scale: 0.94 }}
-            type="button"
-            onClick={() => goTo(pageIndex + 1)}
-            className="flex-1 rounded-2xl bg-sky-500 py-3 font-extrabold text-white shadow-sm transition hover:bg-sky-600"
-          >
-            Next →
-          </motion.button>
+              ) : (
+                <>
+                  <PageArt imageUrl={page.imageUrl} scene={page.scene} className="aspect-[5/3] w-full bg-white" />
+                  <div className="bg-white px-6 py-8 text-center">
+                    {taskComparison && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`mb-4 inline-block rounded-full border-2 px-4 py-1.5 font-body text-sm font-extrabold ${
+                          (taskComparison.mode === "single" && !taskComparison.isCorrect) ||
+                          (taskComparison.mode !== "single" && taskComparison.wrong > 0)
+                            ? "border-amber-300 bg-amber-50 text-amber-700"
+                            : "border-emerald-300 bg-emerald-50 text-emerald-700"
+                        }`}
+                      >
+                        {taskComparison.mode === "single" &&
+                          (taskComparison.isCorrect
+                            ? "Great guess! You were right! 🎉"
+                            : `Good try! It was actually ${taskComparison.correctEmoji} ${taskComparison.correctLabel}.`)}
+                        {taskComparison.mode !== "single" &&
+                          (taskComparison.wrong > 0
+                            ? `You picked ${taskComparison.correct} correct but ${taskComparison.wrong} wrong.`
+                            : `You picked ${taskComparison.correct} correct! 🎉`)}
+                      </motion.p>
+                    )}
+                    <PageText
+                      text={page.text}
+                      vocab={page.vocab}
+                      activeWord={activeWord?.word}
+                      onWordTap={setActiveWord}
+                    />
+                  </div>
+                </>
+              )}
+            </motion.div>
+          </AnimatePresence>
         )}
       </div>
+
+      {phase === "reading" && (
+        <>
+          <p className="mt-4 text-center font-body text-sm font-bold text-stone-400">
+            Page {pageIndex + 1} of {book.pages.length}
+            {page.task?.mode === "multi" && " · tap everything you think is needed, then turn the page to check"}
+            {page.task?.mode === "single" && " · pick the one you think is right, then turn the page to check"}
+            {page.task?.mode === "order" && " · tap them in the order you think they happen"}
+            {!page.task && page.vocab.length > 0 && " · tap the underlined words to see what they mean"}
+          </p>
+
+          <div className="mt-6 flex items-center justify-between gap-4">
+            <motion.button
+              whileTap={{ scale: 0.94 }}
+              type="button"
+              onClick={() => goTo(pageIndex - 1)}
+              disabled={isFirst}
+              className="flex-1 rounded-2xl border-4 border-white bg-white py-3 font-extrabold text-stone-600 shadow-sm transition hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              ← Back
+            </motion.button>
+            {isLast ? (
+              hasQuiz ? (
+                <motion.button
+                  whileTap={{ scale: 0.94 }}
+                  type="button"
+                  onClick={() => setPhase("quiz")}
+                  className="flex-1 rounded-2xl bg-emerald-500 py-3 font-extrabold text-white shadow-sm transition hover:bg-emerald-600"
+                >
+                  Quiz Time! ⭐
+                </motion.button>
+              ) : (
+                <motion.div whileTap={{ scale: 0.94 }} className="flex-1">
+                  <Link
+                    to={`/levels/${book.level}`}
+                    className="block rounded-2xl bg-emerald-500 py-3 text-center font-extrabold text-white shadow-sm transition hover:bg-emerald-600"
+                  >
+                    The End 🎉
+                  </Link>
+                </motion.div>
+              )
+            ) : (
+              <motion.button
+                whileTap={{ scale: 0.94 }}
+                type="button"
+                onClick={() => goTo(pageIndex + 1)}
+                className="flex-1 rounded-2xl bg-sky-500 py-3 font-extrabold text-white shadow-sm transition hover:bg-sky-600"
+              >
+                Next →
+              </motion.button>
+            )}
+          </div>
+        </>
+      )}
 
       <VocabPanel entry={activeWord} onClose={() => setActiveWord(null)} />
     </div>

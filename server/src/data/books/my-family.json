@@ -11,6 +11,49 @@
     "Personal pronouns (I, we, he, she)",
     "\"Like + to-infinitive\" (likes to read)"
   ],
+  "introFunFacts": [
+    "👪 Big secret: the word 'MY' means something belongs to YOU! My family, my book, my home!",
+    "💛 Watch for 'likes to' - it tells us what someone loves doing, like 'she likes to read'.",
+    "🔍 Can you find all the family members hiding in this story?"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What does the mother like to do?",
+      "options": [
+        { "id": "read", "label": "Read a book", "emoji": "📖", "correct": true },
+        { "id": "cook", "label": "Cook", "emoji": "🍳", "correct": false },
+        { "id": "bike", "label": "Ride a bike", "emoji": "🚴", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Who works at a table?",
+      "options": [
+        { "id": "sister", "label": "The sister", "emoji": "👧", "correct": false },
+        { "id": "father", "label": "The father", "emoji": "👦", "correct": true },
+        { "id": "cat", "label": "The cat", "emoji": "🐱", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What pet does the sister have?",
+      "options": [
+        { "id": "dog", "label": "A dog", "emoji": "🐶", "correct": false },
+        { "id": "cat", "label": "A cat", "emoji": "🐱", "correct": true },
+        { "id": "rabbit", "label": "A rabbit", "emoji": "🐰", "correct": false }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Where is the family happy?",
+      "options": [
+        { "id": "home", "label": "At home", "emoji": "🏠", "correct": true },
+        { "id": "park", "label": "At the park", "emoji": "🏞️", "correct": false },
+        { "id": "school", "label": "At school", "emoji": "🏫", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "indoor",
     "items": [

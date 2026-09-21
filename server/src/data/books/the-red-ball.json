@@ -11,6 +11,49 @@
     "Simple wh-questions (Where is the ball?)",
     "Basic adjectives (red, happy, empty)"
   ],
+  "introFunFacts": [
+    "🎉 Get ready! Watch for the tiny word 'IS' - it tells us what something IS like. Max IS happy! The ball IS red!",
+    "🕵️ 'Where' is a detective word! We use it to ask about places, like 'Where is the ball?'",
+    "🎨 Can you spot the color word hiding in this story?"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What kind of animal is Max?",
+      "options": [
+        { "id": "dog", "label": "Dog", "emoji": "🐶", "correct": true },
+        { "id": "cat", "label": "Cat", "emoji": "🐱", "correct": false },
+        { "id": "rabbit", "label": "Rabbit", "emoji": "🐰", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What color is Max's ball?",
+      "options": [
+        { "id": "blue", "label": "Blue", "emoji": "🔵", "correct": false },
+        { "id": "red", "label": "Red", "emoji": "🔴", "correct": true },
+        { "id": "green", "label": "Green", "emoji": "🟢", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where does Max lose his ball?",
+      "options": [
+        { "id": "home", "label": "At home", "emoji": "🏠", "correct": false },
+        { "id": "park", "label": "In the park", "emoji": "🌳", "correct": true },
+        { "id": "school", "label": "At school", "emoji": "🏫", "correct": false }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How does Max feel when he finds the ball?",
+      "options": [
+        { "id": "sad", "label": "Sad", "emoji": "😢", "correct": false },
+        { "id": "angry", "label": "Angry", "emoji": "😡", "correct": false },
+        { "id": "happy", "label": "Happy", "emoji": "😊", "correct": true }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "park",
     "items": [

@@ -11,6 +11,49 @@
     "Descriptive adjectives (hot, dry)",
     "Possessive adjective \"their\""
   ],
+  "introFunFacts": [
+    "🌍 Today's mission: learn about ANIMAL HOMES around the world - that's called a 'habitat'!",
+    "📍 Watch for little location words like 'in the ocean' or 'in the sky' - they tell us WHERE something is!",
+    "🐫 Fun fact: some homes are hot and dry, some are wet and cold. Can you guess which animal lives where?"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "Where do fish live?",
+      "options": [
+        { "id": "ocean", "label": "In the ocean", "emoji": "🌊", "correct": true },
+        { "id": "desert", "label": "In the desert", "emoji": "🏜️", "correct": false },
+        { "id": "forest", "label": "In the forest", "emoji": "🌲", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Where do camels live?",
+      "options": [
+        { "id": "ocean", "label": "In the ocean", "emoji": "🌊", "correct": false },
+        { "id": "desert", "label": "In the desert", "emoji": "🏜️", "correct": true },
+        { "id": "forest", "label": "In the forest", "emoji": "🌲", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where do birds live?",
+      "options": [
+        { "id": "desert", "label": "In the desert", "emoji": "🏜️", "correct": false },
+        { "id": "ocean", "label": "In the ocean", "emoji": "🌊", "correct": false },
+        { "id": "sky", "label": "In the sky and in trees", "emoji": "🌳", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Where do bears live?",
+      "options": [
+        { "id": "forest", "label": "In the forest", "emoji": "🌲", "correct": true },
+        { "id": "ocean", "label": "In the ocean", "emoji": "🌊", "correct": false },
+        { "id": "desert", "label": "In the desert", "emoji": "🏜️", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "day",
     "items": [

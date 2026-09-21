@@ -15,6 +15,8 @@ export interface ReadingProgress {
   book_id: string;
   current_page_index: number;
   completed: boolean;
+  quiz_correct: number | null;
+  quiz_total: number | null;
   updated_at: string;
 }
 
@@ -57,6 +59,8 @@ export async function listProgressForProfile(profileId: number): Promise<Reading
 
 // Upserts progress for a (profile, book) pair - called as the reader turns
 // pages, so it's a frequent, low-stakes write (fire-and-forget from the UI).
+// Deliberately never touches quiz_correct/quiz_total, so re-reading a book
+// (which fires this on every page turn again) can't wipe an earlier score.
 export async function saveProgress(
   profileId: number,
   bookId: string,
@@ -69,5 +73,22 @@ export async function saveProgress(
       { profile_id: profileId, book_id: bookId, current_page_index: currentPageIndex, completed, updated_at: new Date().toISOString() },
       { onConflict: "profile_id,book_id" }
     );
+  if (error) throw error;
+}
+
+// Records a finished quiz's score. Called after saveProgress has already
+// created the (profile, book) row for this reading session, so a plain
+// update (not upsert) is enough.
+export async function saveQuizScore(
+  profileId: number,
+  bookId: string,
+  correct: number,
+  total: number
+): Promise<void> {
+  const { error } = await supabase
+    .from("reading_progress")
+    .update({ quiz_correct: correct, quiz_total: total, completed: true, updated_at: new Date().toISOString() })
+    .eq("profile_id", profileId)
+    .eq("book_id", bookId);
   if (error) throw error;
 }

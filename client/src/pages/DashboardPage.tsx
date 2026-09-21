@@ -24,6 +24,8 @@ interface BookProgressRow {
   pageCount: number;
   currentPageIndex: number;
   completed: boolean;
+  quizCorrect: number | null;
+  quizTotal: number | null;
 }
 
 function ProfileCard({
@@ -52,6 +54,8 @@ function ProfileCard({
                 pageCount: book.pages.length,
                 currentPageIndex: row.current_page_index,
                 completed: row.completed,
+                quizCorrect: row.quiz_correct,
+                quizTotal: row.quiz_total,
               };
             } catch {
               return null;
@@ -122,6 +126,7 @@ function ProfileCard({
                   }`}
                 >
                   {p.completed ? "Finished 🎉" : `Page ${p.currentPageIndex + 1} of ${p.pageCount}`}
+                  {p.quizTotal != null && ` · Quiz: ${p.quizCorrect}/${p.quizTotal} ⭐`}
                 </span>
               </li>
             ))}
@@ -141,7 +146,9 @@ export function DashboardPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState(AVATAR_CHOICES[0]);
-  const [level, setLevel] = useState("");
+  // Children start from A1 by default - a parent can still bump an older
+  // or more advanced kid up from here.
+  const [level, setLevel] = useState<string>("A1");
 
   useEffect(() => {
     if (!user) return;
@@ -161,7 +168,7 @@ export function DashboardPage() {
       setProfiles((prev) => [...(prev ?? []), created]);
       setName("");
       setEmoji(AVATAR_CHOICES[0]);
-      setLevel("");
+      setLevel("A1");
       setShowAddForm(false);
     } catch (e) {
       setError(String(e));

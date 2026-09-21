@@ -11,6 +11,49 @@
     "Questions with \"does\" (What does she need?)",
     "Imperatives (Help Ruby pack! Tap...)"
   ],
+  "introFunFacts": [
+    "🧺 Big job today: help build a LIST! Ruby needs YOUR help finding picnic food.",
+    "❓ Watch for 'What DOES she need?' - we add 'does' when we ask about one person (he/she/it)!",
+    "👉 Look for action words like 'Tap' and 'Help' - they tell YOU what to do!"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What is Ruby packing for?",
+      "options": [
+        { "id": "birthday", "label": "A birthday party", "emoji": "🎂", "correct": false },
+        { "id": "picnic", "label": "A picnic", "emoji": "🧺", "correct": true },
+        { "id": "swim", "label": "A swim", "emoji": "🏊", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What color is the apple Ruby finds?",
+      "options": [
+        { "id": "green", "label": "Green", "emoji": "🟢", "correct": false },
+        { "id": "red", "label": "Red", "emoji": "🔴", "correct": true },
+        { "id": "yellow", "label": "Yellow", "emoji": "🟡", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where does Ruby eat her picnic?",
+      "options": [
+        { "id": "home", "label": "At home", "emoji": "🏠", "correct": false },
+        { "id": "park", "label": "In the park", "emoji": "🌳", "correct": true },
+        { "id": "school", "label": "At school", "emoji": "🏫", "correct": false }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What does Ruby NOT need for her picnic?",
+      "options": [
+        { "id": "shoe", "label": "Her shoe", "emoji": "👟", "correct": true },
+        { "id": "sandwich", "label": "A sandwich", "emoji": "🥪", "correct": false },
+        { "id": "cookies", "label": "Cookies", "emoji": "🍪", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "day",
     "items": [

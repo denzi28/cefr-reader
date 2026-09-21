@@ -5,6 +5,7 @@ import { api } from "../api/client";
 import type { BookSummary, CEFRLevel } from "../types/book";
 import { BookCard } from "../components/BookCard";
 import { LevelBadge } from "../components/LevelBadge";
+import { useActiveProfile } from "../auth/ActiveProfileContext";
 
 const container = {
   hidden: {},
@@ -18,6 +19,7 @@ const card = {
 
 export function LevelBooksPage() {
   const { level } = useParams<{ level: string }>();
+  const { activeProfile } = useActiveProfile();
   const [books, setBooks] = useState<BookSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,9 +28,14 @@ export function LevelBooksPage() {
     setBooks(null);
     api
       .getBooks(level)
+      // TPR books rely on a caregiver reading commands aloud and watching
+      // the child move - not something the app can offer inside a child's
+      // own solo reading session, so they're hidden once a child profile
+      // is active (a parent/teacher browsing without one still sees them).
+      .then((all) => (activeProfile ? all.filter((b) => b.teachingMethod !== "TPR") : all))
       .then(setBooks)
       .catch((e) => setError(String(e)));
-  }, [level]);
+  }, [level, activeProfile]);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
