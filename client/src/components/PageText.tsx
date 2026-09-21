@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import type { VocabEntry } from "../types/book";
 
 // Splits page text on {{word}} tokens and renders vocabulary words as
@@ -24,9 +25,12 @@ export function PageText({
         const entry = vocab.find((v) => v.word.toLowerCase() === word.toLowerCase());
         const isActive = activeWord?.toLowerCase() === word.toLowerCase();
         return (
-          <button
+          <motion.button
             key={i}
             type="button"
+            whileTap={{ scale: 0.9 }}
+            animate={isActive ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+            transition={{ duration: 0.3 }}
             onClick={() => entry && onWordTap(entry)}
             className={`inline font-bold underline decoration-dashed decoration-2 underline-offset-4 rounded px-0.5 transition-colors ${
               isActive
@@ -35,7 +39,7 @@ export function PageText({
             }`}
           >
             {word}
-          </button>
+          </motion.button>
         );
       })}
     </p>

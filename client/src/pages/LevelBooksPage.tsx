@@ -1,9 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import { api } from "../api/client";
 import type { BookSummary, CEFRLevel } from "../types/book";
 import { BookCard } from "../components/BookCard";
 import { LevelBadge } from "../components/LevelBadge";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+
+const card = {
+  hidden: { opacity: 0, y: 16, scale: 0.96 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 260, damping: 22 } },
+};
 
 export function LevelBooksPage() {
   const { level } = useParams<{ level: string }>();
@@ -45,11 +56,18 @@ export function LevelBooksPage() {
       )}
 
       {books && books.length > 0 && (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {books.map((book) => (
-            <BookCard key={book.id} book={book} />
+            <motion.div key={book.id} variants={card} whileTap={{ scale: 0.97 }}>
+              <BookCard book={book} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

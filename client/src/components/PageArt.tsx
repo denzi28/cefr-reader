@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import type { Scene as SceneData } from "../types/book";
 import { Scene } from "../illustrations/Scene";
 import { resolveAssetUrl } from "../api/client";
@@ -17,9 +18,13 @@ export function PageArt({
 }) {
   if (imageUrl) {
     return (
-      <img
+      <motion.img
+        key={imageUrl}
         src={resolveAssetUrl(imageUrl)}
         alt="Story illustration"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
         className={`${className ?? ""} object-cover`}
       />
     );
