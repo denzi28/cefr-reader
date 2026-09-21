@@ -57,7 +57,10 @@ export function TaskCard({
 }
 
 // Shared comparison logic used by ReaderPage to render the "report" stage
-// on the page right after a task stop.
+// on the page right after a task stop. "multi"/"order" report both a
+// correct count AND a wrong count - silently ignoring a wrong tap (as
+// "2 of 3 correct" does) hides a real mistake the reader made, which
+// defeats the point of a task's report stage.
 export function compareTaskAnswer(task: PageTask, selected: string[]) {
   if (task.mode === "single") {
     const correctItem = task.items.find((i) => i.correct) as TaskItem;
@@ -67,14 +70,18 @@ export function compareTaskAnswer(task: PageTask, selected: string[]) {
   }
   if (task.mode === "order") {
     // For each position the reader placed an item in, does that item's
-    // correctOrder match the position (1-based)?
-    const matched = selected.filter((id, i) => {
+    // correctOrder match the position (1-based)? Anything placed but not
+    // in its correct slot counts as wrong, not just "not counted."
+    let correct = 0;
+    let wrong = 0;
+    selected.forEach((id, i) => {
       const item = task.items.find((it) => it.id === id);
-      return item?.correctOrder === i + 1;
-    }).length;
-    return { mode: "order" as const, matched, total: task.items.length };
+      if (item?.correctOrder === i + 1) correct++;
+      else wrong++;
+    });
+    return { mode: "order" as const, correct, wrong };
   }
-  const correctIds = task.items.filter((i) => i.correct).map((i) => i.id);
-  const matched = correctIds.filter((id) => selected.includes(id)).length;
-  return { mode: "multi" as const, matched, total: correctIds.length };
+  const correct = selected.filter((id) => task.items.find((it) => it.id === id)?.correct).length;
+  const wrong = selected.length - correct;
+  return { mode: "multi" as const, correct, wrong };
 }

@@ -134,14 +134,21 @@ export function ReaderPage() {
                     <motion.p
                       initial={{ opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="mb-4 inline-block rounded-full border-2 border-emerald-300 bg-emerald-50 px-4 py-1.5 font-body text-sm font-extrabold text-emerald-700"
+                      className={`mb-4 inline-block rounded-full border-2 px-4 py-1.5 font-body text-sm font-extrabold ${
+                        (taskComparison.mode === "single" && !taskComparison.isCorrect) ||
+                        (taskComparison.mode !== "single" && taskComparison.wrong > 0)
+                          ? "border-amber-300 bg-amber-50 text-amber-700"
+                          : "border-emerald-300 bg-emerald-50 text-emerald-700"
+                      }`}
                     >
                       {taskComparison.mode === "single" &&
                         (taskComparison.isCorrect
                           ? "Great guess! You were right! 🎉"
                           : `Good try! It was actually ${taskComparison.correctEmoji} ${taskComparison.correctLabel}.`)}
                       {taskComparison.mode !== "single" &&
-                        `You picked ${taskComparison.matched} of ${taskComparison.total} correctly! 🎉`}
+                        (taskComparison.wrong > 0
+                          ? `You picked ${taskComparison.correct} correct but ${taskComparison.wrong} wrong.`
+                          : `You picked ${taskComparison.correct} correct! 🎉`)}
                     </motion.p>
                   )}
                   <PageText
