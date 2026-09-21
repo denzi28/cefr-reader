@@ -1,0 +1,109 @@
+{
+  "id": "noras-water-cycle",
+  "title": "Nora and the Water Cycle",
+  "level": "B1",
+  "summary": "Have you ever wondered where rain comes from? Follow Nora as she discovers the water cycle.",
+  "teachingMethod": "CLIL",
+  "teachingMethodReason": "Meets Coyle, Hood & Marsh (2010)'s 4 C's Framework: Content - real earth-science knowledge (evaporation, condensation, precipitation as a repeating cycle), not just weather vocabulary; Communication - present-tense process description and \"when/because\" causal language are the vehicle for that content, with genuine technical terms (evaporation, condensation, precipitation) introduced because the content demands them; Cognition - the reader follows a cause-and-effect chain (heat -> vapor -> clouds -> rain -> repeat), a higher-order thinking skill beyond recall; Culture - the closing page (the cycle happens everywhere, from deserts to rainforests) is an intercultural/global-awareness note. Deliberately written in the simple present to describe a repeating process rather than the past-tense narrative this level's other books use (mystery-missing-cat, bens-missing-backpack), so the library covers a wider range of B1 grammar instead of repeating the same past-tense pattern.",
+  "grammarFeatures": [
+    "Simple present tense for describing a repeating process",
+    "Time/causal clauses with \"when\" and \"because\"",
+    "Simple passive voice (\"is called\")",
+    "Sequencing connectors applied to a cycle (First, then, finally... and repeats)"
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Girl", "x": 40, "y": 68, "scale": 1.1 },
+      { "sprite": "Cloud", "x": 65, "y": 25, "scale": 1.1 },
+      { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/noras-water-cycle/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Nora loves rainy days. Have you ever wondered where rain comes from? It is all part of the {{water cycle}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 45, "y": 70, "scale": 1.1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "water cycle", "definition": "The way water moves between the sky and the ground, again and again." }],
+      "imageUrl": "/images/noras-water-cycle/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "First, the sun heats the water in a lake or ocean. When water gets hot, it turns into an invisible gas called {{vapor}}. This is called {{evaporation}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1.2 }
+        ]
+      },
+      "vocab": [
+        { "word": "vapor", "definition": "Water in the form of an invisible gas." },
+        { "word": "evaporation", "definition": "When water heats up and turns into vapor." }
+      ],
+      "imageUrl": "/images/noras-water-cycle/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "The vapor rises into the sky. When it gets cold, it turns back into tiny drops of water. This is called {{condensation}}, and it forms {{clouds}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Cloud", "x": 65, "y": 25, "scale": 1.2 }
+        ]
+      },
+      "vocab": [
+        { "word": "condensation", "definition": "When vapor cools down and turns back into water drops." },
+        { "word": "clouds", "definition": "Groups of tiny water drops floating high in the sky." }
+      ],
+      "imageUrl": "/images/noras-water-cycle/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "When the clouds get too heavy, the water falls back down as rain or snow. This is called {{precipitation}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Cloud", "x": 65, "y": 25, "scale": 1.3 }
+        ]
+      },
+      "vocab": [{ "word": "precipitation", "definition": "Rain, snow, or other water falling from clouds." }],
+      "imageUrl": "/images/noras-water-cycle/page-4.jpg"
+    },
+    {
+      "index": 5,
+      "text": "The rain fills the rivers and oceans again. Because of this, the water cycle never stops - it repeats again and again!",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 45, "y": 70, "scale": 1.1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [],
+      "imageUrl": "/images/noras-water-cycle/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "The water cycle happens everywhere in the {{world}}, from deserts to rainforests. It gives every living thing the water it needs.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 45, "y": 70, "scale": 1.1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "world", "definition": "The Earth, and everything and everyone on it." }],
+      "imageUrl": "/images/noras-water-cycle/page-6.jpg"
+    }
+  ]
+}

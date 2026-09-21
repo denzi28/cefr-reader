@@ -1,0 +1,115 @@
+{
+  "id": "sams-four-seasons",
+  "title": "Sam and the Four Seasons",
+  "level": "A2",
+  "summary": "Sam watches the big tree outside the window change all year long. Discover why the seasons change!",
+  "teachingMethod": "CLIL",
+  "teachingMethodReason": "Meets Coyle, Hood & Marsh (2010)'s 4 C's Framework: Content - real science knowledge about seasonal change (temperature, plant growth/loss) rather than just season-name vocabulary; Communication - present-tense factual language and cause ('because') are the vehicle for that content; Cognition - the book asks the reader to connect a cause (temperature, sunlight) to an effect (leaves growing or falling), not just recall a season's name; Culture - the closing page ('the seasons are different in different parts of the world') is a light intercultural/global-awareness note. Deliberately written in the simple present for general truths rather than past-tense narrative, unlike this level's other books (a-day-at-the-park, leo-grows-a-sunflower), so the library covers a wider range of A2 grammar rather than repeating the same past-tense/sequencing pattern.",
+  "grammarFeatures": [
+    "Simple present tense for general facts/truths",
+    "Causal clauses with \"because\"",
+    "Prepositions of time (in spring, in summer)",
+    "Comparative adjectives (warmer, cooler)"
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Boy", "x": 40, "y": 68, "scale": 1.1 },
+      { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.3 },
+      { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/sams-four-seasons/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Sam has a big tree outside the window and watches it change all year long. There are four {{seasons}}: spring, summer, autumn, and winter.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 70, "scale": 1.1 },
+          { "sprite": "Window", "x": 65, "y": 45, "scale": 1.2 },
+          { "sprite": "Tree", "x": 80, "y": 50, "scale": 0.9 }
+        ]
+      },
+      "vocab": [{ "word": "seasons", "definition": "The four parts of the year: spring, summer, autumn, and winter." }],
+      "imageUrl": "/images/sams-four-seasons/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "In {{spring}}, the weather is mild. New leaves grow on the tree because the sun is {{warmer}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 70, "scale": 1 },
+          { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.2 },
+          { "sprite": "Flower", "x": 20, "y": 82, "scale": 0.8 }
+        ]
+      },
+      "vocab": [
+        { "word": "spring", "definition": "The season after winter, when plants start to grow." },
+        { "word": "warmer", "definition": "Having a higher temperature than before." }
+      ],
+      "imageUrl": "/images/sams-four-seasons/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "In {{summer}}, the weather is hot. The tree has many green leaves because it gets a lot of sunlight.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.3 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1.2 }
+        ]
+      },
+      "vocab": [{ "word": "summer", "definition": "The hottest season of the year." }],
+      "imageUrl": "/images/sams-four-seasons/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "In {{autumn}}, the weather is {{cooler}}. The leaves turn orange and fall to the ground.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.2 },
+          { "sprite": "Cloud", "x": 30, "y": 20, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "autumn", "definition": "The season after summer, when leaves change color and fall." },
+        { "word": "cooler", "definition": "Having a lower temperature than before." }
+      ],
+      "imageUrl": "/images/sams-four-seasons/page-4.jpg"
+    },
+    {
+      "index": 5,
+      "text": "In {{winter}}, the weather is cold. The tree has no leaves because it is resting until spring.",
+      "scene": {
+        "background": "night",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.2 },
+          { "sprite": "Moon", "x": 85, "y": 15, "scale": 0.9 }
+        ]
+      },
+      "vocab": [{ "word": "winter", "definition": "The coldest season of the year." }],
+      "imageUrl": "/images/sams-four-seasons/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "The seasons are different in different parts of the {{world}}. What is the weather like where you live?",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 70, "scale": 1.1 },
+          { "sprite": "Tree", "x": 70, "y": 50, "scale": 1.2 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "world", "definition": "The Earth, and everything and everyone on it." }],
+      "imageUrl": "/images/sams-four-seasons/page-6.jpg"
+    }
+  ]
+}
