@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { api } from "../api/client";
 import type { BookSummary, LevelInfo, TeachingMethod } from "../types/book";
 import { LevelBadge } from "../components/LevelBadge";
@@ -18,6 +19,108 @@ const card = {
 };
 
 type MethodFilter = "ALL" | TeachingMethod;
+
+// A single trigger + bottom sheet instead of a wrapping row of 8 chips,
+// which reflowed messily across lines as options were added/selected.
+function MethodFilterMenu({
+  value,
+  onChange,
+}: {
+  value: MethodFilter;
+  onChange: (v: MethodFilter) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const currentLabel = value === "ALL" ? "All levels" : value;
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="mx-auto flex items-center gap-2 rounded-full border-2 border-stone-300 bg-white px-5 py-2 font-body text-sm font-extrabold text-stone-600 shadow-sm transition hover:border-stone-400"
+      >
+        <span className="text-stone-400">Filter:</span>
+        {currentLabel}
+        <span className="text-stone-400">▾</span>
+      </button>
+
+      {createPortal(
+        <AnimatePresence>
+          {open && (
+            <>
+              <motion.div
+                className="fixed inset-0 z-30 bg-stone-900/30"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setOpen(false)}
+              />
+              <motion.div
+                className="fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-4 sm:pb-6"
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 60 }}
+                transition={{ type: "spring", stiffness: 320, damping: 30 }}
+              >
+                <div className="max-h-[70vh] w-full max-w-xl overflow-y-auto rounded-3xl border-4 border-stone-200 bg-white p-3 shadow-xl">
+                  <div className="flex items-center justify-between px-2 pb-2 pt-1">
+                    <p className="font-body text-xs font-extrabold uppercase tracking-wide text-stone-400">
+                      Filter by teaching method
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      aria-label="Close"
+                      className="shrink-0 rounded-full bg-stone-100 px-3 py-1 font-bold text-stone-500 hover:bg-stone-200"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange("ALL");
+                      setOpen(false);
+                    }}
+                    className={`block w-full rounded-2xl px-4 py-3 text-left transition ${
+                      value === "ALL" ? "bg-stone-700 text-white" : "hover:bg-stone-50"
+                    }`}
+                  >
+                    <p className="font-body font-extrabold">All levels</p>
+                    <p className={`font-body text-xs ${value === "ALL" ? "text-stone-200" : "text-stone-400"}`}>
+                      Browse by CEFR level instead of teaching method.
+                    </p>
+                  </button>
+
+                  {METHOD_ORDER.map((m) => (
+                    <button
+                      key={m}
+                      type="button"
+                      onClick={() => {
+                        onChange(m);
+                        setOpen(false);
+                      }}
+                      className={`block w-full rounded-2xl px-4 py-3 text-left transition ${
+                        value === m ? "bg-stone-700 text-white" : "hover:bg-stone-50"
+                      }`}
+                    >
+                      <p className="font-body font-extrabold">{m}</p>
+                      <p className={`font-body text-xs ${value === m ? "text-stone-200" : "text-stone-400"}`}>
+                        {METHOD_META[m].description}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
+  );
+}
 
 export function LevelsPage() {
   const [levels, setLevels] = useState<LevelInfo[] | null>(null);
@@ -57,38 +160,8 @@ export function LevelsPage() {
         </p>
       </motion.header>
 
-      <div className="mb-10 flex flex-col items-center gap-3">
-        <p className="font-body text-xs font-extrabold uppercase tracking-wide text-stone-400">
-          Filter by teaching method
-        </p>
-        <div className="flex flex-wrap justify-center gap-2">
-          <button
-            type="button"
-            onClick={() => setMethodFilter("ALL")}
-            className={`rounded-full border-2 px-4 py-1.5 font-body text-sm font-extrabold transition ${
-              methodFilter === "ALL"
-                ? "border-stone-700 bg-stone-700 text-white"
-                : "border-stone-300 bg-white text-stone-500 hover:border-stone-400"
-            }`}
-          >
-            All levels
-          </button>
-          {METHOD_ORDER.map((m) => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => setMethodFilter(m)}
-              title={METHOD_META[m].description}
-              className={`rounded-full border-2 px-4 py-1.5 font-body text-sm font-extrabold transition ${
-                methodFilter === m
-                  ? "border-stone-700 bg-stone-700 text-white"
-                  : "border-stone-300 bg-white text-stone-500 hover:border-stone-400"
-              }`}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
+      <div className="mb-10 flex justify-center">
+        <MethodFilterMenu value={methodFilter} onChange={setMethodFilter} />
       </div>
 
       {error && (
