@@ -1,0 +1,111 @@
+{
+  "id": "zoe-animal-homes",
+  "title": "Zoe and the Animal Homes",
+  "level": "A1",
+  "summary": "Zoe explores where different animals live and why. Learn about animal homes around the world!",
+  "teachingMethod": "CLIL",
+  "teachingMethodReason": "Meets Coyle, Hood & Marsh (2010)'s 4 C's Framework, unlike the library's other books which only teach language: Content - real science/geography knowledge (which habitat each animal lives in and why), not just animal-name vocabulary; Communication - the target language (habitat, ocean, desert, forest, live in) is the vehicle for learning that content, not the end in itself; Cognition - the book asks the reader to connect an animal to its habitat, a real categorization skill, not just recall; Culture - the closing page ('Animals live in many different homes around the world') is an intercultural/global-awareness statement, not just a story ending. This is expository, not narrative - there's no problem-to-resolution arc, so it doesn't read as Story-based; the content-language balance is what earns CLIL here.",
+  "grammarFeatures": [
+    "Simple present tense",
+    "Prepositional phrases of place (in the water, in the sky)",
+    "Descriptive adjectives (hot, dry)",
+    "Possessive adjective \"their\""
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Girl", "x": 40, "y": 68, "scale": 1.1 },
+      { "sprite": "Tree", "x": 75, "y": 50, "scale": 1 },
+      { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/zoe-animal-homes/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Zoe loves animals! Today, she wants to learn about their {{homes}}. Every animal has a special {{habitat}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 45, "y": 70, "scale": 1.1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "homes", "definition": "The places where people or animals live." },
+        { "word": "habitat", "definition": "The natural place where an animal lives." }
+      ],
+      "imageUrl": "/images/zoe-animal-homes/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "Fish live in the {{ocean}}. They swim in the water all day long.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "ocean", "definition": "A very big area of salty water." }],
+      "imageUrl": "/images/zoe-animal-homes/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "Birds live in the sky and in {{trees}}. They fly from tree to tree.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 40, "y": 72, "scale": 1 },
+          { "sprite": "Tree", "x": 68, "y": 55, "scale": 1.2 }
+        ]
+      },
+      "vocab": [{ "word": "trees", "definition": "Tall plants with a trunk, branches, and leaves." }],
+      "imageUrl": "/images/zoe-animal-homes/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "Camels live in the {{desert}}. It is very {{hot}} and {{dry}} there.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 42, "y": 72, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1.2 }
+        ]
+      },
+      "vocab": [
+        { "word": "desert", "definition": "A very dry, sandy place with little water." },
+        { "word": "hot", "definition": "Having a high temperature." },
+        { "word": "dry", "definition": "Having no water in it." }
+      ],
+      "imageUrl": "/images/zoe-animal-homes/page-4.jpg"
+    },
+    {
+      "index": 5,
+      "text": "Bears live in the {{forest}}. There are many trees and plants there.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 42, "y": 72, "scale": 1 },
+          { "sprite": "Tree", "x": 68, "y": 52, "scale": 1.3 }
+        ]
+      },
+      "vocab": [{ "word": "forest", "definition": "A large area of land covered with trees." }],
+      "imageUrl": "/images/zoe-animal-homes/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "Every animal has a home. Animals live in many different homes all around the {{world}}!",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Girl", "x": 50, "y": 72, "scale": 1.1 },
+          { "sprite": "Tree", "x": 75, "y": 55, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "world", "definition": "The Earth, and everything and everyone on it." }],
+      "imageUrl": "/images/zoe-animal-homes/page-6.jpg"
+    }
+  ]
+}
