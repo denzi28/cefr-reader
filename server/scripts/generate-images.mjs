@@ -32,9 +32,12 @@ const FORCE = args.includes("--force");
 const onlyIndex = args.indexOf("--only");
 const ONLY = onlyIndex !== -1 ? args[onlyIndex + 1] : null;
 
-// gemini-2.5-flash-image is being retired by Google on 2026-10-02;
-// gemini-3.1-flash-image is its direct, currently-supported replacement.
-const GEMINI_MODEL = "gemini-3.1-flash-image";
+// gemini-2.5-flash-image is being retired by Google on 2026-10-02.
+// Using the "lite" tier of its replacement (~half the cost of plain
+// gemini-3.1-flash-image) since book illustrations don't need the
+// non-lite tier's extra fidelity. Pass --model to override per-run,
+// e.g. when a scene needs the higher-fidelity model.
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite-image";
 
 async function generateImage(prompt) {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
