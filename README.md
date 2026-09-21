@@ -14,57 +14,60 @@ page, and tap any underlined word to see a simple definition.
   consumes the API: a levels page, a per-level book list, and a page-by-page
   reader with a tap-to-define vocabulary helper.
 
-### Why vector illustrations instead of generated images
+### Illustrations: AI-generated art, with a vector fallback
 
-Each page's picture is described as **data**, not a picture file: a page
-just lists which small vector "sprites" (sun, dog, tree, house, ball, …)
-to place and where (`server/src/data/books/*.json` → `scene`). The client
-(`client/src/illustrations/`) draws these as SVG. This means:
+Each of the 4 sample books ships with real AI-generated illustrations
+(`server/src/data/images/<bookId>/`, referenced by `imageUrl`/
+`coverImageUrl` in the book JSON) — that's what the app shows by default.
 
-- The app works immediately with no image-generation API key.
-- New books can be authored (by a person, or later by an LLM) as plain
-  JSON with a list of sprite placements — no image pipeline needed.
-- The same scene data could be rendered natively on a future mobile app.
+Every page *also* has a vector "scene" description underneath (a list of
+small SVG sprites like sun, dog, tree, house, ball, and where to place
+them — `server/src/data/books/*.json` → `scene`, drawn by
+`client/src/illustrations/`). The client (`client/src/components/PageArt.tsx`)
+shows the real image when `imageUrl` is present and falls back to
+rendering the vector scene otherwise. This means:
 
-If you'd rather use real illustrated/AI-generated artwork per page, add an
-`imageUrl` field to a page (and `coverImageUrl` to the book) in the book
-JSON — the client (`client/src/components/PageArt.tsx`) already renders
-that image instead of the vector scene whenever it's present. See
-**Generating AI illustrations** below for a ready-to-run pipeline.
+- A brand-new book with no generated art yet still displays something
+  reasonable immediately — no image pipeline is required to add a book.
+- The same vector scene data could be rendered natively on a future
+  mobile app without needing to ship/generate images for it too.
 
 ## Generating AI illustrations
-
-This repo doesn't call any image-generation API on its own (no key is
-built in), but the plumbing is ready:
 
 - `server/scripts/art-prompts/*.json` — one file per book with a shared
   style description, a character reference (so the same characters look
   consistent across pages), and one scene prompt per page/cover, written
   to match a warm, painterly children's-book illustration style.
-- `server/scripts/generate-images.mjs` — calls OpenAI's image API
-  (`gpt-image-1`) for each prompt, saves the PNGs into
-  `server/src/data/images/<bookId>/`, and patches the matching
-  `server/src/data/books/<bookId>.json` to point at them.
+- `server/scripts/generate-images.mjs` — calls Google's Gemini image
+  model (`gemini-3.1-flash-image`) for each prompt, resizes/recompresses
+  the result with `sharp` (the raw output is several MB per image; this
+  gets the library down to a web-friendly size with no visible quality
+  loss), saves the JPEGs into `server/src/data/images/<bookId>/`, and
+  patches the matching `server/src/data/books/<bookId>.json` to point at
+  them.
 
 To run it:
 
 ```bash
 cd server
-export OPENAI_API_KEY=sk-...      # needs image-generation access
+export GEMINI_API_KEY=...         # from https://aistudio.google.com/apikey
 npm run generate:images           # all books
 npm run generate:images -- --only the-red-ball   # just one book
 npm run generate:images -- --force               # regenerate existing images too
 ```
 
-Restart the API server afterward; the client will automatically start
-showing the generated artwork instead of the vector illustrations,
-because `PageArt` prefers `imageUrl`/`coverImageUrl` when present.
+**This needs a billing-enabled Google Cloud project**, not just an API
+key — Gemini's free tier has zero quota for image generation. Actual
+usage cost is small (roughly $0.05–$0.15 per image at the time of
+writing; generating this repo's 26 images cost a few dollars total), but
+a payment method must be on the project. Restart the API server
+afterward; the client picks up the new images automatically.
 
-**Using a different provider** (Stability AI, Google Gemini/Imagen,
-Replicate, etc.) only requires rewriting the `generateImage()` function
-at the top of `generate-images.mjs` — the prompt loading, file writing,
-and JSON patching are provider-agnostic. To add a new book's worth of
-art, write a matching `server/scripts/art-prompts/<id>.json` file first.
+**Using a different provider** (OpenAI, Stability AI, Replicate, etc.)
+only requires rewriting the `generateImage()` function at the top of
+`generate-images.mjs` — the prompt loading, resizing, file writing, and
+JSON patching are provider-agnostic. To add a new book's worth of art,
+write a matching `server/scripts/art-prompts/<id>.json` file first.
 
 ## Getting started
 

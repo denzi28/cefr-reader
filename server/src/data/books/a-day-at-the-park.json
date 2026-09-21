@@ -3,93 +3,290 @@
   "title": "A Day at the Park",
   "level": "A2",
   "summary": "Mia and Tom spend a sunny day playing, exploring, and making a new furry friend.",
-  "coverScene": { "background": "park", "items": [
-    { "sprite": "Girl", "x": 35, "y": 68, "scale": 1.1 },
-    { "sprite": "Boy", "x": 55, "y": 68, "scale": 1.1 },
-    { "sprite": "Ball", "x": 70, "y": 82, "scale": 0.8 },
-    { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 },
-    { "sprite": "Tree", "x": 12, "y": 50, "scale": 1.1 }
-  ]},
+  "coverScene": {
+    "background": "park",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 35,
+        "y": 68,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Boy",
+        "x": 55,
+        "y": 68,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Ball",
+        "x": 70,
+        "y": 82,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Sun",
+        "x": 85,
+        "y": 15,
+        "scale": 1
+      },
+      {
+        "sprite": "Tree",
+        "x": 12,
+        "y": 50,
+        "scale": 1.1
+      }
+    ]
+  },
   "pages": [
     {
       "index": 1,
       "text": "Yesterday, Mia and Tom went to the park. It was a sunny day, so they were very {{excited}}.",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Girl", "x": 35, "y": 70, "scale": 1.1 },
-        { "sprite": "Boy", "x": 58, "y": 70, "scale": 1.1 },
-        { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 },
-        { "sprite": "Tree", "x": 12, "y": 50, "scale": 1.1 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Boy",
+            "x": 58,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 12,
+            "y": 50,
+            "scale": 1.1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "excited", "definition": "Feeling very happy and full of energy about something." }
-      ]
+        {
+          "word": "excited",
+          "definition": "Feeling very happy and full of energy about something."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-1.jpg"
     },
     {
       "index": 2,
       "text": "First, they played with a red ball under a big tree. Tom kicked the ball, and it flew over the {{fence}}!",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Boy", "x": 40, "y": 72, "scale": 1.1 },
-        { "sprite": "Ball", "x": 65, "y": 55, "scale": 0.8 },
-        { "sprite": "Tree", "x": 15, "y": 50, "scale": 1.2 },
-        { "sprite": "Fence", "x": 78, "y": 78, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 40,
+            "y": 72,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Ball",
+            "x": 65,
+            "y": 55,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Tree",
+            "x": 15,
+            "y": 50,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Fence",
+            "x": 78,
+            "y": 78,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "fence", "definition": "A wall made of wood or metal around a garden or field." }
-      ]
+        {
+          "word": "fence",
+          "definition": "A wall made of wood or metal around a garden or field."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-2.jpg"
     },
     {
       "index": 3,
       "text": "Mia {{climbed}} over the fence to find the ball. She found it next to some yellow flowers.",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Girl", "x": 45, "y": 68, "scale": 1.1 },
-        { "sprite": "Fence", "x": 60, "y": 75, "scale": 1 },
-        { "sprite": "Flower", "x": 78, "y": 84, "scale": 1 },
-        { "sprite": "Ball", "x": 82, "y": 80, "scale": 0.7 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 45,
+            "y": 68,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Fence",
+            "x": 60,
+            "y": 75,
+            "scale": 1
+          },
+          {
+            "sprite": "Flower",
+            "x": 78,
+            "y": 84,
+            "scale": 1
+          },
+          {
+            "sprite": "Ball",
+            "x": 82,
+            "y": 80,
+            "scale": 0.7
+          }
+        ]
+      },
       "vocab": [
-        { "word": "climbed", "definition": "Went up or over something using your hands and feet." }
-      ]
+        {
+          "word": "climbed",
+          "definition": "Went up or over something using your hands and feet."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-3.jpg"
     },
     {
       "index": 4,
       "text": "Then, they sat on a bench and ate their lunch. They had {{sandwiches}} and juice.",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Girl", "x": 35, "y": 68, "scale": 1 },
-        { "sprite": "Boy", "x": 55, "y": 68, "scale": 1 },
-        { "sprite": "Bench", "x": 45, "y": 78, "scale": 1.3 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 68,
+            "scale": 1
+          },
+          {
+            "sprite": "Boy",
+            "x": 55,
+            "y": 68,
+            "scale": 1
+          },
+          {
+            "sprite": "Bench",
+            "x": 45,
+            "y": 78,
+            "scale": 1.3
+          }
+        ]
+      },
       "vocab": [
-        { "word": "sandwiches", "definition": "Food made of bread with something tasty inside." },
-        { "word": "lunch", "definition": "A meal you eat in the middle of the day." }
-      ]
+        {
+          "word": "sandwiches",
+          "definition": "Food made of bread with something tasty inside."
+        },
+        {
+          "word": "lunch",
+          "definition": "A meal you eat in the middle of the day."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-4.jpg"
     },
     {
       "index": 5,
       "text": "A little dog came near them. It wanted a {{piece}} of their sandwich! Mia gave it a small piece.",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Girl", "x": 30, "y": 70, "scale": 1 },
-        { "sprite": "Boy", "x": 50, "y": 70, "scale": 1 },
-        { "sprite": "Bench", "x": 40, "y": 78, "scale": 1.2 },
-        { "sprite": "Dog", "x": 72, "y": 82, "scale": 0.9 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 30,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Boy",
+            "x": 50,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Bench",
+            "x": 40,
+            "y": 78,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Dog",
+            "x": 72,
+            "y": 82,
+            "scale": 0.9
+          }
+        ]
+      },
       "vocab": [
-        { "word": "piece", "definition": "A small part of something." }
-      ]
+        {
+          "word": "piece",
+          "definition": "A small part of something."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-5.jpg"
     },
     {
       "index": 6,
       "text": "Before they went home, Mia and Tom watched the clouds and talked about their {{favorite}} animals. It was a {{wonderful}} day.",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Girl", "x": 35, "y": 72, "scale": 1 },
-        { "sprite": "Boy", "x": 58, "y": 72, "scale": 1 },
-        { "sprite": "Cloud", "x": 30, "y": 20, "scale": 1 },
-        { "sprite": "Cloud", "x": 70, "y": 15, "scale": 0.8 },
-        { "sprite": "Sun", "x": 85, "y": 15, "scale": 0.9 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Boy",
+            "x": 58,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 30,
+            "y": 20,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 70,
+            "y": 15,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 0.9
+          }
+        ]
+      },
       "vocab": [
-        { "word": "favorite", "definition": "The one you like best." },
-        { "word": "wonderful", "definition": "Very good; amazing." }
-      ]
+        {
+          "word": "favorite",
+          "definition": "The one you like best."
+        },
+        {
+          "word": "wonderful",
+          "definition": "Very good; amazing."
+        }
+      ],
+      "imageUrl": "/images/a-day-at-the-park/page-6.jpg"
     }
-  ]
+  ],
+  "coverImageUrl": "/images/a-day-at-the-park/cover.jpg"
 }

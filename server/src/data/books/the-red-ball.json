@@ -3,77 +3,231 @@
   "title": "The Red Ball",
   "level": "A1",
   "summary": "Max the dog loses his favorite ball in the park. Can he find it again?",
-  "coverScene": { "background": "park", "items": [
-    { "sprite": "Dog", "x": 40, "y": 65, "scale": 1.2 },
-    { "sprite": "Ball", "x": 62, "y": 78, "scale": 0.8 },
-    { "sprite": "Sun", "x": 82, "y": 15, "scale": 1 },
-    { "sprite": "Tree", "x": 12, "y": 55, "scale": 1.1 }
-  ]},
+  "coverScene": {
+    "background": "park",
+    "items": [
+      {
+        "sprite": "Dog",
+        "x": 40,
+        "y": 65,
+        "scale": 1.2
+      },
+      {
+        "sprite": "Ball",
+        "x": 62,
+        "y": 78,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Sun",
+        "x": 82,
+        "y": 15,
+        "scale": 1
+      },
+      {
+        "sprite": "Tree",
+        "x": 12,
+        "y": 55,
+        "scale": 1.1
+      }
+    ]
+  },
   "pages": [
     {
       "index": 1,
       "text": "This is Max. Max is a {{dog}}. Max is {{happy}}.",
-      "scene": { "background": "day", "items": [
-        { "sprite": "House", "x": 75, "y": 55, "scale": 1 },
-        { "sprite": "Dog", "x": 30, "y": 72, "scale": 1.3 },
-        { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "House",
+            "x": 75,
+            "y": 55,
+            "scale": 1
+          },
+          {
+            "sprite": "Dog",
+            "x": 30,
+            "y": 72,
+            "scale": 1.3
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "dog", "definition": "An animal that says woof and likes to play." },
-        { "word": "happy", "definition": "Feeling good, and smiling." }
-      ]
+        {
+          "word": "dog",
+          "definition": "An animal that says woof and likes to play."
+        },
+        {
+          "word": "happy",
+          "definition": "Feeling good, and smiling."
+        }
+      ],
+      "imageUrl": "/images/the-red-ball/page-1.jpg"
     },
     {
       "index": 2,
       "text": "Max has a {{ball}}. The ball is {{red}}. Max likes the ball.",
-      "scene": { "background": "day", "items": [
-        { "sprite": "Dog", "x": 35, "y": 70, "scale": 1.3 },
-        { "sprite": "Ball", "x": 58, "y": 80, "scale": 0.9 },
-        { "sprite": "Sun", "x": 82, "y": 18, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Dog",
+            "x": 35,
+            "y": 70,
+            "scale": 1.3
+          },
+          {
+            "sprite": "Ball",
+            "x": 58,
+            "y": 80,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Sun",
+            "x": 82,
+            "y": 18,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "ball", "definition": "A round toy that you can throw, kick, or bounce." },
-        { "word": "red", "definition": "A bright color, like an apple or a strawberry." }
-      ]
+        {
+          "word": "ball",
+          "definition": "A round toy that you can throw, kick, or bounce."
+        },
+        {
+          "word": "red",
+          "definition": "A bright color, like an apple or a strawberry."
+        }
+      ],
+      "imageUrl": "/images/the-red-ball/page-2.jpg"
     },
     {
       "index": 3,
       "text": "Max runs in the {{park}}. He drops the ball. Where is the ball?",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Dog", "x": 45, "y": 72, "scale": 1.3, "flip": true },
-        { "sprite": "Tree", "x": 15, "y": 50, "scale": 1.1 },
-        { "sprite": "Bench", "x": 78, "y": 70, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Dog",
+            "x": 45,
+            "y": 72,
+            "scale": 1.3,
+            "flip": true
+          },
+          {
+            "sprite": "Tree",
+            "x": 15,
+            "y": 50,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Bench",
+            "x": 78,
+            "y": 70,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "park", "definition": "A green place outside with grass and trees, where you can play." }
-      ]
+        {
+          "word": "park",
+          "definition": "A green place outside with grass and trees, where you can play."
+        }
+      ],
+      "imageUrl": "/images/the-red-ball/page-3.jpg"
     },
     {
       "index": 4,
       "text": "Max looks under a {{tree}}. He looks near the {{bench}}. No ball!",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Dog", "x": 30, "y": 74, "scale": 1.2 },
-        { "sprite": "Tree", "x": 20, "y": 48, "scale": 1.2 },
-        { "sprite": "Bench", "x": 70, "y": 68, "scale": 1 },
-        { "sprite": "Flower", "x": 85, "y": 82, "scale": 0.8 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Dog",
+            "x": 30,
+            "y": 74,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Tree",
+            "x": 20,
+            "y": 48,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Bench",
+            "x": 70,
+            "y": 68,
+            "scale": 1
+          },
+          {
+            "sprite": "Flower",
+            "x": 85,
+            "y": 82,
+            "scale": 0.8
+          }
+        ]
+      },
       "vocab": [
-        { "word": "tree", "definition": "A tall plant with a trunk, branches, and leaves." },
-        { "word": "bench", "definition": "A long seat for sitting outside." }
-      ]
+        {
+          "word": "tree",
+          "definition": "A tall plant with a trunk, branches, and leaves."
+        },
+        {
+          "word": "bench",
+          "definition": "A long seat for sitting outside."
+        }
+      ],
+      "imageUrl": "/images/the-red-ball/page-4.jpg"
     },
     {
       "index": 5,
       "text": "Max finds the ball next to a {{flower}}. Max is happy again! Woof, woof!",
-      "scene": { "background": "park", "items": [
-        { "sprite": "Dog", "x": 42, "y": 72, "scale": 1.35 },
-        { "sprite": "Ball", "x": 60, "y": 80, "scale": 0.9 },
-        { "sprite": "Flower", "x": 68, "y": 84, "scale": 1 },
-        { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Dog",
+            "x": 42,
+            "y": 72,
+            "scale": 1.35
+          },
+          {
+            "sprite": "Ball",
+            "x": 60,
+            "y": 80,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Flower",
+            "x": 68,
+            "y": 84,
+            "scale": 1
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "flower", "definition": "A pretty plant that can smell nice and comes in many colors." }
-      ]
+        {
+          "word": "flower",
+          "definition": "A pretty plant that can smell nice and comes in many colors."
+        }
+      ],
+      "imageUrl": "/images/the-red-ball/page-5.jpg"
     }
-  ]
+  ],
+  "coverImageUrl": "/images/the-red-ball/cover.jpg"
 }

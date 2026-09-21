@@ -5,19 +5,22 @@
 // the app serves the generated art instead of the built-in vector scenes.
 //
 // Usage:
-//   OPENAI_API_KEY=sk-... npm run generate:images
-//   OPENAI_API_KEY=sk-... npm run generate:images -- --only the-red-ball
-//   OPENAI_API_KEY=sk-... npm run generate:images -- --force   # regenerate existing images too
+//   GEMINI_API_KEY=... npm run generate:images
+//   GEMINI_API_KEY=... npm run generate:images -- --only the-red-ball
+//   GEMINI_API_KEY=... npm run generate:images -- --force   # regenerate existing images too
 //
-// Requires an OpenAI API key with access to image generation (gpt-image-1).
-// To use a different provider (Stability AI, Google Imagen/Gemini, Replicate,
-// etc.), only the generateImage() function below needs to change — everything
-// else (prompt loading, file writing, JSON patching) is provider-agnostic.
+// Requires a Google AI Studio API key (https://aistudio.google.com/apikey)
+// with access to Gemini's image-generation model. Set GEMINI_API_KEY or
+// GOOGLE_API_KEY (either name works). To use a different provider (OpenAI,
+// Stability AI, Replicate, etc.), only the generateImage() function below
+// needs to change — everything else (prompt loading, file writing, JSON
+// patching) is provider-agnostic.
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = path.join(__dirname, "art-prompts");
@@ -29,38 +32,69 @@ const FORCE = args.includes("--force");
 const onlyIndex = args.indexOf("--only");
 const ONLY = onlyIndex !== -1 ? args[onlyIndex + 1] : null;
 
+// gemini-2.5-flash-image is being retired by Google on 2026-10-02;
+// gemini-3.1-flash-image is its direct, currently-supported replacement.
+const GEMINI_MODEL = "gemini-3.1-flash-image";
+
 async function generateImage(prompt) {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error(
-      "Set OPENAI_API_KEY to generate images (see server/README section in the repo README)."
+      "Set GEMINI_API_KEY (or GOOGLE_API_KEY) to generate images — get one at https://aistudio.google.com/apikey. See the repo README for details."
     );
   }
-  const res = await fetch("https://api.openai.com/v1/images/generations", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "gpt-image-1",
-      prompt,
-      size: "1536x1024",
-      n: 1,
-    }),
-  });
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+    {
+      method: "POST",
+      headers: {
+        "x-goog-api-key": apiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseModalities: ["TEXT", "IMAGE"],
+          imageConfig: { aspectRatio: "4:3" },
+        },
+      }),
+    }
+  );
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`Image API request failed (${res.status}): ${body}`);
   }
   const json = await res.json();
-  const item = json.data?.[0];
-  if (item?.b64_json) return Buffer.from(item.b64_json, "base64");
-  if (item?.url) {
-    const imgRes = await fetch(item.url);
-    return Buffer.from(await imgRes.arrayBuffer());
+  const parts = json.candidates?.[0]?.content?.parts ?? [];
+  const imagePart = parts.find((p) => p.inlineData?.data);
+  if (!imagePart) {
+    throw new Error(
+      `Image API response had no image data: ${JSON.stringify(json).slice(0, 500)}`
+    );
   }
-  throw new Error("Image API response had no image data.");
+  const raw = Buffer.from(imagePart.inlineData.data, "base64");
+
+  // The API returns full-resolution images (multiple MB each) — far larger
+  // than they'll ever be displayed at in the app. Re-encode to a sensible
+  // web size so the book data folder (and page load times) stay small;
+  // this cut the sample library from ~24MB to ~3MB with no visible
+  // quality loss at the sizes the reader actually renders images at.
+  const buffer = await sharp(raw)
+    .resize({ width: 1000, withoutEnlargement: true })
+    .jpeg({ quality: 78, mozjpeg: true })
+    .toBuffer();
+  return { buffer, ext: "jpg" };
+}
+
+// Finds an already-generated file for `baseName` regardless of which
+// extension it was saved with (jpg vs png), so re-runs don't re-pay for
+// images that exist under a different extension than the current default.
+function findExisting(dir, baseName) {
+  for (const ext of ["jpg", "png"]) {
+    const p = path.join(dir, `${baseName}.${ext}`);
+    if (existsSync(p)) return p;
+  }
+  return null;
 }
 
 async function generateBook(bookId) {
@@ -74,29 +108,31 @@ async function generateBook(bookId) {
   const fullPrompt = (scene) => `${prompts.style}\n\nCharacters: ${prompts.characters}\n\nScene: ${scene}`;
 
   // Cover
-  const coverPath = path.join(bookImagesDir, "cover.png");
-  if (FORCE || !existsSync(coverPath)) {
+  let coverFile = findExisting(bookImagesDir, "cover");
+  if (FORCE || !coverFile) {
     console.log(`[${bookId}] generating cover…`);
-    const buf = await generateImage(fullPrompt(prompts.cover));
-    await writeFile(coverPath, buf);
+    const { buffer, ext } = await generateImage(fullPrompt(prompts.cover));
+    coverFile = path.join(bookImagesDir, `cover.${ext}`);
+    await writeFile(coverFile, buffer);
   } else {
     console.log(`[${bookId}] cover already exists, skipping (use --force to regenerate)`);
   }
-  book.coverImageUrl = `/images/${bookId}/cover.png`;
+  book.coverImageUrl = `/images/${bookId}/${path.basename(coverFile)}`;
 
   // Pages
   for (let i = 0; i < prompts.pages.length; i++) {
     const pageNum = i + 1;
-    const pagePath = path.join(bookImagesDir, `page-${pageNum}.png`);
-    if (FORCE || !existsSync(pagePath)) {
+    let pageFile = findExisting(bookImagesDir, `page-${pageNum}`);
+    if (FORCE || !pageFile) {
       console.log(`[${bookId}] generating page ${pageNum}/${prompts.pages.length}…`);
-      const buf = await generateImage(fullPrompt(prompts.pages[i]));
-      await writeFile(pagePath, buf);
+      const { buffer, ext } = await generateImage(fullPrompt(prompts.pages[i]));
+      pageFile = path.join(bookImagesDir, `page-${pageNum}.${ext}`);
+      await writeFile(pageFile, buffer);
     } else {
       console.log(`[${bookId}] page ${pageNum} already exists, skipping`);
     }
     const page = book.pages.find((p) => p.index === pageNum);
-    if (page) page.imageUrl = `/images/${bookId}/page-${pageNum}.png`;
+    if (page) page.imageUrl = `/images/${bookId}/${path.basename(pageFile)}`;
   }
 
   await writeFile(bookPath, JSON.stringify(book, null, 2) + "\n");

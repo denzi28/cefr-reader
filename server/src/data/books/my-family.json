@@ -3,76 +3,222 @@
   "title": "My Family",
   "level": "A1",
   "summary": "Meet a happy family and learn simple words for the people you love.",
-  "coverScene": { "background": "indoor", "items": [
-    { "sprite": "House", "x": 50, "y": 55, "scale": 1.3 },
-    { "sprite": "Sun", "x": 85, "y": 15, "scale": 0.9 }
-  ]},
+  "coverScene": {
+    "background": "indoor",
+    "items": [
+      {
+        "sprite": "House",
+        "x": 50,
+        "y": 55,
+        "scale": 1.3
+      },
+      {
+        "sprite": "Sun",
+        "x": 85,
+        "y": 15,
+        "scale": 0.9
+      }
+    ]
+  },
   "pages": [
     {
       "index": 1,
       "text": "This is my {{family}}. We live in a small {{house}}.",
-      "scene": { "background": "day", "items": [
-        { "sprite": "House", "x": 50, "y": 55, "scale": 1.4 },
-        { "sprite": "Sun", "x": 85, "y": 15, "scale": 0.9 },
-        { "sprite": "Tree", "x": 12, "y": 60, "scale": 0.9 }
-      ]},
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "House",
+            "x": 50,
+            "y": 55,
+            "scale": 1.4
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Tree",
+            "x": 12,
+            "y": 60,
+            "scale": 0.9
+          }
+        ]
+      },
       "vocab": [
-        { "word": "family", "definition": "The people you live with, like your parents and siblings." },
-        { "word": "house", "definition": "A building where people live." }
-      ]
+        {
+          "word": "family",
+          "definition": "The people you live with, like your parents and siblings."
+        },
+        {
+          "word": "house",
+          "definition": "A building where people live."
+        }
+      ],
+      "imageUrl": "/images/my-family/page-1.jpg"
     },
     {
       "index": 2,
       "text": "This is my {{mother}}. She likes to read a {{book}}.",
-      "scene": { "background": "indoor", "items": [
-        { "sprite": "Girl", "x": 45, "y": 68, "scale": 1.3 },
-        { "sprite": "Table", "x": 70, "y": 78, "scale": 1 },
-        { "sprite": "Book", "x": 70, "y": 68, "scale": 0.7 },
-        { "sprite": "Window", "x": 15, "y": 35, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 45,
+            "y": 68,
+            "scale": 1.3
+          },
+          {
+            "sprite": "Table",
+            "x": 70,
+            "y": 78,
+            "scale": 1
+          },
+          {
+            "sprite": "Book",
+            "x": 70,
+            "y": 68,
+            "scale": 0.7
+          },
+          {
+            "sprite": "Window",
+            "x": 15,
+            "y": 35,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "mother", "definition": "Your mom, a parent." },
-        { "word": "book", "definition": "Pages with words and pictures that you read." }
-      ]
+        {
+          "word": "mother",
+          "definition": "Your mom, a parent."
+        },
+        {
+          "word": "book",
+          "definition": "Pages with words and pictures that you read."
+        }
+      ],
+      "imageUrl": "/images/my-family/page-2.jpg"
     },
     {
       "index": 3,
       "text": "This is my {{father}}. He works at a {{table}}.",
-      "scene": { "background": "indoor", "items": [
-        { "sprite": "Boy", "x": 45, "y": 66, "scale": 1.3 },
-        { "sprite": "Table", "x": 68, "y": 78, "scale": 1.1 },
-        { "sprite": "Lamp", "x": 85, "y": 55, "scale": 0.9 }
-      ]},
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 45,
+            "y": 66,
+            "scale": 1.3
+          },
+          {
+            "sprite": "Table",
+            "x": 68,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Lamp",
+            "x": 85,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
       "vocab": [
-        { "word": "father", "definition": "Your dad, a parent." },
-        { "word": "table", "definition": "A piece of furniture you eat or work on." }
-      ]
+        {
+          "word": "father",
+          "definition": "Your dad, a parent."
+        },
+        {
+          "word": "table",
+          "definition": "A piece of furniture you eat or work on."
+        }
+      ],
+      "imageUrl": "/images/my-family/page-3.jpg"
     },
     {
       "index": 4,
       "text": "This is my {{sister}}. She has a {{cat}}.",
-      "scene": { "background": "indoor", "items": [
-        { "sprite": "Girl", "x": 40, "y": 68, "scale": 1.1 },
-        { "sprite": "Cat", "x": 62, "y": 80, "scale": 0.9 },
-        { "sprite": "Window", "x": 85, "y": 35, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 68,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Cat",
+            "x": 62,
+            "y": 80,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Window",
+            "x": 85,
+            "y": 35,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "sister", "definition": "A girl who has the same parents as you." },
-        { "word": "cat", "definition": "A small furry pet that says meow." }
-      ]
+        {
+          "word": "sister",
+          "definition": "A girl who has the same parents as you."
+        },
+        {
+          "word": "cat",
+          "definition": "A small furry pet that says meow."
+        }
+      ],
+      "imageUrl": "/images/my-family/page-4.jpg"
     },
     {
       "index": 5,
       "text": "I love my family. We are happy at {{home}}.",
-      "scene": { "background": "day", "items": [
-        { "sprite": "House", "x": 50, "y": 55, "scale": 1.4 },
-        { "sprite": "Girl", "x": 25, "y": 78, "scale": 0.9 },
-        { "sprite": "Boy", "x": 75, "y": 78, "scale": 0.9 },
-        { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
-      ]},
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "House",
+            "x": 50,
+            "y": 55,
+            "scale": 1.4
+          },
+          {
+            "sprite": "Girl",
+            "x": 25,
+            "y": 78,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Boy",
+            "x": 75,
+            "y": 78,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
       "vocab": [
-        { "word": "home", "definition": "The place where you live with your family." }
-      ]
+        {
+          "word": "home",
+          "definition": "The place where you live with your family."
+        }
+      ],
+      "imageUrl": "/images/my-family/page-5.jpg"
     }
-  ]
+  ],
+  "coverImageUrl": "/images/my-family/cover.jpg"
 }
