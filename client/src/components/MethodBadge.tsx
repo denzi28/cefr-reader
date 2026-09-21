@@ -7,7 +7,11 @@ import { METHOD_META } from "../data/methodMeta";
 const COLORS: Record<TeachingMethod, string> = {
   TBL: "bg-orange-100 text-orange-700 border-orange-300",
   CLIL: "bg-violet-100 text-violet-700 border-violet-300",
-  CLT: "bg-slate-100 text-slate-600 border-slate-300",
+  "Story-based": "bg-teal-100 text-teal-700 border-teal-300",
+  "Theme-based": "bg-cyan-100 text-cyan-700 border-cyan-300",
+  TPR: "bg-rose-100 text-rose-700 border-rose-300",
+  "Drama-based": "bg-fuchsia-100 text-fuchsia-700 border-fuchsia-300",
+  General: "bg-slate-100 text-slate-600 border-slate-300",
 };
 
 // Tapping the badge reveals why the book earned this label, as a fixed

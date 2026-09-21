@@ -4,10 +4,17 @@
 
 export type CEFRLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 
-// TBL and CLIL require specific pedagogical structure (see methodMeta.ts for
-// the criteria); CLT is the default for books that are communicative and
-// meaning-focused but don't meet either's specific bar.
-export type TeachingMethod = "TBL" | "CLIL" | "CLT";
+// Each of these requires specific structure to earn (see methodMeta.ts for
+// the criteria, sourced from the user's ELT coursework); "General" is the
+// honest fallback for text that doesn't clear any of their bars yet.
+export type TeachingMethod =
+  | "TBL"
+  | "CLIL"
+  | "Story-based"
+  | "Theme-based"
+  | "TPR"
+  | "Drama-based"
+  | "General";
 
 export interface SceneItem {
   sprite: string;
