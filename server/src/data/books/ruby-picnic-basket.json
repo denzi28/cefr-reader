@@ -18,7 +18,7 @@
   "pages": [
     {
       "index": 1,
-      "text": "Ruby wants to have a {{picnic}} today! She looks at her empty {{basket}}. What should she pack?",
+      "text": "Ruby wants to have a {{picnic}} today! She looks at her empty {{basket}}. What does she need?",
       "scene": {
         "background": "indoor",
         "items": [
