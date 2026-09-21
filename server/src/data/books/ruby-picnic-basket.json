@@ -1,0 +1,125 @@
+{
+  "id": "ruby-picnic-basket",
+  "title": "Ruby's Picnic Basket",
+  "level": "A1",
+  "summary": "Ruby the rabbit wants a picnic. Can you help her pack the basket?",
+  "teachingMethod": "TBL",
+  "teachingMethodReason": "This book has a real task, not just a story about one. On page 4 the reader must tap and build their own list of picnic items before the story reveals what Ruby actually packs - meeting Willis (1996/2006)'s 'Listing' task type (brainstorming/fact-finding toward a completed list) and Nunan (2006)'s bar for a task: the outcome is still unknown, meaning is primary, and there's a real goal to complete. The resolution page then lets the reader compare their own list to Ruby's, which is the 'report' stage of Willis's pre-task -> task cycle -> language focus structure.",
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Cat", "x": 40, "y": 68, "scale": 1.1 },
+      { "sprite": "Bag", "x": 58, "y": 78, "scale": 0.9 },
+      { "sprite": "House", "x": 78, "y": 50, "scale": 1 },
+      { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/ruby-picnic-basket/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Ruby wants to have a {{picnic}} today! She looks at her empty {{basket}}. What should she pack?",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Cat", "x": 40, "y": 70, "scale": 1.1 },
+          { "sprite": "Table", "x": 65, "y": 78, "scale": 1 },
+          { "sprite": "Bag", "x": 65, "y": 65, "scale": 0.7 },
+          { "sprite": "Window", "x": 15, "y": 35, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "picnic", "definition": "A meal you eat outside, like in a park or garden." },
+        { "word": "basket", "definition": "A container you can use to carry food." }
+      ],
+      "imageUrl": "/images/ruby-picnic-basket/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "Ruby looks in the kitchen. She sees a {{sandwich}}, a red {{apple}}, and a yellow {{cup}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Cat", "x": 40, "y": 70, "scale": 1.1 },
+          { "sprite": "Table", "x": 68, "y": 78, "scale": 1.1 },
+          { "sprite": "Window", "x": 85, "y": 35, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "sandwich", "definition": "Food made of bread with something tasty inside." },
+        { "word": "apple", "definition": "A round, crunchy fruit." },
+        { "word": "cup", "definition": "A small container you drink from." }
+      ],
+      "imageUrl": "/images/ruby-picnic-basket/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "Then Ruby looks in her room. She sees yummy {{cookies}} in a jar. She also sees her {{shoe}} and a big {{book}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Cat", "x": 42, "y": 70, "scale": 1.1 },
+          { "sprite": "Book", "x": 68, "y": 78, "scale": 0.8 },
+          { "sprite": "Bag", "x": 20, "y": 78, "scale": 0.7 }
+        ]
+      },
+      "vocab": [
+        { "word": "cookies", "definition": "Small, sweet baked treats." },
+        { "word": "shoe", "definition": "Something you wear on your foot." },
+        { "word": "book", "definition": "Pages with words and pictures that you read." }
+      ],
+      "imageUrl": "/images/ruby-picnic-basket/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "Help Ruby pack! Tap all the things she needs for her picnic.",
+      "scene": {
+        "background": "indoor",
+        "items": [{ "sprite": "Cat", "x": 50, "y": 75, "scale": 1 }]
+      },
+      "vocab": [],
+      "task": {
+        "items": [
+          { "id": "sandwich", "label": "sandwich", "emoji": "🥪", "correct": true },
+          { "id": "apple", "label": "apple", "emoji": "🍎", "correct": true },
+          { "id": "cup", "label": "cup", "emoji": "🥤", "correct": true },
+          { "id": "cookies", "label": "cookies", "emoji": "🍪", "correct": true },
+          { "id": "shoe", "label": "shoe", "emoji": "👟", "correct": false },
+          { "id": "book", "label": "book", "emoji": "📖", "correct": false }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "text": "Ruby packs her {{basket}}. She puts in the sandwich, the apple, the cup, and the cookies. Her basket is ready!",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Cat", "x": 45, "y": 72, "scale": 1.15 },
+          { "sprite": "Bag", "x": 65, "y": 80, "scale": 0.9 },
+          { "sprite": "Table", "x": 65, "y": 85, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "basket", "definition": "A container you can use to carry food." }],
+      "imageUrl": "/images/ruby-picnic-basket/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "Ruby walks to the {{park}}. She sits under a big {{tree}} and eats her picnic. Yummy!",
+      "scene": {
+        "background": "park",
+        "items": [
+          { "sprite": "Cat", "x": 45, "y": 74, "scale": 1.1 },
+          { "sprite": "Tree", "x": 75, "y": 48, "scale": 1.3 },
+          { "sprite": "Bench", "x": 20, "y": 78, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "park", "definition": "A green place outside with grass and trees, where you can play." },
+        { "word": "tree", "definition": "A tall plant with a trunk, branches, and leaves." }
+      ],
+      "imageUrl": "/images/ruby-picnic-basket/page-6.jpg"
+    }
+  ]
+}

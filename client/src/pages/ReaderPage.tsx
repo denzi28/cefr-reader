@@ -8,6 +8,7 @@ import { PageText } from "../components/PageText";
 import { VocabPanel } from "../components/VocabPanel";
 import { LevelBadge } from "../components/LevelBadge";
 import { MethodBadge } from "../components/MethodBadge";
+import { TaskCard } from "../components/TaskCard";
 
 const pageVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 60 : -60, opacity: 0, rotateY: direction > 0 ? 8 : -8 }),
@@ -22,6 +23,7 @@ export function ReaderPage() {
   const [pageIndex, setPageIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [activeWord, setActiveWord] = useState<VocabEntry | null>(null);
+  const [taskSelections, setTaskSelections] = useState<Record<number, string[]>>({});
 
   useEffect(() => {
     if (!id) return;
@@ -53,10 +55,32 @@ export function ReaderPage() {
   const isFirst = pageIndex === 0;
   const isLast = pageIndex === book.pages.length - 1;
 
+  // If the previous page was a task stop, show how the reader's own list
+  // compares to the real answer - the "report" stage of Willis's task
+  // cycle, shown here rather than as live right/wrong feedback on the
+  // task page itself (which would give the outcome away too early).
+  const prevPage = pageIndex > 0 ? book.pages[pageIndex - 1] : null;
+  const taskComparison = prevPage?.task
+    ? (() => {
+        const selected = taskSelections[pageIndex - 1] ?? [];
+        const correctIds = prevPage.task!.items.filter((i) => i.correct).map((i) => i.id);
+        const matched = correctIds.filter((id) => selected.includes(id)).length;
+        return { matched, total: correctIds.length };
+      })()
+    : null;
+
   function goTo(next: number) {
     setActiveWord(null);
     setDirection(next > pageIndex ? 1 : -1);
     setPageIndex(Math.max(0, Math.min(book!.pages.length - 1, next)));
+  }
+
+  function toggleTaskItem(id: string) {
+    setTaskSelections((prev) => {
+      const current = prev[pageIndex] ?? [];
+      const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
+      return { ...prev, [pageIndex]: next };
+    });
   }
 
   return (
@@ -88,22 +112,45 @@ export function ReaderPage() {
             exit="exit"
             transition={{ duration: 0.28, ease: "easeInOut" }}
           >
-            <PageArt imageUrl={page.imageUrl} scene={page.scene} className="aspect-[5/3] w-full bg-white" />
-            <div className="bg-white px-6 py-8 text-center">
-              <PageText
-                text={page.text}
-                vocab={page.vocab}
-                activeWord={activeWord?.word}
-                onWordTap={setActiveWord}
-              />
-            </div>
+            {page.task ? (
+              <div className="bg-white px-6 py-8">
+                <p className="mb-5 text-center font-body text-xl font-extrabold text-stone-800">{page.text}</p>
+                <TaskCard
+                  items={page.task.items}
+                  selected={taskSelections[pageIndex] ?? []}
+                  onToggle={toggleTaskItem}
+                />
+              </div>
+            ) : (
+              <>
+                <PageArt imageUrl={page.imageUrl} scene={page.scene} className="aspect-[5/3] w-full bg-white" />
+                <div className="bg-white px-6 py-8 text-center">
+                  {taskComparison && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mb-4 inline-block rounded-full border-2 border-emerald-300 bg-emerald-50 px-4 py-1.5 font-body text-sm font-extrabold text-emerald-700"
+                    >
+                      You picked {taskComparison.matched} of {taskComparison.total} correctly! 🎉
+                    </motion.p>
+                  )}
+                  <PageText
+                    text={page.text}
+                    vocab={page.vocab}
+                    activeWord={activeWord?.word}
+                    onWordTap={setActiveWord}
+                  />
+                </div>
+              </>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
 
       <p className="mt-4 text-center font-body text-sm font-bold text-stone-400">
         Page {pageIndex + 1} of {book.pages.length}
-        {page.vocab.length > 0 && " · tap the underlined words to see what they mean"}
+        {page.task && " · tap everything you think is needed, then turn the page to check"}
+        {!page.task && page.vocab.length > 0 && " · tap the underlined words to see what they mean"}
       </p>
 
       <div className="mt-6 flex items-center justify-between gap-4">

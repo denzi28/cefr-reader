@@ -34,6 +34,20 @@ export interface VocabEntry {
   definition: string;
 }
 
+// A single tappable option in a TBL "listing" task (see TaskCard.tsx).
+// `correct` says whether it belongs in the real answer, checked against
+// the reader's taps on the following report/resolution page.
+export interface TaskItem {
+  id: string;
+  label: string;
+  emoji: string;
+  correct: boolean;
+}
+
+export interface PageTask {
+  items: TaskItem[];
+}
+
 export interface BookPage {
   index: number;
   text: string;
@@ -42,6 +56,11 @@ export interface BookPage {
   // Optional AI-generated (or hand-illustrated) artwork for this page.
   // When present, the reader shows this instead of the vector scene.
   imageUrl?: string;
+  // When present, this page is a TBL task stop: the reader taps items to
+  // build their own answer *before* the story reveals the real outcome,
+  // per Willis (1996)'s task cycle. Replaces the normal image+text
+  // rendering with an interactive item grid (see ReaderPage/TaskCard).
+  task?: PageTask;
 }
 
 export interface Book {

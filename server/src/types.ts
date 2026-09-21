@@ -35,6 +35,17 @@ export interface VocabEntry {
   definition: string; // short, child-friendly definition
 }
 
+export interface TaskItem {
+  id: string;
+  label: string;
+  emoji: string;
+  correct: boolean;
+}
+
+export interface PageTask {
+  items: TaskItem[];
+}
+
 export interface BookPage {
   index: number;
   // Page text. Vocabulary words are wrapped like {{ball}} so the client
@@ -47,6 +58,9 @@ export interface BookPage {
   // shows this image instead of rendering `scene` as vector art. See
   // server/scripts/generate-images.mjs for how these get created.
   imageUrl?: string;
+  // When present, this page is a TBL task stop (see the client's
+  // TaskCard/ReaderPage for the interactive rendering).
+  task?: PageTask;
 }
 
 export interface Book {
