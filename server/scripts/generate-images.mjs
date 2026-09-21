@@ -13,7 +13,7 @@
 // with access to Gemini's image-generation model. Set GEMINI_API_KEY or
 // GOOGLE_API_KEY (either name works). To use a different provider (OpenAI,
 // Stability AI, Replicate, etc.), only the generateImage() function below
-// needs to change — everything else (prompt loading, file writing, JSON
+// needs to change - everything else (prompt loading, file writing, JSON
 // patching) is provider-agnostic.
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
@@ -43,7 +43,7 @@ async function generateImage(prompt) {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error(
-      "Set GEMINI_API_KEY (or GOOGLE_API_KEY) to generate images — get one at https://aistudio.google.com/apikey. See the repo README for details."
+      "Set GEMINI_API_KEY (or GOOGLE_API_KEY) to generate images - get one at https://aistudio.google.com/apikey. See the repo README for details."
     );
   }
   const res = await fetch(
@@ -77,7 +77,7 @@ async function generateImage(prompt) {
   }
   const raw = Buffer.from(imagePart.inlineData.data, "base64");
 
-  // The API returns full-resolution images (multiple MB each) — far larger
+  // The API returns full-resolution images (multiple MB each) - far larger
   // than they'll ever be displayed at in the app. Re-encode to a sensible
   // web size so the book data folder (and page load times) stay small;
   // this cut the sample library from ~24MB to ~3MB with no visible
@@ -139,7 +139,7 @@ async function generateBook(bookId) {
   }
 
   await writeFile(bookPath, JSON.stringify(book, null, 2) + "\n");
-  console.log(`[${bookId}] done — updated ${path.relative(process.cwd(), bookPath)}`);
+  console.log(`[${bookId}] done - updated ${path.relative(process.cwd(), bookPath)}`);
 }
 
 async function main() {

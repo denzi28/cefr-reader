@@ -53,7 +53,7 @@ export interface Book {
   coverImageUrl?: string;
   teachingMethod: TeachingMethod;
   // Why this book was labeled with this method, in terms of the specific
-  // criteria (task outcome, content-language integration, etc.) — shown
+  // criteria (task outcome, content-language integration, etc.) - shown
   // to the user when they tap the method badge.
   teachingMethodReason: string;
   pages: BookPage[];

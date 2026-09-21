@@ -178,7 +178,7 @@ export function LevelsPage() {
           {filteredBooks && filteredBooks.length === 0 && (
             <div className="rounded-2xl bg-white p-8 text-center shadow-sm">
               <p className="font-body text-stone-600">
-                No {methodFilter} books yet — {METHOD_META[methodFilter as TeachingMethod].label.toLowerCase()}.
+                No {methodFilter} books yet - {METHOD_META[methodFilter as TeachingMethod].label.toLowerCase()}.
               </p>
               <p className="mt-2 font-body text-sm text-stone-400">
                 {METHOD_META[methodFilter as TeachingMethod].description}

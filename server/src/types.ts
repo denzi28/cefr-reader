@@ -18,7 +18,7 @@ export type TeachingMethod =
 // Rendering the scene is a client concern; the server only describes
 // what should appear so the same data can drive a web or mobile client.
 export interface SceneItem {
-  sprite: string; // e.g. "Dog", "Sun", "Tree" — must match a sprite the client knows
+  sprite: string; // e.g. "Dog", "Sun", "Tree" - must match a sprite the client knows
   x: number; // 0-100, percent of scene width
   y: number; // 0-100, percent of scene height
   scale?: number; // default 1

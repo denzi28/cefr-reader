@@ -16,7 +16,7 @@ const COLORS: Record<TeachingMethod, string> = {
 
 // Tapping the badge reveals why the book earned this label, as a fixed
 // bottom sheet (same pattern as VocabPanel) rather than an anchored
-// dropdown — an absolutely-positioned popover would get clipped by the
+// dropdown - an absolutely-positioned popover would get clipped by the
 // book card's overflow-hidden (needed for the rounded cover-image corners).
 export function MethodBadge({ method, reason }: { method: TeachingMethod; reason: string }) {
   const [open, setOpen] = useState(false);

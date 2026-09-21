@@ -31,7 +31,7 @@ function toSummary(book: Book): BookSummary {
   };
 }
 
-// GET /api/levels — CEFR levels with how many books exist for each.
+// GET /api/levels - CEFR levels with how many books exist for each.
 app.get("/api/levels", (_req, res) => {
   const levels: LevelInfo[] = LEVEL_ORDER.map((level) => ({
     level,
@@ -42,14 +42,14 @@ app.get("/api/levels", (_req, res) => {
   res.json(levels);
 });
 
-// GET /api/books?level=A1 — list books, optionally filtered by CEFR level.
+// GET /api/books?level=A1 - list books, optionally filtered by CEFR level.
 app.get("/api/books", (req, res) => {
   const level = req.query.level as string | undefined;
   const filtered = level ? BOOKS.filter((b) => b.level === level) : BOOKS;
   res.json(filtered.map(toSummary));
 });
 
-// GET /api/books/:id — full book with all pages, text, scenes, and vocab.
+// GET /api/books/:id - full book with all pages, text, scenes, and vocab.
 app.get("/api/books/:id", (req, res) => {
   const book = BOOKS.find((b) => b.id === req.params.id);
   if (!book) {

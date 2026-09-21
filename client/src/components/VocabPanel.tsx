@@ -5,7 +5,7 @@ import type { VocabEntry } from "../types/book";
 export function VocabPanel({ entry, onClose }: { entry: VocabEntry | null; onClose: () => void }) {
   // Portaled to <body>: the route-transition wrapper in App.tsx animates a
   // `transform`, which turns it into a containing block for any descendant
-  // `position: fixed` element — pinning this sheet to that wrapper's own
+  // `position: fixed` element - pinning this sheet to that wrapper's own
   // (content-sized) box instead of the real viewport. Rendering outside
   // that subtree avoids the problem entirely.
   return createPortal(
