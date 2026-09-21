@@ -18,7 +18,9 @@ if (!bookId) {
 }
 
 const IMAGES_DIR = path.join(__dirname, "..", "src", "data", "images", bookId);
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-image";
+// Lite tier by default to save cost; pass GEMINI_MODEL=gemini-3.1-flash-image
+// for a one-off when a book needs the full model's extra fidelity.
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite-image";
 
 async function generateImage(prompt) {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
