@@ -24,13 +24,17 @@ export async function listProfiles(): Promise<ChildProfile[]> {
   return data;
 }
 
-export async function createProfile(name: string, avatarEmoji: string): Promise<ChildProfile> {
+export async function createProfile(
+  name: string,
+  avatarEmoji: string,
+  cefrLevel: string | null = null
+): Promise<ChildProfile> {
   const { data: userData } = await supabase.auth.getUser();
   const parentId = userData.user?.id;
   if (!parentId) throw new Error("Not signed in");
   const { data, error } = await supabase
     .from("profiles")
-    .insert({ name, avatar_emoji: avatarEmoji, parent_id: parentId })
+    .insert({ name, avatar_emoji: avatarEmoji, cefr_level: cefrLevel, parent_id: parentId })
     .select()
     .single();
   if (error) throw error;

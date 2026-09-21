@@ -110,8 +110,12 @@ export function ReaderPage() {
         </Link>
         <div className="flex items-center gap-2">
           <LevelBadge level={book.level} />
-          <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
-          <GrammarInfoButton features={book.grammarFeatures} />
+          {!activeProfile && (
+            <>
+              <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
+              <GrammarInfoButton features={book.grammarFeatures} />
+            </>
+          )}
         </div>
       </div>
 

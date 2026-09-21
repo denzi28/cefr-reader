@@ -10,9 +10,21 @@ import {
   listProgressForProfile,
   type ChildProfile,
 } from "../data/profiles";
+import { api } from "../api/client";
 import { LEVEL_ORDER } from "../data/levelMeta";
+import { LevelBadge } from "../components/LevelBadge";
+import type { CEFRLevel } from "../types/book";
 
 const AVATAR_CHOICES = ["🦊", "🐰", "🐼", "🦁", "🐸", "🦄", "🐨", "🐯"];
+
+interface BookProgressRow {
+  bookId: string;
+  title: string;
+  level: CEFRLevel;
+  pageCount: number;
+  currentPageIndex: number;
+  completed: boolean;
+}
 
 function ProfileCard({
   profile,
@@ -23,17 +35,37 @@ function ProfileCard({
   onActivate: () => void;
   onDelete: () => void;
 }) {
-  const [summary, setSummary] = useState<{ started: number; completed: number } | null>(null);
+  const [progress, setProgress] = useState<BookProgressRow[] | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
     listProgressForProfile(profile.id)
-      .then((rows) => {
-        setSummary({
-          started: rows.length,
-          completed: rows.filter((r) => r.completed).length,
-        });
+      .then(async (rows) => {
+        const withBooks = await Promise.all(
+          rows.map(async (row) => {
+            try {
+              const book = await api.getBook(row.book_id);
+              return {
+                bookId: row.book_id,
+                title: book.title,
+                level: book.level,
+                pageCount: book.pages.length,
+                currentPageIndex: row.current_page_index,
+                completed: row.completed,
+              };
+            } catch {
+              return null;
+            }
+          })
+        );
+        if (!cancelled) setProgress(withBooks.filter((b): b is BookProgressRow => b !== null));
       })
-      .catch(() => setSummary(null));
+      .catch(() => {
+        if (!cancelled) setProgress([]);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [profile.id]);
 
   return (
@@ -42,30 +74,60 @@ function ProfileCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
-      className="flex items-center gap-4 rounded-3xl border-4 border-white bg-white p-5 shadow-sm"
+      className="rounded-3xl border-4 border-white bg-white p-5 shadow-sm"
     >
-      <span className="text-4xl">{profile.avatar_emoji}</span>
-      <div className="flex-1">
-        <p className="text-lg font-extrabold text-stone-800">{profile.name}</p>
-        <p className="font-body text-sm text-stone-500">
-          {profile.cefr_level ? `Level ${profile.cefr_level}` : "No level set"}
-          {summary && ` · ${summary.completed} finished, ${summary.started - summary.completed} in progress`}
-        </p>
+      <div className="flex items-center gap-4">
+        <span className="text-4xl">{profile.avatar_emoji}</span>
+        <div className="flex-1">
+          <p className="text-lg font-extrabold text-stone-800">{profile.name}</p>
+          <p className="font-body text-sm text-stone-500">
+            {profile.cefr_level ? `Level ${profile.cefr_level}` : "No level set"}
+          </p>
+        </div>
+        <motion.button
+          whileTap={{ scale: 0.94 }}
+          onClick={onActivate}
+          className="rounded-2xl bg-sky-500 px-4 py-2 font-body text-sm font-extrabold text-white shadow-sm hover:bg-sky-600"
+        >
+          Read as {profile.name}
+        </motion.button>
+        <button
+          onClick={onDelete}
+          aria-label={`Remove ${profile.name}`}
+          className="shrink-0 rounded-full bg-stone-100 px-3 py-2 font-bold text-stone-400 hover:bg-rose-100 hover:text-rose-500"
+        >
+          ✕
+        </button>
       </div>
-      <motion.button
-        whileTap={{ scale: 0.94 }}
-        onClick={onActivate}
-        className="rounded-2xl bg-sky-500 px-4 py-2 font-body text-sm font-extrabold text-white shadow-sm hover:bg-sky-600"
-      >
-        Read as {profile.name}
-      </motion.button>
-      <button
-        onClick={onDelete}
-        aria-label={`Remove ${profile.name}`}
-        className="shrink-0 rounded-full bg-stone-100 px-3 py-2 font-bold text-stone-400 hover:bg-rose-100 hover:text-rose-500"
-      >
-        ✕
-      </button>
+
+      <div className="mt-4 border-t border-stone-100 pt-3">
+        <p className="mb-2 font-body text-xs font-extrabold uppercase tracking-wide text-stone-400">
+          Reading progress
+        </p>
+        {progress === null && <p className="font-body text-xs text-stone-400">Loading…</p>}
+        {progress?.length === 0 && (
+          <p className="font-body text-xs text-stone-400">No books started yet.</p>
+        )}
+        {progress && progress.length > 0 && (
+          <ul className="space-y-1.5">
+            {progress.map((p) => (
+              <li key={p.bookId} className="flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-2">
+                  <LevelBadge level={p.level} />
+                  <span className="truncate font-body text-sm text-stone-700">{p.title}</span>
+                </div>
+                <span
+                  className={`shrink-0 font-body text-xs font-extrabold ${
+                    p.completed ? "text-emerald-600" : "text-stone-400"
+                  }`}
+                >
+                  {p.completed ? "Finished 🎉" : `Page ${p.currentPageIndex + 1} of ${p.pageCount}`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </motion.div>
   );
 }
@@ -95,7 +157,7 @@ export function DashboardPage() {
     e.preventDefault();
     if (!name.trim()) return;
     try {
-      const created = await createProfile(name.trim(), emoji);
+      const created = await createProfile(name.trim(), emoji, level || null);
       setProfiles((prev) => [...(prev ?? []), created]);
       setName("");
       setEmoji(AVATAR_CHOICES[0]);
@@ -122,18 +184,25 @@ export function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-extrabold text-stone-800">Your Profiles</h1>
-          <p className="font-body text-sm text-stone-500">{user.email}</p>
+      <div className="mb-6 flex items-center gap-4 rounded-3xl border-4 border-white bg-white p-5 shadow-sm">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sky-100 text-2xl">
+          🧑
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="font-body text-xs font-extrabold uppercase tracking-wide text-stone-400">
+            Parent / Teacher account
+          </p>
+          <p className="truncate text-lg font-extrabold text-stone-800">{user.email}</p>
         </div>
         <button
           onClick={() => signOut().then(() => navigate("/login"))}
-          className="font-body text-sm font-bold text-stone-400 hover:text-stone-600"
+          className="shrink-0 font-body text-sm font-bold text-stone-400 hover:text-stone-600"
         >
           Sign out
         </button>
       </div>
+
+      <h1 className="mb-4 text-2xl font-extrabold text-stone-800">Your Children</h1>
 
       {error && (
         <p className="mb-4 rounded-xl bg-rose-50 p-3 text-center font-body text-sm text-rose-600">{error}</p>

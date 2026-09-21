@@ -3,8 +3,14 @@ import type { BookSummary } from "../types/book";
 import { PageArt } from "./PageArt";
 import { LevelBadge } from "./LevelBadge";
 import { MethodBadge } from "./MethodBadge";
+import { useActiveProfile } from "../auth/ActiveProfileContext";
 
 export function BookCard({ book }: { book: BookSummary }) {
+  // ELT-methodology jargon (TBL/CLIL/TPR/...) is for the parent or teacher
+  // choosing a book, not for the child actually reading it - hidden once
+  // someone is reading "as" a named child profile.
+  const { activeProfile } = useActiveProfile();
+
   return (
     <Link
       to={`/books/${book.id}`}
@@ -21,7 +27,7 @@ export function BookCard({ book }: { book: BookSummary }) {
           <p className="font-body text-xs font-bold uppercase tracking-wide text-stone-400">
             {book.pageCount} pages
           </p>
-          <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
+          {!activeProfile && <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />}
         </div>
       </div>
     </Link>

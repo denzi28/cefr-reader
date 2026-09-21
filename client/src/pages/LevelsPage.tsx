@@ -148,10 +148,15 @@ function AccountLink() {
 }
 
 export function LevelsPage() {
+  const { activeProfile } = useActiveProfile();
   const [levels, setLevels] = useState<LevelInfo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [methodFilter, setMethodFilter] = useState<MethodFilter>("ALL");
   const [filteredBooks, setFilteredBooks] = useState<BookSummary[] | null>(null);
+  // The teaching-method filter is a book-selection tool for the parent or
+  // teacher (it assumes you know what "CLIL" or "TPR" means) - hidden once
+  // someone is reading "as" a named child profile.
+  const showMethodFilter = !activeProfile;
 
   useEffect(() => {
     api.getLevels().then(setLevels).catch((e) => setError(String(e)));
@@ -186,9 +191,11 @@ export function LevelsPage() {
         </p>
       </motion.header>
 
-      <div className="mb-10 flex justify-center">
-        <MethodFilterMenu value={methodFilter} onChange={setMethodFilter} />
-      </div>
+      {showMethodFilter && (
+        <div className="mb-10 flex justify-center">
+          <MethodFilterMenu value={methodFilter} onChange={setMethodFilter} />
+        </div>
+      )}
 
       {error && (
         <p className="rounded-xl bg-rose-50 p-4 text-center font-body text-rose-600">
@@ -196,7 +203,7 @@ export function LevelsPage() {
         </p>
       )}
 
-      {methodFilter !== "ALL" ? (
+      {showMethodFilter && methodFilter !== "ALL" ? (
         <>
           {!filteredBooks && !error && (
             <p className="text-center font-body text-stone-400">Loading {methodFilter} books…</p>
