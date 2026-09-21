@@ -8,6 +8,7 @@ import { PageText } from "../components/PageText";
 import { VocabPanel } from "../components/VocabPanel";
 import { LevelBadge } from "../components/LevelBadge";
 import { MethodBadge } from "../components/MethodBadge";
+import { GrammarInfoButton } from "../components/GrammarInfoButton";
 import { TaskCard } from "../components/TaskCard";
 
 const pageVariants = {
@@ -95,6 +96,7 @@ export function ReaderPage() {
         <div className="flex items-center gap-2">
           <LevelBadge level={book.level} />
           <MethodBadge method={book.teachingMethod} reason={book.teachingMethodReason} />
+          <GrammarInfoButton features={book.grammarFeatures} />
         </div>
       </div>
 

@@ -5,6 +5,12 @@
   "summary": "Mia and Tom spend a sunny day playing, exploring, and making a new furry friend.",
   "teachingMethod": "Story-based",
   "teachingMethodReason": "Has real story structure - temporal sequence (\"First... Then... Before they went home...\"), a mini problem (the ball flies over the fence) resolved through action, and a formulaic closing (\"It was a wonderful day\") - meeting the course's story-based criteria. Still not TBL (the reader doesn't do the problem-solving - Willis 1996) or CLIL (no other-subject content). Note: the lost-ball beat is structurally close to a real TBL task - a prompt asking the reader to guess where the ball landed before the reveal would upgrade this to genuine TBL.",
+  "grammarFeatures": [
+    "Simple past tense (went, played, kicked, sat)",
+    "Sequencing adverbs (First, Then, Before)",
+    "Coordinating conjunctions (and, so)",
+    "Infinitive of purpose (climbed... to find the ball)"
+  ],
   "coverScene": {
     "background": "park",
     "items": [

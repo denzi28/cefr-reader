@@ -75,6 +75,10 @@ export interface Book {
   // criteria (task outcome, content-language integration, etc.) - shown
   // to the user when they tap the method badge.
   teachingMethodReason: string;
+  // Short grammar-point labels this book's text actually uses, checked
+  // against its CEFR level (e.g. an A1 book shouldn't list modal verbs).
+  // Shown via the reader's grammar info button.
+  grammarFeatures: string[];
   pages: BookPage[];
 }
 

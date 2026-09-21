@@ -5,6 +5,12 @@
   "summary": "Ruby the rabbit wants a picnic. Can you help her pack the basket?",
   "teachingMethod": "TBL",
   "teachingMethodReason": "This book has a real task, not just a story about one. On page 4 the reader must tap and build their own list of picnic items before the story reveals what Ruby actually packs - meeting Willis (1996/2006)'s 'Listing' task type (brainstorming/fact-finding toward a completed list) and Nunan (2006)'s bar for a task: the outcome is still unknown, meaning is primary, and there's a real goal to complete. The resolution page then lets the reader compare their own list to Ruby's, which is the 'report' stage of Willis's pre-task -> task cycle -> language focus structure.",
+  "grammarFeatures": [
+    "Simple present tense",
+    "\"Want + to-infinitive\" (wants to have a picnic)",
+    "Questions with \"does\" (What does she need?)",
+    "Imperatives (Help Ruby pack! Tap...)"
+  ],
   "coverScene": {
     "background": "day",
     "items": [

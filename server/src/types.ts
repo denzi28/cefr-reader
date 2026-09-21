@@ -72,6 +72,9 @@ export interface Book {
   coverImageUrl?: string;
   teachingMethod: TeachingMethod;
   teachingMethodReason: string;
+  // Short grammar-point labels this book's text actually uses, checked
+  // against its CEFR level. Shown via the reader's grammar info button.
+  grammarFeatures: string[];
   pages: BookPage[];
 }
 

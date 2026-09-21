@@ -5,6 +5,14 @@
   "summary": "When Anna's cat vanishes, she and her friend Ben follow the clues to solve the mystery.",
   "teachingMethod": "Story-based",
   "teachingMethodReason": "The clearest story-based example in the library: formulaic opening, introduction of the problem (the cat vanishes), a series of events building suspense (searching, clues, following the trail), and a resolution with a moral-ish close (relieved, mystery solved) - exactly the discourse pattern the course's story-based instruction deck describes. It's not yet TBL: the characters solve a problem, but the reader doesn't - per Willis (1996)/Nunan (2006), TBL requires the learner to use language to reach a real outcome themselves (e.g. listing clues, predicting the cat's location). It's the strongest candidate in the library to convert to genuine TBL: add a task like 'Where do you think Whiskers is? List two places to check' before the page 5 reveal, and it would qualify.",
+  "grammarFeatures": [
+    "Simple past tense",
+    "Past modal \"couldn't\" for past inability",
+    "Verb + infinitive / gerund complements (decided to investigate, started looking)",
+    "Simple passive voice (the mystery was solved)",
+    "Present participle clauses (looking a little embarrassed)",
+    "Expressing possibility with \"maybe\""
+  ],
   "coverScene": {
     "background": "mystery",
     "items": [
@@ -113,7 +121,7 @@
     },
     {
       "index": 3,
-      "text": "She {{noticed}} some paw prints near the fence. If Whiskers had gone this way, he might be in the {{neighbor's}} yard.",
+      "text": "She {{noticed}} some paw prints near the fence. Maybe Whiskers went into the {{neighbor's}} yard this way.",
       "scene": {
         "background": "park",
         "items": [

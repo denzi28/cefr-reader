@@ -5,6 +5,12 @@
   "summary": "Max the dog loses his favorite ball in the park. Can he find it again?",
   "teachingMethod": "Story-based",
   "teachingMethodReason": "Meets the course's own criteria for story-based instruction: a formulaic opening (\"This is Max...\"), a clear problem (the ball is lost) through a search to a resolution, and patterned, repetitive sentence structure. It doesn't meet TBL (the reader never does a task - Willis 1996/Nunan 2006) or CLIL (no other-subject content - Coyle et al. 2010); it's the narrative craft itself, not an add-on task, that earns this label.",
+  "grammarFeatures": [
+    "Simple present tense, used to narrate the story",
+    "\"To be\" statements (Max is a dog, Max is happy)",
+    "Simple wh-questions (Where is the ball?)",
+    "Basic adjectives (red, happy, empty)"
+  ],
   "coverScene": {
     "background": "park",
     "items": [
