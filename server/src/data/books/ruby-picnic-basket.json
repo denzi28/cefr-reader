@@ -85,6 +85,7 @@
       },
       "vocab": [],
       "task": {
+        "mode": "multi",
         "items": [
           { "id": "sandwich", "label": "sandwich", "emoji": "🥪", "correct": true },
           { "id": "apple", "label": "apple", "emoji": "🍎", "correct": true },

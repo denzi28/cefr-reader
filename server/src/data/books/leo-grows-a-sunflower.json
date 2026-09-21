@@ -1,0 +1,119 @@
+{
+  "id": "leo-grows-a-sunflower",
+  "title": "Leo Grows a Sunflower",
+  "level": "A2",
+  "summary": "Leo plants a tiny seed. Can you put the steps in the right order to grow a sunflower?",
+  "teachingMethod": "TBL",
+  "teachingMethodReason": "A genuine task, not a quiz: on page 2 the reader must reason out the correct order of four gardening steps (using world knowledge - a seed must be planted before it sprouts) before the story confirms the real sequence. This meets Willis (1996/2006)'s 'Ordering and sorting' task type (sequencing toward a set of information ordered by a real criterion) and Nunan (2006)'s bar for a task: the outcome is still unknown, meaning is primary, and there's a real goal. The following page's position-by-position comparison is the 'report' stage of Willis's pre-task -> task cycle -> language focus structure.",
+  "grammarFeatures": [
+    "Simple past tense",
+    "Sequencing adverbs (First, Then, After, Finally)",
+    "\"Want + to-infinitive\" (wanted to grow)",
+    "Time expressions (after a few days)"
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Boy", "x": 40, "y": 68, "scale": 1.1 },
+      { "sprite": "Flower", "x": 62, "y": 78, "scale": 1.2 },
+      { "sprite": "Tree", "x": 82, "y": 50, "scale": 1 },
+      { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/leo-grows-a-sunflower/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Last spring, Leo wanted to grow a beautiful {{sunflower}}. He had a tiny {{seed}} and some {{soil}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 70, "scale": 1.1 },
+          { "sprite": "Table", "x": 65, "y": 78, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "sunflower", "definition": "A tall flower with a big yellow head." },
+        { "word": "seed", "definition": "A tiny thing that grows into a plant." },
+        { "word": "soil", "definition": "The dark earth that plants grow in." }
+      ],
+      "imageUrl": "/images/leo-grows-a-sunflower/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "These four things happened when Leo grew his sunflower. Tap them in the order they happened!",
+      "scene": {
+        "background": "day",
+        "items": [{ "sprite": "Boy", "x": 50, "y": 75, "scale": 1 }]
+      },
+      "vocab": [],
+      "task": {
+        "mode": "order",
+        "items": [
+          { "id": "sprout", "label": "a sprout appeared", "emoji": "🌱", "correct": true, "correctOrder": 3 },
+          { "id": "water", "label": "Leo watered the soil", "emoji": "💧", "correct": true, "correctOrder": 2 },
+          { "id": "bloom", "label": "the sunflower bloomed", "emoji": "🌻", "correct": true, "correctOrder": 4 },
+          { "id": "plant", "label": "Leo planted the seed", "emoji": "🌰", "correct": true, "correctOrder": 1 }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "text": "First, Leo planted the {{seed}} in the soil.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 72, "scale": 1.1 },
+          { "sprite": "Flower", "x": 65, "y": 82, "scale": 0.6 }
+        ]
+      },
+      "vocab": [{ "word": "seed", "definition": "A tiny thing that grows into a plant." }],
+      "imageUrl": "/images/leo-grows-a-sunflower/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "Then, he watered it every day.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 72, "scale": 1.1 },
+          { "sprite": "Flower", "x": 65, "y": 82, "scale": 0.7 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [],
+      "imageUrl": "/images/leo-grows-a-sunflower/page-4.jpg"
+    },
+    {
+      "index": 5,
+      "text": "After a few days, a tiny {{sprout}} appeared!",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 72, "scale": 1.1 },
+          { "sprite": "Flower", "x": 65, "y": 80, "scale": 0.8 }
+        ]
+      },
+      "vocab": [{ "word": "sprout", "definition": "A small new plant just starting to grow." }],
+      "imageUrl": "/images/leo-grows-a-sunflower/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "Finally, a big {{sunflower}} bloomed! Leo was very {{proud}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 72, "scale": 1.1 },
+          { "sprite": "Flower", "x": 65, "y": 60, "scale": 1.6 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [
+        { "word": "sunflower", "definition": "A tall flower with a big yellow head." },
+        { "word": "proud", "definition": "Feeling very happy about something you did." }
+      ],
+      "imageUrl": "/images/leo-grows-a-sunflower/page-6.jpg"
+    }
+  ]
+}

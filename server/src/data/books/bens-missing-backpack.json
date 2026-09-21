@@ -1,0 +1,116 @@
+{
+  "id": "bens-missing-backpack",
+  "title": "Ben's Missing Backpack",
+  "level": "B1",
+  "summary": "Ben can't find his backpack before school. Where do you think it is?",
+  "teachingMethod": "TBL",
+  "teachingMethodReason": "A genuine problem-solving task: on page 4 the reader must weigh the clues (the backpack isn't where it always is; his little sister was playing all morning) and choose ONE most-likely location before the story reveals the truth. This meets Willis (1996/2006)'s 'Problem solving' task type (analyzing, reasoning, decision making -> problems solved and evaluated) - unlike a story where a character solves a problem for the reader, here the reader makes the actual decision under real uncertainty (several plausible locations, only one is right). The following page's report stage reveals the answer and how the reader's guess compares, gently regardless of outcome.",
+  "grammarFeatures": [
+    "Simple past tense",
+    "Past modal \"couldn't\" for inability",
+    "Contrastive connector \"but\"",
+    "Making predictions and guesses (Where do you think...?)",
+    "Direct speech with quotation marks"
+  ],
+  "coverScene": {
+    "background": "indoor",
+    "items": [
+      { "sprite": "Boy", "x": 42, "y": 68, "scale": 1.1 },
+      { "sprite": "Bag", "x": 65, "y": 80, "scale": 0.8 },
+      { "sprite": "Window", "x": 15, "y": 35, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/bens-missing-backpack/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "Ben was getting ready for school, but he {{couldn't}} find his {{backpack}} anywhere. He felt {{worried}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Boy", "x": 42, "y": 70, "scale": 1.1 },
+          { "sprite": "Window", "x": 15, "y": 35, "scale": 1 },
+          { "sprite": "Lamp", "x": 80, "y": 55, "scale": 0.9 }
+        ]
+      },
+      "vocab": [
+        { "word": "couldn't", "definition": "Was not able to." },
+        { "word": "backpack", "definition": "A bag you carry on your back, for school." },
+        { "word": "worried", "definition": "Feeling nervous that something is wrong." }
+      ],
+      "imageUrl": "/images/bens-missing-backpack/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "He always keeps it by the front door, but it wasn't there today.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Boy", "x": 42, "y": 70, "scale": 1.1 },
+          { "sprite": "House", "x": 70, "y": 55, "scale": 1 }
+        ]
+      },
+      "vocab": [],
+      "imageUrl": "/images/bens-missing-backpack/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "His little {{sister}} played in her room all morning. She likes to play with his things.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Girl", "x": 45, "y": 72, "scale": 0.9 },
+          { "sprite": "Window", "x": 80, "y": 35, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "sister", "definition": "A girl who has the same parents as you." }],
+      "imageUrl": "/images/bens-missing-backpack/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "Ben can't find his backpack! Where do you think it is? Pick the place you think is most likely.",
+      "scene": {
+        "background": "indoor",
+        "items": [{ "sprite": "Boy", "x": 50, "y": 75, "scale": 1 }]
+      },
+      "vocab": [],
+      "task": {
+        "mode": "single",
+        "items": [
+          { "id": "bed", "label": "under the bed", "emoji": "🛏️", "correct": false },
+          { "id": "closet", "label": "in the closet", "emoji": "🚪", "correct": false },
+          { "id": "kitchen", "label": "in the kitchen", "emoji": "🍽️", "correct": false },
+          { "id": "sisters-room", "label": "sister's room", "emoji": "🧸", "correct": true }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "text": "Ben looked in his sister's room. There it was, hiding under a pile of toys! \"Sorry, Ben!\" she said with a {{giggle}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          { "sprite": "Boy", "x": 40, "y": 70, "scale": 1.05 },
+          { "sprite": "Girl", "x": 60, "y": 72, "scale": 0.9 },
+          { "sprite": "Bag", "x": 65, "y": 85, "scale": 0.6 }
+        ]
+      },
+      "vocab": [{ "word": "giggle", "definition": "A small, happy laugh." }],
+      "imageUrl": "/images/bens-missing-backpack/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "Ben {{grabbed}} his backpack and ran to catch the bus. He made it just in time!",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Boy", "x": 45, "y": 72, "scale": 1.1 },
+          { "sprite": "House", "x": 75, "y": 55, "scale": 1 },
+          { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
+        ]
+      },
+      "vocab": [{ "word": "grabbed", "definition": "Took something quickly." }],
+      "imageUrl": "/images/bens-missing-backpack/page-6.jpg"
+    }
+  ]
+}

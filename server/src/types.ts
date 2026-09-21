@@ -40,9 +40,11 @@ export interface TaskItem {
   label: string;
   emoji: string;
   correct: boolean;
+  correctOrder?: number;
 }
 
 export interface PageTask {
+  mode: "multi" | "single" | "order";
   items: TaskItem[];
 }
 

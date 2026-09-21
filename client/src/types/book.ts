@@ -34,17 +34,25 @@ export interface VocabEntry {
   definition: string;
 }
 
-// A single tappable option in a TBL "listing" task (see TaskCard.tsx).
-// `correct` says whether it belongs in the real answer, checked against
-// the reader's taps on the following report/resolution page.
+// A single tappable option in a TBL task (see TaskCard.tsx). `correct` is
+// used by "multi"/"single" tasks (Willis's Listing/Problem-solving types);
+// `correctOrder` (1-based) is used by "order" tasks (Willis's Ordering and
+// sorting type) instead.
 export interface TaskItem {
   id: string;
   label: string;
   emoji: string;
   correct: boolean;
+  correctOrder?: number;
 }
 
 export interface PageTask {
+  // "multi": tap any number of items to build a list (Listing task type).
+  // "single": pick exactly one option under uncertainty (Problem-solving/
+  // predicting task type).
+  // "order": tap items in the sequence you think they happen (Ordering
+  // and sorting task type).
+  mode: "multi" | "single" | "order";
   items: TaskItem[];
 }
 

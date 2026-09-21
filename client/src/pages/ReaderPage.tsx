@@ -9,7 +9,7 @@ import { VocabPanel } from "../components/VocabPanel";
 import { LevelBadge } from "../components/LevelBadge";
 import { MethodBadge } from "../components/MethodBadge";
 import { GrammarInfoButton } from "../components/GrammarInfoButton";
-import { TaskCard } from "../components/TaskCard";
+import { TaskCard, compareTaskAnswer } from "../components/TaskCard";
 
 const pageVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 60 : -60, opacity: 0, rotateY: direction > 0 ? 8 : -8 }),
@@ -62,12 +62,7 @@ export function ReaderPage() {
   // task page itself (which would give the outcome away too early).
   const prevPage = pageIndex > 0 ? book.pages[pageIndex - 1] : null;
   const taskComparison = prevPage?.task
-    ? (() => {
-        const selected = taskSelections[pageIndex - 1] ?? [];
-        const correctIds = prevPage.task!.items.filter((i) => i.correct).map((i) => i.id);
-        const matched = correctIds.filter((id) => selected.includes(id)).length;
-        return { matched, total: correctIds.length };
-      })()
+    ? compareTaskAnswer(prevPage.task, taskSelections[pageIndex - 1] ?? [])
     : null;
 
   function goTo(next: number) {
@@ -77,8 +72,16 @@ export function ReaderPage() {
   }
 
   function toggleTaskItem(id: string) {
+    const mode = page.task?.mode;
     setTaskSelections((prev) => {
       const current = prev[pageIndex] ?? [];
+      if (mode === "single") {
+        return { ...prev, [pageIndex]: current[0] === id ? [] : [id] };
+      }
+      if (mode === "order") {
+        const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
+        return { ...prev, [pageIndex]: next };
+      }
       const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
       return { ...prev, [pageIndex]: next };
     });
@@ -118,7 +121,7 @@ export function ReaderPage() {
               <div className="bg-white px-6 py-8">
                 <p className="mb-5 text-center font-body text-xl font-extrabold text-stone-800">{page.text}</p>
                 <TaskCard
-                  items={page.task.items}
+                  task={page.task}
                   selected={taskSelections[pageIndex] ?? []}
                   onToggle={toggleTaskItem}
                 />
@@ -133,7 +136,12 @@ export function ReaderPage() {
                       animate={{ opacity: 1, y: 0 }}
                       className="mb-4 inline-block rounded-full border-2 border-emerald-300 bg-emerald-50 px-4 py-1.5 font-body text-sm font-extrabold text-emerald-700"
                     >
-                      You picked {taskComparison.matched} of {taskComparison.total} correctly! 🎉
+                      {taskComparison.mode === "single" &&
+                        (taskComparison.isCorrect
+                          ? "Great guess! You were right! 🎉"
+                          : `Good try! It was actually ${taskComparison.correctEmoji} ${taskComparison.correctLabel}.`)}
+                      {taskComparison.mode !== "single" &&
+                        `You picked ${taskComparison.matched} of ${taskComparison.total} correctly! 🎉`}
                     </motion.p>
                   )}
                   <PageText
@@ -151,7 +159,9 @@ export function ReaderPage() {
 
       <p className="mt-4 text-center font-body text-sm font-bold text-stone-400">
         Page {pageIndex + 1} of {book.pages.length}
-        {page.task && " · tap everything you think is needed, then turn the page to check"}
+        {page.task?.mode === "multi" && " · tap everything you think is needed, then turn the page to check"}
+        {page.task?.mode === "single" && " · pick the one you think is right, then turn the page to check"}
+        {page.task?.mode === "order" && " · tap them in the order you think they happen"}
         {!page.task && page.vocab.length > 0 && " · tap the underlined words to see what they mean"}
       </p>
 

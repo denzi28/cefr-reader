@@ -1,14 +1,23 @@
 #!/usr/bin/env node
-// One-off generator for ruby-picnic-basket: its page 4 is an interactive
-// task widget with no photo, so images map to pages 1,2,3,5,6 rather than
-// the shared generate-images.mjs script's assumed 1-2-3-4-5 sequence.
+// Generic generator for TBL books whose task-stop page has no photo (an
+// interactive widget, not a scene) - so images map to a `pageMap` array
+// in the art-prompts file (target page numbers) rather than the shared
+// generate-images.mjs script's assumed 1-2-3-4-5-... sequence.
+//
+// Usage: GEMINI_API_KEY=... node scripts/generate-task-book-images.mjs <bookId>
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const IMAGES_DIR = path.join(__dirname, "..", "src", "data", "images", "ruby-picnic-basket");
+const bookId = process.argv[2];
+if (!bookId) {
+  console.error("Usage: node scripts/generate-task-book-images.mjs <bookId>");
+  process.exit(1);
+}
+
+const IMAGES_DIR = path.join(__dirname, "..", "src", "data", "images", bookId);
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-image";
 
 async function generateImage(prompt) {
@@ -33,24 +42,24 @@ async function generateImage(prompt) {
 }
 
 const prompts = JSON.parse(
-  await readFile(path.join(__dirname, "art-prompts", "ruby-picnic-basket.json"), "utf-8")
+  await readFile(path.join(__dirname, "art-prompts", `${bookId}.json`), "utf-8")
 );
+if (!prompts.pageMap || prompts.pageMap.length !== prompts.pages.length) {
+  console.error(`art-prompts/${bookId}.json needs a "pageMap" array matching "pages" in length.`);
+  process.exit(1);
+}
 const fullPrompt = (scene) => `${prompts.style}\n\nCharacters: ${prompts.characters}\n\nScene: ${scene}`;
 
 await mkdir(IMAGES_DIR, { recursive: true });
 
 const targets = [
   { file: "cover.jpg", scene: prompts.cover },
-  { file: "page-1.jpg", scene: prompts.pages[0] },
-  { file: "page-2.jpg", scene: prompts.pages[1] },
-  { file: "page-3.jpg", scene: prompts.pages[2] },
-  { file: "page-5.jpg", scene: prompts.pages[3] },
-  { file: "page-6.jpg", scene: prompts.pages[4] },
+  ...prompts.pageMap.map((pageNum, i) => ({ file: `page-${pageNum}.jpg`, scene: prompts.pages[i] })),
 ];
 
 for (const { file, scene } of targets) {
-  console.log(`generating ${file}...`);
+  console.log(`[${bookId}] generating ${file}...`);
   const buffer = await generateImage(fullPrompt(scene));
   await writeFile(path.join(IMAGES_DIR, file), buffer);
 }
-console.log("done");
+console.log(`[${bookId}] done`);
