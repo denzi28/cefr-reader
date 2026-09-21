@@ -1,0 +1,17 @@
+/* Playful rounded font for a children's-book feel; falls back gracefully if offline. */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: "Baloo 2", "Comic Sans MS", system-ui, sans-serif;
+  background: #fef9f0;
+}
+
+.font-body {
+  font-family: "Nunito", system-ui, sans-serif;
+}
