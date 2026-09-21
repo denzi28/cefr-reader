@@ -10,6 +10,15 @@ interface AuthContextValue {
   signInWithEmail: (email: string, password: string) => Promise<{ error: string | null }>;
   signInWithGoogle: () => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
+  // The parent PIN gates switching *back* from a child profile to the
+  // parent dashboard (Netflix-style profile lock). Stored in Supabase
+  // Auth's own user_metadata rather than a new table - it's a UX gate to
+  // stop a curious kid from wandering into settings, not a security
+  // boundary against another adult with access to the device, so a
+  // plain 4-digit code is enough and needs no separate hashing scheme.
+  hasParentPin: boolean;
+  setParentPin: (pin: string) => Promise<{ error: string | null }>;
+  verifyParentPin: (pin: string) => boolean;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -51,16 +60,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   }
 
+  const user = session?.user ?? null;
+
+  async function setParentPin(pin: string) {
+    const { error } = await supabase.auth.updateUser({ data: { parent_pin: pin } });
+    return { error: error?.message ?? null };
+  }
+
+  function verifyParentPin(pin: string) {
+    return !!user?.user_metadata?.parent_pin && user.user_metadata.parent_pin === pin;
+  }
+
   return (
     <AuthContext.Provider
       value={{
         session,
-        user: session?.user ?? null,
+        user,
         loading,
         signUpWithEmail,
         signInWithEmail,
         signInWithGoogle,
         signOut,
+        hasParentPin: !!user?.user_metadata?.parent_pin,
+        setParentPin,
+        verifyParentPin,
       }}
     >
       {children}

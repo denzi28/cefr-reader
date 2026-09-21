@@ -13,6 +13,7 @@ import {
 import { api } from "../api/client";
 import { LEVEL_ORDER } from "../data/levelMeta";
 import { LevelBadge } from "../components/LevelBadge";
+import { ParentPinSetup } from "../components/ParentPinSetup";
 import type { CEFRLevel } from "../types/book";
 
 const AVATAR_CHOICES = ["🦊", "🐰", "🐼", "🦁", "🐸", "🦄", "🐨", "🐯"];
@@ -138,7 +139,7 @@ function ProfileCard({
 }
 
 export function DashboardPage() {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, hasParentPin } = useAuth();
   const { setActiveProfileId } = useActiveProfile();
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState<ChildProfile[] | null>(null);
@@ -149,6 +150,7 @@ export function DashboardPage() {
   // Children start from A1 by default - a parent can still bump an older
   // or more advanced kid up from here.
   const [level, setLevel] = useState<string>("A1");
+  const [changingPin, setChangingPin] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -201,14 +203,28 @@ export function DashboardPage() {
           </p>
           <p className="truncate text-lg font-extrabold text-stone-800">{user.email}</p>
         </div>
-        <button
-          onClick={() => signOut().then(() => navigate("/login"))}
-          className="shrink-0 font-body text-sm font-bold text-stone-400 hover:text-stone-600"
-        >
-          Sign out
-        </button>
+        <div className="flex shrink-0 flex-col items-end gap-1">
+          <button
+            onClick={() => signOut().then(() => navigate("/login"))}
+            className="font-body text-sm font-bold text-stone-400 hover:text-stone-600"
+          >
+            Sign out
+          </button>
+          {hasParentPin && !changingPin && (
+            <button
+              onClick={() => setChangingPin(true)}
+              className="font-body text-xs font-bold text-stone-300 hover:text-stone-500"
+            >
+              Change PIN
+            </button>
+          )}
+        </div>
       </div>
 
+      {!hasParentPin || changingPin ? (
+        <ParentPinSetup onDone={() => setChangingPin(false)} />
+      ) : (
+        <>
       <h1 className="mb-4 text-2xl font-extrabold text-stone-800">Your Children</h1>
 
       {error && (
@@ -302,6 +318,8 @@ export function DashboardPage() {
         >
           + Add a child profile
         </motion.button>
+      )}
+        </>
       )}
 
       <Link
