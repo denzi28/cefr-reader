@@ -32,7 +32,7 @@ type ReaderPhase = "intro" | "reading" | "quiz" | "score";
 export function ReaderPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { activeProfile } = useActiveProfile();
+  const { activeProfile, loading: profileLoading } = useActiveProfile();
   const progression = useChildProgression(activeProfile);
   const [book, setBook] = useState<Book | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +44,11 @@ export function ReaderPage() {
   const [quizResult, setQuizResult] = useState<{ correct: number; total: number } | null>(null);
 
   useEffect(() => {
-    if (!id) return;
+    // Waits for the active-profile lookup to resolve first (a fresh page
+    // load starts with activeProfile === null before it settles) so a
+    // child landing here directly doesn't briefly get treated as a
+    // profile-less parent and skip the intro screen / lock check.
+    if (!id || profileLoading) return;
     api
       .getBook(id)
       .then((b) => {
@@ -54,10 +58,11 @@ export function ReaderPage() {
         setPhase(activeProfile && b.introFunFacts?.length ? "intro" : "reading");
       })
       .catch((e) => setError(String(e)));
-    // Only re-run when the book id changes - re-checking activeProfile here
-    // would restart an in-progress read every time profile state settles.
+    // Only re-run when the book id changes (or profileLoading first
+    // resolves) - re-checking activeProfile itself here would restart an
+    // in-progress read every time profile state settles.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, profileLoading]);
 
   // A quiet, best-effort write - reading stays fully open to everyone, so a
   // signed-out visitor or a parent with no active child profile just skips

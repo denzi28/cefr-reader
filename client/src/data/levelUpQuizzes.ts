@@ -16,77 +16,84 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
   A1: {
     toLevel: "A2",
     passFraction: 0.75,
+    // These test the grammar and vocabulary the A1 books taught, applied
+    // to a fresh sentence or question each time - not "what happened in
+    // the book" recall, and never a question that hands the answer to
+    // itself (e.g. spelling out the target word in the question text).
+    // The correct option's position is deliberately varied across
+    // questions (never always first) so "always tap the top option"
+    // can't pass the quiz on its own.
     questions: [
       {
         id: "a1-1",
-        question: "In 'The Red Ball', what does Max lose?",
+        question: "Choose the correct sentence.",
         options: [
-          { id: "ball", label: "A ball", emoji: "⚽", correct: true },
-          { id: "shoe", label: "A shoe", emoji: "👟", correct: false },
-          { id: "hat", label: "A hat", emoji: "🎩", correct: false },
+          { id: "right", label: "My sister is happy.", emoji: "✅", correct: true },
+          { id: "wrong1", label: "My sister are happy.", emoji: "❌", correct: false },
+          { id: "wrong2", label: "My sister am happy.", emoji: "❌", correct: false },
         ],
       },
       {
         id: "a1-2",
-        question: "In 'My Family', who likes to read a book?",
+        question: "Which word means something belongs to YOU?",
         options: [
-          { id: "mother", label: "The mother", emoji: "👩", correct: true },
-          { id: "father", label: "The father", emoji: "👨", correct: false },
-          { id: "sister", label: "The sister", emoji: "👧", correct: false },
+          { id: "you", label: "you", emoji: "👉", correct: false },
+          { id: "it", label: "it", emoji: "📦", correct: false },
+          { id: "my", label: "my", emoji: "🙋", correct: true },
         ],
       },
       {
         id: "a1-3",
-        question: "What does the word 'MY' tell us?",
+        question: "Complete the question: '___ does he need for the trip?'",
         options: [
-          { id: "color", label: "A color", emoji: "🎨", correct: false },
-          { id: "mine", label: "Something belongs to you", emoji: "🙋", correct: true },
-          { id: "number", label: "A number", emoji: "🔢", correct: false },
+          { id: "who", label: "Who", emoji: "🙋", correct: false },
+          { id: "what", label: "What", emoji: "❓", correct: true },
+          { id: "when", label: "When", emoji: "⏰", correct: false },
         ],
       },
       {
         id: "a1-4",
-        question: "In 'Zoe and the Animal Homes', where do camels live?",
+        question: "Choose the correct word: 'The book is ___ the table.'",
         options: [
-          { id: "ocean", label: "In the ocean", emoji: "🌊", correct: false },
-          { id: "desert", label: "In the desert", emoji: "🏜️", correct: true },
-          { id: "forest", label: "In the forest", emoji: "🌲", correct: false },
+          { id: "on", label: "on", emoji: "📖", correct: true },
+          { id: "in", label: "in", emoji: "📦", correct: false },
+          { id: "at", label: "at", emoji: "📍", correct: false },
         ],
       },
       {
         id: "a1-5",
-        question: "In 'Zoe and the Animal Homes', where do fish live?",
+        question: "Which sentence is correct?",
         options: [
-          { id: "ocean", label: "In the ocean", emoji: "🌊", correct: true },
-          { id: "sky", label: "In the sky", emoji: "☁️", correct: false },
-          { id: "desert", label: "In the desert", emoji: "🏜️", correct: false },
+          { id: "wrong1", label: "She like to swim.", emoji: "❌", correct: false },
+          { id: "wrong2", label: "She liking to swim.", emoji: "❌", correct: false },
+          { id: "right", label: "She likes to swim.", emoji: "✅", correct: true },
         ],
       },
       {
         id: "a1-6",
-        question: "In 'Ruby's Picnic Basket', what is Ruby packing for?",
+        question: "Which word describes weather with no water in it at all?",
         options: [
-          { id: "party", label: "A birthday party", emoji: "🎂", correct: false },
-          { id: "picnic", label: "A picnic", emoji: "🧺", correct: true },
-          { id: "trip", label: "A trip", emoji: "✈️", correct: false },
+          { id: "wet", label: "wet", emoji: "💧", correct: false },
+          { id: "dry", label: "dry", emoji: "🏜️", correct: true },
+          { id: "cold", label: "cold", emoji: "❄️", correct: false },
         ],
       },
       {
         id: "a1-7",
-        question: "\"What DOES she need?\" - we use 'does' when we ask about...",
+        question: "Which little word do we use to ask about a PLACE?",
         options: [
-          { id: "one", label: "One person (he/she/it)", emoji: "🙋", correct: true },
-          { id: "many", label: "Many people", emoji: "👨‍👩‍👧‍👦", correct: false },
-          { id: "me", label: "Yourself", emoji: "🪞", correct: false },
+          { id: "what", label: "What", emoji: "❓", correct: false },
+          { id: "where", label: "Where", emoji: "📍", correct: true },
+          { id: "who", label: "Who", emoji: "🙋", correct: false },
         ],
       },
       {
         id: "a1-8",
-        question: "Which little word tells us what something IS like? (Max IS happy)",
+        question: "Complete the command: '___ up! It's time for school.'",
         options: [
-          { id: "is", label: "is", emoji: "✅", correct: true },
-          { id: "the", label: "the", emoji: "📄", correct: false },
-          { id: "and", label: "and", emoji: "➕", correct: false },
+          { id: "wakes", label: "Wakes", emoji: "❌", correct: false },
+          { id: "waking", label: "Waking", emoji: "❌", correct: false },
+          { id: "wake", label: "Wake", emoji: "✅", correct: true },
         ],
       },
     ],

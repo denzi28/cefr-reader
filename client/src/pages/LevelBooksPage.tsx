@@ -60,13 +60,16 @@ function LockedBookCard({ book, unlocksAfterTitle }: { book: BookSummary; unlock
 
 export function LevelBooksPage() {
   const { level } = useParams<{ level: string }>();
-  const { activeProfile } = useActiveProfile();
+  const { activeProfile, loading: profileLoading } = useActiveProfile();
   const progression = useChildProgression(activeProfile);
   const [books, setBooks] = useState<BookSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!level) return;
+    // Waits for the active-profile lookup to resolve first, so a child
+    // landing here via a fresh page load doesn't briefly see the
+    // unfiltered/unlocked parent view before it narrows down.
+    if (!level || profileLoading) return;
     setBooks(null);
     api
       .getBooks(level)
@@ -78,9 +81,13 @@ export function LevelBooksPage() {
       .then((all) => sortByUnlockOrder(all, level as CEFRLevel))
       .then(setBooks)
       .catch((e) => setError(String(e)));
-  }, [level, activeProfile]);
+  }, [level, activeProfile, profileLoading]);
 
   const cefrLevel = level as CEFRLevel;
+
+  if (profileLoading) {
+    return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
+  }
   const levelLocked = !!activeProfile && !progression.loading && !progression.isLevelUnlocked(cefrLevel);
   const showLevelUpCta =
     !!activeProfile &&

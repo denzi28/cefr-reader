@@ -7,6 +7,13 @@ const STORAGE_KEY = "cefr-reader:activeProfileId";
 
 interface ActiveProfileContextValue {
   activeProfile: ChildProfile | null;
+  // True until the initial "is there a stored active child?" lookup has
+  // resolved. A page that makes a real access decision from activeProfile
+  // (redirecting, locking) must wait for this instead of treating a still-
+  // loading null the same as a genuinely absent profile - otherwise a
+  // fresh page load can briefly (and wrongly) act as if no child is
+  // active, right before the real value lands.
+  loading: boolean;
   setActiveProfileId: (id: number | null) => void;
   // Re-fetches the active profile's own row - used after a write that
   // changes it server-side but isn't reflected in local state yet, e.g.
@@ -17,14 +24,18 @@ interface ActiveProfileContextValue {
 const ActiveProfileContext = createContext<ActiveProfileContextValue | null>(null);
 
 export function ActiveProfileProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [activeProfile, setActiveProfile] = useState<ChildProfile | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       setActiveProfile(null);
+      setLoading(false);
       return;
     }
+    setLoading(true);
     // A per-viewer convenience (remembering which child was reading last) -
     // never state that must be shared or reliably persisted, so
     // localStorage is fine here even though it's per-browser only.
@@ -40,8 +51,9 @@ export function ActiveProfileProvider({ children }: { children: ReactNode }) {
         const match = storedId ? profiles.find((p) => p.id === storedId) : null;
         setActiveProfile(match ?? null);
       })
-      .catch(() => setActiveProfile(null));
-  }, [user]);
+      .catch(() => setActiveProfile(null))
+      .finally(() => setLoading(false));
+  }, [user, authLoading]);
 
   function setActiveProfileId(id: number | null) {
     try {
@@ -71,7 +83,7 @@ export function ActiveProfileProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ActiveProfileContext.Provider value={{ activeProfile, setActiveProfileId, refreshActiveProfile }}>
+    <ActiveProfileContext.Provider value={{ activeProfile, loading, setActiveProfileId, refreshActiveProfile }}>
       {children}
     </ActiveProfileContext.Provider>
   );

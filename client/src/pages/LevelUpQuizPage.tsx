@@ -12,18 +12,18 @@ import type { CEFRLevel } from "../types/book";
 export function LevelUpQuizPage() {
   const { level } = useParams<{ level: string }>();
   const navigate = useNavigate();
-  const { activeProfile, refreshActiveProfile } = useActiveProfile();
+  const { activeProfile, loading: profileLoading, refreshActiveProfile } = useActiveProfile();
   const progression = useChildProgression(activeProfile);
   const [result, setResult] = useState<{ correct: number; total: number; passed: boolean } | null>(null);
+
+  if (profileLoading || (activeProfile && progression.loading)) {
+    return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
+  }
 
   if (!activeProfile) return <Navigate to="/" replace />;
 
   const cefrLevel = level as CEFRLevel;
   const quiz = LEVEL_UP_QUIZZES[cefrLevel];
-
-  if (progression.loading) {
-    return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
-  }
 
   if (!quiz) {
     return (
