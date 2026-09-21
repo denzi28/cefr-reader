@@ -1,8 +1,14 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { AuthProvider } from "./auth/AuthContext";
+import { ActiveProfileProvider } from "./auth/ActiveProfileContext";
 import { LevelsPage } from "./pages/LevelsPage";
 import { LevelBooksPage } from "./pages/LevelBooksPage";
 import { ReaderPage } from "./pages/ReaderPage";
+import { LoginPage } from "./pages/LoginPage";
+import { SignupPage } from "./pages/SignupPage";
+import { DashboardPage } from "./pages/DashboardPage";
+import { AuthCallbackPage } from "./pages/AuthCallbackPage";
 
 const pageTransition = {
   initial: { opacity: 0, y: 12 },
@@ -39,6 +45,31 @@ function AnimatedRoutes() {
             </motion.div>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <LoginPage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <SignupPage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <DashboardPage />
+            </motion.div>
+          }
+        />
+        <Route path="/auth/callback" element={<AuthCallbackPage />} />
       </Routes>
     </AnimatePresence>
   );
@@ -47,9 +78,13 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#fef9f0]">
-        <AnimatedRoutes />
-      </div>
+      <AuthProvider>
+        <ActiveProfileProvider>
+          <div className="min-h-screen bg-[#fef9f0]">
+            <AnimatedRoutes />
+          </div>
+        </ActiveProfileProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

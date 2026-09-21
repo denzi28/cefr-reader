@@ -10,6 +10,8 @@ import { LevelBadge } from "../components/LevelBadge";
 import { MethodBadge } from "../components/MethodBadge";
 import { GrammarInfoButton } from "../components/GrammarInfoButton";
 import { TaskCard, compareTaskAnswer } from "../components/TaskCard";
+import { useActiveProfile } from "../auth/ActiveProfileContext";
+import { saveProgress } from "../data/profiles";
 
 const pageVariants = {
   enter: (direction: number) => ({ x: direction > 0 ? 60 : -60, opacity: 0, rotateY: direction > 0 ? 8 : -8 }),
@@ -19,6 +21,7 @@ const pageVariants = {
 
 export function ReaderPage() {
   const { id } = useParams<{ id: string }>();
+  const { activeProfile } = useActiveProfile();
   const [book, setBook] = useState<Book | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pageIndex, setPageIndex] = useState(0);
@@ -36,6 +39,15 @@ export function ReaderPage() {
       })
       .catch((e) => setError(String(e)));
   }, [id]);
+
+  // A quiet, best-effort write - reading stays fully open to everyone, so a
+  // signed-out visitor or a parent with no active child profile just skips
+  // this entirely rather than seeing any error.
+  useEffect(() => {
+    if (!activeProfile || !book) return;
+    const completed = pageIndex === book.pages.length - 1;
+    saveProgress(activeProfile.id, book.id, pageIndex, completed).catch(() => {});
+  }, [activeProfile, book, pageIndex]);
 
   if (error) {
     return (

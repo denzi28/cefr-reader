@@ -7,6 +7,8 @@ import type { BookSummary, LevelInfo, TeachingMethod } from "../types/book";
 import { LevelBadge } from "../components/LevelBadge";
 import { BookCard } from "../components/BookCard";
 import { METHOD_META, METHOD_ORDER } from "../data/methodMeta";
+import { useAuth } from "../auth/AuthContext";
+import { useActiveProfile } from "../auth/ActiveProfileContext";
 
 const container = {
   hidden: {},
@@ -122,6 +124,29 @@ function MethodFilterMenu({
   );
 }
 
+function AccountLink() {
+  const { user, loading } = useAuth();
+  const { activeProfile } = useActiveProfile();
+
+  if (loading) return null;
+
+  return (
+    <Link
+      to={user ? "/dashboard" : "/login"}
+      className="fixed right-4 top-4 z-20 flex items-center gap-2 rounded-full border-2 border-stone-200 bg-white px-4 py-2 font-body text-sm font-extrabold text-stone-600 shadow-sm transition hover:border-sky-300 hover:text-sky-600"
+    >
+      {user ? (
+        <>
+          <span>{activeProfile ? activeProfile.avatar_emoji : "👤"}</span>
+          {activeProfile ? `Reading as ${activeProfile.name}` : "Dashboard"}
+        </>
+      ) : (
+        <>👋 Sign in</>
+      )}
+    </Link>
+  );
+}
+
 export function LevelsPage() {
   const [levels, setLevels] = useState<LevelInfo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -146,6 +171,7 @@ export function LevelsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
+      <AccountLink />
       <motion.header
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
