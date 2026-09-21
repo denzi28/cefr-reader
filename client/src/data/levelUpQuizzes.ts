@@ -1,9 +1,17 @@
 import type { CEFRLevel, QuizQuestion } from "../types/book";
 
+// Every Big Quiz question needs an explanation - unlike a per-book quiz,
+// a child can come back to review exactly which questions they missed
+// (see LevelQuizReviewPage), and "you got it wrong" without saying why
+// isn't a real review.
+export interface LevelUpQuizQuestion extends QuizQuestion {
+  explanation: string;
+}
+
 export interface LevelUpQuiz {
   toLevel: CEFRLevel;
   passFraction: number;
-  questions: QuizQuestion[];
+  questions: LevelUpQuizQuestion[];
 }
 
 // The "big quiz" a child takes after finishing every book in a level, to
@@ -32,6 +40,8 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "wrong1", label: "My sister are happy.", emoji: "🟢", correct: false },
           { id: "wrong2", label: "My sister am happy.", emoji: "🟠", correct: false },
         ],
+        explanation:
+          "We use 'is' with one person or thing, like 'my sister'. 'Are' is for more than one, and 'am' is only used with 'I'.",
       },
       {
         id: "a1-2",
@@ -41,6 +51,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "it", label: "it", emoji: "📦", correct: false },
           { id: "my", label: "my", emoji: "🙋", correct: true },
         ],
+        explanation: "'My' shows that something belongs to you, like 'my book' or 'my family'.",
       },
       {
         id: "a1-3",
@@ -50,6 +61,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "what", label: "What", emoji: "❓", correct: true },
           { id: "when", label: "When", emoji: "⏰", correct: false },
         ],
+        explanation: "'What' asks about a thing (like what he needs). 'Who' asks about a person, and 'When' asks about time.",
       },
       {
         id: "a1-4",
@@ -59,6 +71,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "in", label: "in", emoji: "📦", correct: false },
           { id: "at", label: "at", emoji: "📍", correct: false },
         ],
+        explanation: "We use 'on' when something is resting on top of a surface, like a book on a table.",
       },
       {
         id: "a1-5",
@@ -68,6 +81,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "wrong2", label: "She liking to swim.", emoji: "🟢", correct: false },
           { id: "right", label: "She likes to swim.", emoji: "🟠", correct: true },
         ],
+        explanation: "After 'she' or 'he', we add -s to the verb: 'likes'. 'Like' and 'liking' aren't correct here.",
       },
       {
         id: "a1-6",
@@ -77,6 +91,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "dry", label: "dry", emoji: "🏜️", correct: true },
           { id: "cold", label: "cold", emoji: "❄️", correct: false },
         ],
+        explanation: "'Dry' means there's no water at all. 'Wet' means full of water, and 'cold' is about temperature.",
       },
       {
         id: "a1-7",
@@ -86,6 +101,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "where", label: "Where", emoji: "📍", correct: true },
           { id: "who", label: "Who", emoji: "🙋", correct: false },
         ],
+        explanation: "'Where' asks about a place. 'What' asks about a thing, and 'who' asks about a person.",
       },
       {
         id: "a1-8",
@@ -95,6 +111,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "waking", label: "Waking", emoji: "🟢", correct: false },
           { id: "wake", label: "Wake", emoji: "🟠", correct: true },
         ],
+        explanation: "Commands use the plain verb with no -s and no -ing, like 'Wake up!' - not 'Wakes' or 'Waking'.",
       },
     ],
   },
@@ -110,6 +127,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "tom", label: "Tom", emoji: "👦", correct: false },
           { id: "dog", label: "The dog", emoji: "🐶", correct: false },
         ],
+        explanation: "The story says Mia climbed over the fence to find the ball after Tom kicked it over.",
       },
       {
         id: "a2-2",
@@ -119,6 +137,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "sandwiches", label: "Sandwiches", emoji: "🥪", correct: true },
           { id: "soup", label: "Soup", emoji: "🍲", correct: false },
         ],
+        explanation: "They sat on a bench and had sandwiches and juice for lunch.",
       },
       {
         id: "a2-3",
@@ -128,6 +147,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "summer", label: "Summer", emoji: "☀️", correct: false },
           { id: "autumn", label: "Autumn", emoji: "🍂", correct: true },
         ],
+        explanation: "In autumn the weather gets cooler and the leaves turn orange and fall to the ground.",
       },
       {
         id: "a2-4",
@@ -137,6 +157,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "warmer", label: "Because the sun is warmer", emoji: "🌞", correct: true },
           { id: "rain", label: "Because it never rains", emoji: "🌧️", correct: false },
         ],
+        explanation: "New leaves grow in spring because the sun gets warmer, which helps plants grow.",
       },
       {
         id: "a2-5",
@@ -146,6 +167,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "sprout", label: "A sprout", emoji: "🌱", correct: false },
           { id: "flower", label: "A flower", emoji: "🌻", correct: false },
         ],
+        explanation: "The very first step was planting a tiny seed - the sprout and flower come later.",
       },
       {
         id: "a2-6",
@@ -155,6 +177,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "sprout", label: "A tiny sprout appeared", emoji: "🌱", correct: true },
           { id: "seed", label: "He planted the seed", emoji: "🌰", correct: false },
         ],
+        explanation: "After watering, a tiny sprout appeared first - the sunflower only bloomed later.",
       },
       {
         id: "a2-7",
@@ -164,6 +187,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "whole-thing", label: "The whole thing", emoji: "🥪", correct: false },
           { id: "plate", label: "A plate", emoji: "🍽️", correct: false },
         ],
+        explanation: "'A piece' means a small part of something - Mia gave the dog a small piece, not the whole sandwich.",
       },
       {
         id: "a2-8",
@@ -173,6 +197,7 @@ export const LEVEL_UP_QUIZZES: Partial<Record<CEFRLevel, LevelUpQuiz>> = {
           { id: "autumn", label: "Autumn", emoji: "🍂", correct: true },
           { id: "spring", label: "Spring", emoji: "🌸", correct: false },
         ],
+        explanation: "The seasons go in order: spring, summer, autumn, winter - so autumn comes right after summer.",
       },
     ],
   },

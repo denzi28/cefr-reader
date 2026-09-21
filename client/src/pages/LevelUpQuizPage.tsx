@@ -6,6 +6,7 @@ import { useChildProgression } from "../hooks/useChildProgression";
 import { LEVEL_UP_QUIZZES } from "../data/levelUpQuizzes";
 import { LEVEL_META } from "../data/levelMeta";
 import { unlockNextLevel } from "../data/profiles";
+import { saveLevelQuizAttempt } from "../data/levelQuizAttempts";
 import { BookQuiz } from "../components/BookQuiz";
 import type { CEFRLevel } from "../types/book";
 
@@ -14,7 +15,12 @@ export function LevelUpQuizPage() {
   const navigate = useNavigate();
   const { activeProfile, loading: profileLoading, refreshActiveProfile } = useActiveProfile();
   const progression = useChildProgression(activeProfile);
-  const [result, setResult] = useState<{ correct: number; total: number; passed: boolean } | null>(null);
+  const [result, setResult] = useState<{
+    correct: number;
+    total: number;
+    passed: boolean;
+    wrongCount: number;
+  } | null>(null);
 
   if (profileLoading || (activeProfile && progression.loading)) {
     return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
@@ -53,13 +59,16 @@ export function LevelUpQuizPage() {
     );
   }
 
-  function handleFinish(correct: number, total: number) {
+  function handleFinish(correct: number, total: number, wrongQuestionIds: string[]) {
     const passed = correct / total >= quiz!.passFraction;
-    setResult({ correct, total, passed });
-    if (passed && activeProfile) {
-      unlockNextLevel(activeProfile.id, quiz!.toLevel)
-        .then(() => refreshActiveProfile())
-        .catch(() => {});
+    setResult({ correct, total, passed, wrongCount: wrongQuestionIds.length });
+    if (activeProfile) {
+      saveLevelQuizAttempt(activeProfile.id, cefrLevel, correct, total, wrongQuestionIds).catch(() => {});
+      if (passed) {
+        unlockNextLevel(activeProfile.id, quiz!.toLevel)
+          .then(() => refreshActiveProfile())
+          .catch(() => {});
+      }
     }
   }
 
@@ -80,34 +89,54 @@ export function LevelUpQuizPage() {
         {result.passed ? (
           <>
             <p className="mt-2 font-body text-stone-500">
-              Amazing work! You leveled up to {LEVEL_META[quiz.toLevel].label}!
+              {result.wrongCount === 0
+                ? `Perfect score! You leveled up to ${LEVEL_META[quiz.toLevel].label}!`
+                : `Great work! You leveled up to ${LEVEL_META[quiz.toLevel].label}!`}
             </p>
-            <motion.button
-              whileTap={{ scale: 0.96 }}
-              onClick={() => navigate(`/levels/${quiz.toLevel}`)}
-              className="mt-6 rounded-2xl bg-emerald-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-emerald-600"
-            >
-              See {quiz.toLevel} Books →
-            </motion.button>
+            <div className="mt-6 flex flex-col items-center gap-2">
+              <motion.button
+                whileTap={{ scale: 0.96 }}
+                onClick={() => navigate(`/levels/${quiz.toLevel}`)}
+                className="rounded-2xl bg-emerald-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-emerald-600"
+              >
+                See {quiz.toLevel} Books →
+              </motion.button>
+              {result.wrongCount > 0 && (
+                <Link
+                  to={`/levels/${level}/level-up-quiz/review`}
+                  className="font-body text-sm font-bold text-sky-600 hover:underline"
+                >
+                  Let's review your mistakes
+                </Link>
+              )}
+            </div>
           </>
         ) : (
           <>
             <p className="mt-2 font-body text-stone-500">
               So close! Read the {level} books again to learn a bit more, then try the Big Quiz again.
             </p>
-            <div className="mt-6 flex justify-center gap-2">
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setResult(null)}
-                className="rounded-2xl bg-sky-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-sky-600"
-              >
-                Try Again
-              </motion.button>
+            <div className="mt-6 flex flex-col items-center gap-3">
+              <div className="flex justify-center gap-2">
+                <motion.button
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => setResult(null)}
+                  className="rounded-2xl bg-sky-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-sky-600"
+                >
+                  Try Again
+                </motion.button>
+                <Link
+                  to={`/levels/${level}`}
+                  className="rounded-2xl border-2 border-stone-200 px-6 py-3 font-body font-bold text-stone-500 hover:bg-stone-50"
+                >
+                  Back to Books
+                </Link>
+              </div>
               <Link
-                to={`/levels/${level}`}
-                className="rounded-2xl border-2 border-stone-200 px-6 py-3 font-body font-bold text-stone-500 hover:bg-stone-50"
+                to={`/levels/${level}/level-up-quiz/review`}
+                className="font-body text-sm font-bold text-sky-600 hover:underline"
               >
-                Back to Books
+                Let's review your mistakes
               </Link>
             </div>
           </>

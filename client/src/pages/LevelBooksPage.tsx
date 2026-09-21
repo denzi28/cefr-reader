@@ -11,6 +11,7 @@ import { useChildProgression } from "../hooks/useChildProgression";
 import { LEVEL_UP_QUIZZES } from "../data/levelUpQuizzes";
 import { LEVEL_META } from "../data/levelMeta";
 import { LEVEL_BOOK_ORDER } from "../data/bookOrder";
+import { getLevelQuizAttempt, type LevelQuizAttempt } from "../data/levelQuizAttempts";
 
 // The raw book list comes back in whatever order the data file declares
 // (not necessarily the unlock order), which reads confusingly once cards
@@ -64,6 +65,8 @@ export function LevelBooksPage() {
   const progression = useChildProgression(activeProfile);
   const [books, setBooks] = useState<BookSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [lastAttempt, setLastAttempt] = useState<LevelQuizAttempt | null>(null);
+  const [attemptLoaded, setAttemptLoaded] = useState(false);
 
   useEffect(() => {
     // Waits for the active-profile lookup to resolve first, so a child
@@ -85,6 +88,22 @@ export function LevelBooksPage() {
 
   const cefrLevel = level as CEFRLevel;
 
+  // Only fetched once this level actually has a quiz to take, so a
+  // returning child's card reflects their last attempt: nothing yet
+  // ("Take the Big Quiz"), a perfect run ("Retake"), or mistakes to
+  // review ("Let's review your mistakes").
+  useEffect(() => {
+    if (!activeProfile || !LEVEL_UP_QUIZZES[cefrLevel]) {
+      setAttemptLoaded(true);
+      return;
+    }
+    setAttemptLoaded(false);
+    getLevelQuizAttempt(activeProfile.id, cefrLevel)
+      .then(setLastAttempt)
+      .catch(() => setLastAttempt(null))
+      .finally(() => setAttemptLoaded(true));
+  }, [activeProfile, cefrLevel]);
+
   if (profileLoading) {
     return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
   }
@@ -92,9 +111,11 @@ export function LevelBooksPage() {
   const showLevelUpCta =
     !!activeProfile &&
     !progression.loading &&
+    attemptLoaded &&
     !!books &&
     !!LEVEL_UP_QUIZZES[cefrLevel] &&
     progression.isLevelFullyCompleted(cefrLevel);
+  const hasMistakesToReview = !!lastAttempt && lastAttempt.wrong_question_ids.length > 0;
 
   if (levelLocked) {
     return (
@@ -169,19 +190,51 @@ export function LevelBooksPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mt-8 rounded-3xl border-4 border-amber-300 bg-amber-50 p-6 text-center"
         >
-          <p className="text-3xl">🏆</p>
-          <h2 className="mt-1 text-xl font-extrabold text-stone-800">
-            You finished all the {level} books!
-          </h2>
-          <p className="mt-1 font-body text-stone-600">
-            Take the Big Quiz to unlock {LEVEL_UP_QUIZZES[cefrLevel]?.toLevel}!
-          </p>
-          <Link
-            to={`/levels/${level}/level-up-quiz`}
-            className="mt-4 inline-block rounded-2xl bg-amber-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-amber-600"
-          >
-            Take the Big Quiz →
-          </Link>
+          {!lastAttempt ? (
+            <>
+              <p className="text-3xl">🏆</p>
+              <h2 className="mt-1 text-xl font-extrabold text-stone-800">
+                You finished all the {level} books!
+              </h2>
+              <p className="mt-1 font-body text-stone-600">
+                Take the Big Quiz to unlock {LEVEL_UP_QUIZZES[cefrLevel]?.toLevel}!
+              </p>
+              <Link
+                to={`/levels/${level}/level-up-quiz`}
+                className="mt-4 inline-block rounded-2xl bg-amber-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-amber-600"
+              >
+                Take the Big Quiz →
+              </Link>
+            </>
+          ) : hasMistakesToReview ? (
+            <>
+              <p className="text-3xl">📝</p>
+              <h2 className="mt-1 text-xl font-extrabold text-stone-800">
+                You made a few mistakes last time.
+              </h2>
+              <p className="mt-1 font-body text-stone-600">
+                Scored {lastAttempt.correct} out of {lastAttempt.total} - let's go over them together.
+              </p>
+              <Link
+                to={`/levels/${level}/level-up-quiz/review`}
+                className="mt-4 inline-block rounded-2xl bg-amber-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-amber-600"
+              >
+                Let's Review Your Mistakes
+              </Link>
+            </>
+          ) : (
+            <>
+              <p className="text-3xl">🌟</p>
+              <h2 className="mt-1 text-xl font-extrabold text-stone-800">Perfect score last time!</h2>
+              <p className="mt-1 font-body text-stone-600">Want to take the Big Quiz again for fun?</p>
+              <Link
+                to={`/levels/${level}/level-up-quiz`}
+                className="mt-4 inline-block rounded-2xl bg-amber-500 px-6 py-3 font-extrabold text-white shadow-sm hover:bg-amber-600"
+              >
+                Retake the Quiz
+              </Link>
+            </>
+          )}
         </motion.div>
       )}
     </div>

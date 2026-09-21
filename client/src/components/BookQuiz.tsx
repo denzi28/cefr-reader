@@ -12,11 +12,15 @@ export function BookQuiz({
   onFinish,
 }: {
   questions: QuizQuestion[];
-  onFinish: (correct: number, total: number) => void;
+  // wrongQuestionIds lets a caller (e.g. the level-up Big Quiz) persist and
+  // later review exactly which questions were missed - per-book quizzes
+  // just ignore the third argument.
+  onFinish: (correct: number, total: number, wrongQuestionIds: string[]) => void;
 }) {
   const [qIndex, setQIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
+  const [wrongIds, setWrongIds] = useState<string[]>([]);
 
   const question = questions[qIndex];
   const isLastQuestion = qIndex === questions.length - 1;
@@ -27,11 +31,12 @@ export function BookQuiz({
     setSelectedId(optionId);
     const option = question.options.find((o) => o.id === optionId);
     if (option?.correct) setCorrectCount((c) => c + 1);
+    else setWrongIds((ids) => [...ids, question.id]);
   }
 
   function handleNext() {
     if (isLastQuestion) {
-      onFinish(correctCount, questions.length);
+      onFinish(correctCount, questions.length, wrongIds);
       return;
     }
     setQIndex((i) => i + 1);

@@ -5,6 +5,7 @@ import { ActiveProfileProvider } from "./auth/ActiveProfileContext";
 import { LevelsPage } from "./pages/LevelsPage";
 import { LevelBooksPage } from "./pages/LevelBooksPage";
 import { LevelUpQuizPage } from "./pages/LevelUpQuizPage";
+import { LevelQuizReviewPage } from "./pages/LevelQuizReviewPage";
 import { ReaderPage } from "./pages/ReaderPage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
@@ -43,6 +44,14 @@ function AnimatedRoutes() {
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
               <LevelUpQuizPage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/levels/:level/level-up-quiz/review"
+          element={
+            <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <LevelQuizReviewPage />
             </motion.div>
           }
         />
