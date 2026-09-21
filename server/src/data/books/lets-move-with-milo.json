@@ -1,0 +1,91 @@
+{
+  "id": "lets-move-with-milo",
+  "title": "Let's Move with Milo!",
+  "level": "A1",
+  "summary": "Watch Milo, then you try! A read-aloud, act-it-out book of simple movement commands.",
+  "teachingMethod": "TPR",
+  "teachingMethodReason": "The library's first genuine TPR book, built on Asher's actual structure from the course sources: comprehension-first, one real imperative command per page (Stand up!, Touch your toes!), Milo modeling the action, and no correction or production demanded from the reader - not a story that merely describes physical actions, which would just be Story-based. Honest limitation, stated plainly rather than glossed over: unlike a live TPR classroom, the app cannot see or verify whether the reader actually moves. It works as a command script for a reader (with a caregiver, realistically) to act out together, the same way a printed TPR flashcard set works - not a self-checking task like the library's TBL books, which is exactly why TPR and TBL have to stay separate categories rather than being reskins of each other.",
+  "grammarFeatures": [
+    "Imperative mood (Stand up! Touch your toes!)",
+    "Action-verb and body-part vocabulary",
+    "No tense marking - imperatives don't conjugate",
+    "Direct address to the reader (\"you\")"
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      { "sprite": "Cat", "x": 45, "y": 65, "scale": 1.1 },
+      { "sprite": "Tree", "x": 75, "y": 50, "scale": 1.2 },
+      { "sprite": "Sun", "x": 15, "y": 15, "scale": 1 }
+    ]
+  },
+  "coverImageUrl": "/images/lets-move-with-milo/cover.jpg",
+  "pages": [
+    {
+      "index": 1,
+      "text": "This is Milo! Milo loves to {{move}}. Watch Milo, then you try!",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Cat", "x": 45, "y": 68, "scale": 1.1 },
+          { "sprite": "Tree", "x": 75, "y": 50, "scale": 1.2 }
+        ]
+      },
+      "vocab": [{ "word": "move", "definition": "To change your position or place." }],
+      "imageUrl": "/images/lets-move-with-milo/page-1.jpg"
+    },
+    {
+      "index": 2,
+      "text": "{{Stand}} up! Now you try!",
+      "scene": {
+        "background": "day",
+        "items": [{ "sprite": "Cat", "x": 50, "y": 65, "scale": 1.2 }]
+      },
+      "vocab": [{ "word": "Stand", "definition": "To rise up on your feet." }],
+      "imageUrl": "/images/lets-move-with-milo/page-2.jpg"
+    },
+    {
+      "index": 3,
+      "text": "Touch your {{toes}}! Now you try!",
+      "scene": {
+        "background": "day",
+        "items": [{ "sprite": "Cat", "x": 50, "y": 70, "scale": 1.1 }]
+      },
+      "vocab": [{ "word": "toes", "definition": "The small parts at the end of your foot." }],
+      "imageUrl": "/images/lets-move-with-milo/page-3.jpg"
+    },
+    {
+      "index": 4,
+      "text": "{{Clap}} your hands! Now you try!",
+      "scene": {
+        "background": "day",
+        "items": [{ "sprite": "Cat", "x": 50, "y": 68, "scale": 1.1 }]
+      },
+      "vocab": [{ "word": "Clap", "definition": "To hit your hands together to make a sound." }],
+      "imageUrl": "/images/lets-move-with-milo/page-4.jpg"
+    },
+    {
+      "index": 5,
+      "text": "{{Jump}}! Now you try!",
+      "scene": {
+        "background": "day",
+        "items": [{ "sprite": "Cat", "x": 50, "y": 60, "scale": 1.1 }]
+      },
+      "vocab": [{ "word": "Jump", "definition": "To push off the ground with your feet and go up in the air." }],
+      "imageUrl": "/images/lets-move-with-milo/page-5.jpg"
+    },
+    {
+      "index": 6,
+      "text": "Great job! You moved with Milo! Can you show a friend?",
+      "scene": {
+        "background": "day",
+        "items": [
+          { "sprite": "Cat", "x": 50, "y": 68, "scale": 1.1 },
+          { "sprite": "Tree", "x": 75, "y": 50, "scale": 1.2 }
+        ]
+      },
+      "vocab": [],
+      "imageUrl": "/images/lets-move-with-milo/page-6.jpg"
+    }
+  ]
+}
