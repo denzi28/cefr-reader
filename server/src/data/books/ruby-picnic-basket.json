@@ -31,16 +31,16 @@
       "question": "What color is the apple Ruby finds?",
       "options": [
         { "id": "green", "label": "Green", "emoji": "🟢", "correct": false },
-        { "id": "red", "label": "Red", "emoji": "🔴", "correct": true },
-        { "id": "yellow", "label": "Yellow", "emoji": "🟡", "correct": false }
+        { "id": "yellow", "label": "Yellow", "emoji": "🟡", "correct": false },
+        { "id": "red", "label": "Red", "emoji": "🔴", "correct": true }
       ]
     },
     {
       "id": "q3",
       "question": "Where does Ruby eat her picnic?",
       "options": [
-        { "id": "home", "label": "At home", "emoji": "🏠", "correct": false },
         { "id": "park", "label": "In the park", "emoji": "🌳", "correct": true },
+        { "id": "home", "label": "At home", "emoji": "🏠", "correct": false },
         { "id": "school", "label": "At school", "emoji": "🏫", "correct": false }
       ]
     },

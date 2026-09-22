@@ -11,6 +11,49 @@
     "Coordinating conjunctions (and, so)",
     "Infinitive of purpose (climbed... to find the ball)"
   ],
+  "introFunFacts": [
+    "⏪ This story already happened! Watch for words like 'went', 'played' and 'sat' - that's how we talk about the past.",
+    "1️⃣ Look for 'First', 'Then' and 'Before' - these little words put the story in order.",
+    "🎯 'Mia climbed over the fence TO FIND the ball' - the word 'to' tells us WHY she did it!"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "Where did Mia and Tom go?",
+      "options": [
+        { "id": "zoo", "label": "The zoo", "emoji": "🦁", "correct": false },
+        { "id": "park", "label": "The park", "emoji": "🌳", "correct": true },
+        { "id": "beach", "label": "The beach", "emoji": "🏖️", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What happened to the ball?",
+      "options": [
+        { "id": "fence", "label": "It flew over the fence", "emoji": "⚽", "correct": true },
+        { "id": "water", "label": "It fell in the water", "emoji": "💧", "correct": false },
+        { "id": "dog", "label": "The dog ate it", "emoji": "🐶", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What did the little dog want?",
+      "options": [
+        { "id": "ball", "label": "A ball to play with", "emoji": "⚽", "correct": false },
+        { "id": "juice", "label": "A drink of juice", "emoji": "🧃", "correct": false },
+        { "id": "sandwich", "label": "A piece of their sandwich", "emoji": "🥪", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What did they do before going home?",
+      "options": [
+        { "id": "football", "label": "Played football", "emoji": "🥅", "correct": false },
+        { "id": "clouds", "label": "Watched the clouds", "emoji": "☁️", "correct": true },
+        { "id": "swim", "label": "Went swimming", "emoji": "🏊", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "park",
     "items": [

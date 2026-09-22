@@ -11,6 +11,49 @@
     "Simple passive voice (\"is called\")",
     "Sequencing connectors applied to a cycle (First, then, finally... and repeats)"
   ],
+  "introFunFacts": [
+    "🔁 A cycle goes round and round forever - so this story ends right back where it started!",
+    "🏷️ Watch for 'is called' - that's how we give something its proper science name.",
+    "🌡️ 'WHEN water gets hot...' - the word 'when' tells you the exact moment something changes."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What happens when the sun heats the water?",
+      "options": [
+        { "id": "vapor", "label": "It turns into vapor", "emoji": "💨", "correct": true },
+        { "id": "ice", "label": "It turns into ice", "emoji": "🧊", "correct": false },
+        { "id": "gone", "label": "It disappears forever", "emoji": "🚫", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What is it called when vapor cools and becomes water drops?",
+      "options": [
+        { "id": "evaporation", "label": "Evaporation", "emoji": "☀️", "correct": false },
+        { "id": "condensation", "label": "Condensation", "emoji": "☁️", "correct": true },
+        { "id": "precipitation", "label": "Precipitation", "emoji": "🌧️", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Why does water fall back down from the clouds?",
+      "options": [
+        { "id": "wind", "label": "The wind blows it down", "emoji": "🌬️", "correct": false },
+        { "id": "sun", "label": "The sun pushes it down", "emoji": "☀️", "correct": false },
+        { "id": "heavy", "label": "The clouds get too heavy", "emoji": "🌧️", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Does the water cycle ever stop?",
+      "options": [
+        { "id": "winter", "label": "Yes, it stops in winter", "emoji": "❄️", "correct": false },
+        { "id": "never", "label": "No, it repeats again and again", "emoji": "🔁", "correct": true },
+        { "id": "desert", "label": "It only happens in deserts", "emoji": "🏜️", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "day",
     "items": [

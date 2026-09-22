@@ -11,6 +11,49 @@
     "Prepositions of time (in spring, in summer)",
     "Comparative adjectives (warmer, cooler)"
   ],
+  "introFunFacts": [
+    "🌍 This book tells you things that are ALWAYS true, so it says 'grow' and 'falls' - not 'grew' and 'fell'.",
+    "🤔 Watch for the word 'because' - it always tells you WHY something happens!",
+    "🌡️ 'Warmer' and 'cooler' compare two things. Warmer than what? Keep reading to find out!"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "How many seasons does Sam watch?",
+      "options": [
+        { "id": "two", "label": "Two", "emoji": "2️⃣", "correct": false },
+        { "id": "four", "label": "Four", "emoji": "4️⃣", "correct": true },
+        { "id": "seven", "label": "Seven", "emoji": "7️⃣", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Why do new leaves grow in spring?",
+      "options": [
+        { "id": "warmer", "label": "Because the sun is warmer", "emoji": "🌞", "correct": true },
+        { "id": "snow", "label": "Because it snows", "emoji": "❄️", "correct": false },
+        { "id": "resting", "label": "Because the tree is resting", "emoji": "😴", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What happens to the leaves in autumn?",
+      "options": [
+        { "id": "green", "label": "They stay green", "emoji": "🌿", "correct": false },
+        { "id": "white", "label": "They turn white", "emoji": "🤍", "correct": false },
+        { "id": "orange", "label": "They turn orange and fall", "emoji": "🍂", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Why does the tree have no leaves in winter?",
+      "options": [
+        { "id": "sick", "label": "It is sick", "emoji": "🤒", "correct": false },
+        { "id": "resting", "label": "It is resting until spring", "emoji": "😴", "correct": true },
+        { "id": "taken", "label": "Someone took them", "emoji": "🧺", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "day",
     "items": [

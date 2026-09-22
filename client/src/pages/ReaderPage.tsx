@@ -24,9 +24,10 @@ const pageVariants = {
 };
 
 // A book normally goes straight to "reading". When a child profile is
-// active and the book has intro facts / a quiz (only the A1 test set for
-// now), it detours through "intro" first and "quiz" -> "score" after the
-// last page, instead of the plain "The End" link.
+// active and the book has intro facts / a quiz (every A1, A2 and B1 book
+// except the TPR one, which children never see), it detours through
+// "intro" first and "quiz" -> "score" after the last page, instead of the
+// plain "The End" link.
 type ReaderPhase = "intro" | "reading" | "quiz" | "score";
 
 export function ReaderPage() {

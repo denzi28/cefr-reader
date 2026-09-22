@@ -11,6 +11,49 @@
     "\"Want + to-infinitive\" (wanted to grow)",
     "Time expressions (after a few days)"
   ],
+  "introFunFacts": [
+    "🌱 Big job in this book: YOU put the steps in the right order before the story shows you!",
+    "🔢 Watch for 'First', 'Then', 'After' and 'Finally' - they are the order things happened.",
+    "💭 'Leo WANTED TO GROW a sunflower' - 'wanted to' tells us what someone hoped to do."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What did Leo want to grow?",
+      "options": [
+        { "id": "sunflower", "label": "A sunflower", "emoji": "🌻", "correct": true },
+        { "id": "tree", "label": "A tree", "emoji": "🌳", "correct": false },
+        { "id": "carrot", "label": "A carrot", "emoji": "🥕", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What did Leo have besides a tiny seed?",
+      "options": [
+        { "id": "paint", "label": "Paint", "emoji": "🎨", "correct": false },
+        { "id": "soil", "label": "Soil", "emoji": "🪴", "correct": true },
+        { "id": "book", "label": "A book", "emoji": "📖", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "How often did Leo water it?",
+      "options": [
+        { "id": "year", "label": "Once a year", "emoji": "📅", "correct": false },
+        { "id": "never", "label": "Never", "emoji": "🚫", "correct": false },
+        { "id": "daily", "label": "Every day", "emoji": "💧", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How did Leo feel at the end?",
+      "options": [
+        { "id": "angry", "label": "Angry", "emoji": "😡", "correct": false },
+        { "id": "proud", "label": "Proud", "emoji": "😊", "correct": true },
+        { "id": "bored", "label": "Bored", "emoji": "🥱", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "day",
     "items": [

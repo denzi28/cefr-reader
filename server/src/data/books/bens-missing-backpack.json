@@ -12,6 +12,49 @@
     "Making predictions and guesses (Where do you think...?)",
     "Direct speech with quotation marks"
   ],
+  "introFunFacts": [
+    "🎒 Your turn to be the detective: YOU decide where the backpack is before the story tells you.",
+    "🔀 Watch for the word 'but' - it warns you something surprising is coming next.",
+    "💬 See the \"quotation marks\"? They show the exact words someone said out loud."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "Where does Ben always keep his backpack?",
+      "options": [
+        { "id": "door", "label": "By the front door", "emoji": "🚪", "correct": true },
+        { "id": "bed", "label": "Under his bed", "emoji": "🛏️", "correct": false },
+        { "id": "kitchen", "label": "In the kitchen", "emoji": "🍽️", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "How did Ben feel when he couldn't find it?",
+      "options": [
+        { "id": "excited", "label": "Excited", "emoji": "🤩", "correct": false },
+        { "id": "worried", "label": "Worried", "emoji": "😟", "correct": true },
+        { "id": "sleepy", "label": "Sleepy", "emoji": "😴", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where was the backpack really?",
+      "options": [
+        { "id": "garden", "label": "In the garden", "emoji": "🌷", "correct": false },
+        { "id": "school", "label": "At school", "emoji": "🏫", "correct": false },
+        { "id": "sister", "label": "In his sister's room", "emoji": "🧸", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Did Ben catch the bus?",
+      "options": [
+        { "id": "missed", "label": "No, he missed it", "emoji": "😢", "correct": false },
+        { "id": "intime", "label": "Yes, just in time", "emoji": "🚌", "correct": true },
+        { "id": "walked", "label": "He walked instead", "emoji": "🚶", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "indoor",
     "items": [

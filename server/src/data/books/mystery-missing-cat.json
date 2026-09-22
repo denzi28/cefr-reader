@@ -13,6 +13,49 @@
     "Present participle clauses (looking a little embarrassed)",
     "Expressing possibility with \"maybe\""
   ],
+  "introFunFacts": [
+    "🕵️ You're a detective today! Watch for 'clues' - small things that help solve a mystery.",
+    "❓ 'Maybe Whiskers went this way' - 'maybe' means we're not sure yet. Detectives guess before they know!",
+    "🔎 Look for 'decided to' and 'started looking' - two verbs teaming up to say what someone did next."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What went missing at the start of the story?",
+      "options": [
+        { "id": "cat", "label": "Anna's cat", "emoji": "🐱", "correct": true },
+        { "id": "bike", "label": "Anna's bike", "emoji": "🚲", "correct": false },
+        { "id": "shoes", "label": "Anna's shoes", "emoji": "👟", "correct": false }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What clue did Anna find near the fence?",
+      "options": [
+        { "id": "feather", "label": "A feather", "emoji": "🪶", "correct": false },
+        { "id": "prints", "label": "Paw prints", "emoji": "🐾", "correct": true },
+        { "id": "letter", "label": "A letter", "emoji": "✉️", "correct": false }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Who joined Anna in the search?",
+      "options": [
+        { "id": "teacher", "label": "Her teacher", "emoji": "👩‍🏫", "correct": false },
+        { "id": "dog", "label": "Her dog", "emoji": "🐶", "correct": false },
+        { "id": "ben", "label": "Her friend Ben", "emoji": "👦", "correct": true }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Where was Whiskers all along?",
+      "options": [
+        { "id": "bed", "label": "Under the bed", "emoji": "🛏️", "correct": false },
+        { "id": "tree", "label": "Stuck up in a tree", "emoji": "🌳", "correct": true },
+        { "id": "kitchen", "label": "In the neighbour's kitchen", "emoji": "🍽️", "correct": false }
+      ]
+    }
+  ],
   "coverScene": {
     "background": "mystery",
     "items": [
