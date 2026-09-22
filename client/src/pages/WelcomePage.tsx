@@ -113,8 +113,16 @@ export function WelcomePage() {
         )}
       </div>
 
-      <footer className="mt-6 text-center font-body text-xs text-stone-400">
-        Story text © {new Date().getFullYear()} Deniz Berk Çakır. Illustrations created with AI.
+      {/* Named here rather than on the levels page: CEFR is an adult scale,
+          and Cambridge's young-learner qualifications are the child-
+          appropriate instrument. This is the one place a parent reads
+          before signing up, and no child ever sees it. */}
+      <footer className="mt-5 space-y-1 text-center font-body text-xs text-stone-400">
+        <p>
+          CEFR A1-B1, aligned with Cambridge English for young learners:
+          Pre A1 Starters, A1 Movers, A2 Flyers.
+        </p>
+        <p>Story text © {new Date().getFullYear()} Deniz Berk Çakır. Illustrations created with AI.</p>
       </footer>
     </div>
   );
