@@ -1,0 +1,336 @@
+{
+  "id": "who-took-my-book",
+  "title": "Who Took My Book?",
+  "level": "A2",
+  "summary": "Deniz cannot find his new book, and he thinks his sister took it. Read both parts out loud!",
+  "teachingMethod": "Drama-based",
+  "teachingMethodReason": "Drama-based in the reader's-theatre sense: the book is carried almost entirely by the dialogue of two named characters, and it is written to be performed - the reader speaks both parts in different voices rather than being told what happened. Narration is cut to the minimum needed to stage each exchange, which is what separates this from story-based, where narration carries the events (compare a-day-at-the-park). It is not TPR: there are no commands and nothing physical to obey. Chosen to carry past-simple questions with \"did\", which only appear in dialogue and which no other A2 book uses.",
+  "grammarFeatures": [
+    "Past simple questions with \"did\" (Did you take it?)",
+    "Short negative answers (No, I did not)",
+    "Direct speech with quotation marks and reporting verbs (asked, said, laughed)",
+    "Possessive adjectives in contrast (my book, your book, her)"
+  ],
+  "introFunFacts": [
+    "🎭 This is a play! Read it out loud and use a different voice for Deniz and for Elif.",
+    "❓ Watch for 'Did you...?' - that is how we ask about something in the past.",
+    "🐱 Somebody in this book cannot talk at all. See if you can guess who did it!"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What could Deniz not find?",
+      "options": [
+        {
+          "id": "book",
+          "label": "His new book",
+          "emoji": "📖",
+          "correct": true
+        },
+        {
+          "id": "bag",
+          "label": "His school bag",
+          "emoji": "🎒",
+          "correct": false
+        },
+        {
+          "id": "shoe",
+          "label": "His shoe",
+          "emoji": "👟",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Who did Deniz ask first?",
+      "options": [
+        {
+          "id": "mum",
+          "label": "His mum",
+          "emoji": "👩",
+          "correct": false
+        },
+        {
+          "id": "sister",
+          "label": "His sister Elif",
+          "emoji": "👧",
+          "correct": true
+        },
+        {
+          "id": "friend",
+          "label": "His friend",
+          "emoji": "👦",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where was the book in the end?",
+      "options": [
+        {
+          "id": "table",
+          "label": "On the table",
+          "emoji": "🪑",
+          "correct": false
+        },
+        {
+          "id": "bag",
+          "label": "Inside his bag",
+          "emoji": "🎒",
+          "correct": false
+        },
+        {
+          "id": "cat",
+          "label": "Under the cat",
+          "emoji": "🐱",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How did Deniz feel at the end?",
+      "options": [
+        {
+          "id": "laughed",
+          "label": "He laughed",
+          "emoji": "😄",
+          "correct": true
+        },
+        {
+          "id": "cried",
+          "label": "He cried",
+          "emoji": "😢",
+          "correct": false
+        },
+        {
+          "id": "angry",
+          "label": "He was angry",
+          "emoji": "😡",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "indoor",
+    "items": [
+      {
+        "sprite": "Boy",
+        "x": 30,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Girl",
+        "x": 50,
+        "y": 70,
+        "scale": 1
+      },
+      {
+        "sprite": "Cat",
+        "x": 70,
+        "y": 80,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Book",
+        "x": 84,
+        "y": 78,
+        "scale": 0.7
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "Deniz looked at the table by the window. His new book was gone! \"Who took my book?\" he said.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Table",
+            "x": 62,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 82,
+            "y": 40,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 2,
+      "text": "\"Did you take it?\" Deniz asked his sister. \"No, I did not take your book!\" said {{Elif}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 32,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 58,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Lamp",
+            "x": 85,
+            "y": 52,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "Elif",
+          "definition": "A girl's name. Elif is Deniz's sister."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "\"Did you look under the table?\" asked Elif. \"Yes, I looked {{everywhere}} in this room,\" said Deniz.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 32,
+            "y": 72,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 56,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Table",
+            "x": 80,
+            "y": 78,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "everywhere",
+          "definition": "In every place; all over."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Then the two children heard a small {{noise}}. Something was moving under the window.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 30,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Girl",
+            "x": 52,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Window",
+            "x": 78,
+            "y": 40,
+            "scale": 1.2
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "noise",
+          "definition": "A sound, often one you did not expect."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "It was the cat! The book was under her, and she looked very {{comfortable}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Cat",
+            "x": 45,
+            "y": 78,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Book",
+            "x": 62,
+            "y": 84,
+            "scale": 0.7
+          },
+          {
+            "sprite": "Window",
+            "x": 80,
+            "y": 40,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "comfortable",
+          "definition": "Feeling nice and relaxed, not wanting to move."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "\"You took my book!\" laughed Deniz. \"Cats cannot read!\" said Elif with a big smile.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 30,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 52,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Cat",
+            "x": 72,
+            "y": 80,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": []
+    }
+  ]
+}

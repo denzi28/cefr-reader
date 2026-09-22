@@ -1,0 +1,377 @@
+{
+  "id": "every-saturday",
+  "title": "Every Saturday",
+  "level": "A2",
+  "summary": "Every Saturday my family does the same happy things. What does your family do?",
+  "teachingMethod": "Theme-based",
+  "teachingMethodReason": "Theme-based rather than story-based: one theme (a family's weekly routine) organizes the whole book, and a single language pattern - an adverb of frequency plus the simple present - recycles on every page. Nothing actually happens: there is no problem, no complication and no resolution, so it fails the story-based test that a-day-at-the-park passes. It is not CLIL either, because no subject content is taught and no cause-and-effect reasoning is required. Chosen to carry adverbs of frequency, which no other book in the library uses, and to give A2 a present-tense habitual text alongside its past-tense narratives.",
+  "grammarFeatures": [
+    "Adverbs of frequency (always, usually, often, sometimes, never)",
+    "Simple present for habits and routines",
+    "Prepositions of place (at the table, on the bench, under the tree)",
+    "Causal clause with \"because\"",
+    "Sequencing across a day (First, Then, In the evening)"
+  ],
+  "introFunFacts": [
+    "🔁 This whole book is about things that happen again and again, every single week.",
+    "📊 Watch for always, usually, often, sometimes and never - they tell you HOW OFTEN something happens!",
+    "🤔 'Because' is here too - it always tells you WHY."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "How often does the family wake up late on Saturday?",
+      "options": [
+        {
+          "id": "always",
+          "label": "Always",
+          "emoji": "✅",
+          "correct": true
+        },
+        {
+          "id": "never",
+          "label": "Never",
+          "emoji": "🚫",
+          "correct": false
+        },
+        {
+          "id": "sometimes",
+          "label": "Only sometimes",
+          "emoji": "🔁",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Where do they eat breakfast?",
+      "options": [
+        {
+          "id": "garden",
+          "label": "In the garden",
+          "emoji": "🌷",
+          "correct": false
+        },
+        {
+          "id": "table",
+          "label": "At the table near the window",
+          "emoji": "🪟",
+          "correct": true
+        },
+        {
+          "id": "park",
+          "label": "In the park",
+          "emoji": "🌳",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Who never goes to the park?",
+      "options": [
+        {
+          "id": "dad",
+          "label": "Dad",
+          "emoji": "👨",
+          "correct": false
+        },
+        {
+          "id": "dog",
+          "label": "The dog",
+          "emoji": "🐶",
+          "correct": false
+        },
+        {
+          "id": "mum",
+          "label": "Mum",
+          "emoji": "👩",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Why does the family wake up late?",
+      "options": [
+        {
+          "id": "school",
+          "label": "Because there is no school",
+          "emoji": "📅",
+          "correct": true
+        },
+        {
+          "id": "rain",
+          "label": "Because it is raining",
+          "emoji": "🌧️",
+          "correct": false
+        },
+        {
+          "id": "sick",
+          "label": "Because they are sick",
+          "emoji": "🤒",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "park",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 32,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Boy",
+        "x": 50,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Dog",
+        "x": 68,
+        "y": 80,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Tree",
+        "x": 85,
+        "y": 50,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Sun",
+        "x": 14,
+        "y": 15,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "Every Saturday, my family does the same happy things. We {{always}} wake up late, because there is no school.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 70,
+            "y": 40,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Lamp",
+            "x": 15,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "always",
+          "definition": "Every single time, without missing one."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "First, we {{usually}} eat a big breakfast at the table near the window.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Table",
+            "x": 60,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 82,
+            "y": 40,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "usually",
+          "definition": "Most of the time, but not every time."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "Then my dad and I walk to the park. We {{often}} take our dog with us.",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 52,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Dog",
+            "x": 70,
+            "y": 80,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Tree",
+            "x": 85,
+            "y": 50,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "often",
+          "definition": "Many times, again and again."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "We {{sometimes}} sit on the bench under the old tree, and we watch the clouds move.",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Bench",
+            "x": 55,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Tree",
+            "x": 78,
+            "y": 48,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Cloud",
+            "x": 18,
+            "y": 20,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "sometimes",
+          "definition": "Now and then, but not often."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "My mum {{never}} comes with us. She stays at home, and she reads her books in the garden.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Book",
+            "x": 62,
+            "y": 78,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Flower",
+            "x": 80,
+            "y": 82,
+            "scale": 1
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "never",
+          "definition": "Not at any time, not once."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "In the evening, we all play a game together. Saturday is my {{favourite}} day of the week!",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 32,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Boy",
+            "x": 52,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Table",
+            "x": 70,
+            "y": 78,
+            "scale": 1
+          },
+          {
+            "sprite": "Lamp",
+            "x": 88,
+            "y": 52,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "favourite",
+          "definition": "The one you like more than all the others."
+        }
+      ]
+    }
+  ]
+}

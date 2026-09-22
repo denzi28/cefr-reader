@@ -1,0 +1,370 @@
+{
+  "id": "people-on-my-street",
+  "title": "The People on My Street",
+  "level": "B1",
+  "summary": "Who lives on your street? Meet the neighbours who make one quiet street a home.",
+  "teachingMethod": "Theme-based",
+  "teachingMethodReason": "Theme-based rather than story-based: one theme (the neighbours on a single street) organizes the book, and each page recycles the same structure - a person, identified by a defining relative clause, and what they do. There is no problem, no sequence of events and no resolution, so it fails the story-based test that mystery-missing-cat passes. It is not CLIL, since no subject content is taught and the closing reflection is social rather than curricular. Chosen to carry defining relative clauses with \"who\" and \"that\", a core B1 structure that no other book in the library uses.",
+  "grammarFeatures": [
+    "Defining relative clauses with \"who\" (the woman who lives next door)",
+    "Defining relative clauses with \"that\" (the bread that we eat)",
+    "Simple present for permanent states and jobs",
+    "\"Want to be\" for ambitions"
+  ],
+  "introFunFacts": [
+    "🏘️ Every page introduces one neighbour. See how many you can remember at the end!",
+    "🔗 Watch for 'who' and 'that' - they join two ideas together into one longer sentence.",
+    "💭 At the end, think about the people who live on YOUR street."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What does the woman next door do?",
+      "options": [
+        {
+          "id": "vet",
+          "label": "She is a vet",
+          "emoji": "🐕‍🦺",
+          "correct": true
+        },
+        {
+          "id": "teacher",
+          "label": "She is a teacher",
+          "emoji": "👩‍🏫",
+          "correct": false
+        },
+        {
+          "id": "driver",
+          "label": "She is a driver",
+          "emoji": "🚗",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Who makes the bread?",
+      "options": [
+        {
+          "id": "lady",
+          "label": "The old lady",
+          "emoji": "👵",
+          "correct": false
+        },
+        {
+          "id": "baker",
+          "label": "The man in the red house",
+          "emoji": "🍞",
+          "correct": true
+        },
+        {
+          "id": "boy",
+          "label": "The boy with the dog",
+          "emoji": "👦",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What does the boy want to be?",
+      "options": [
+        {
+          "id": "doctor",
+          "label": "A doctor",
+          "emoji": "🩺",
+          "correct": false
+        },
+        {
+          "id": "singer",
+          "label": "A singer",
+          "emoji": "🎤",
+          "correct": false
+        },
+        {
+          "id": "pilot",
+          "label": "A pilot",
+          "emoji": "✈️",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What does the old lady do every morning?",
+      "options": [
+        {
+          "id": "birds",
+          "label": "She feeds the birds",
+          "emoji": "🐦",
+          "correct": true
+        },
+        {
+          "id": "runs",
+          "label": "She runs to work",
+          "emoji": "🏃",
+          "correct": false
+        },
+        {
+          "id": "paints",
+          "label": "She paints the fence",
+          "emoji": "🎨",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      {
+        "sprite": "House",
+        "x": 25,
+        "y": 55,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Girl",
+        "x": 48,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Dog",
+        "x": 66,
+        "y": 80,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Tree",
+        "x": 85,
+        "y": 50,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Sun",
+        "x": 14,
+        "y": 15,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "I live on a quiet street. Everybody knows everybody else here. Let me tell you about my {{neighbours}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "House",
+            "x": 70,
+            "y": 55,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Tree",
+            "x": 88,
+            "y": 50,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "neighbours",
+          "definition": "The people who live near you."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "The woman who lives next door is a {{vet}}. She looks after animals that are sick or hurt.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Dog",
+            "x": 55,
+            "y": 80,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Cat",
+            "x": 70,
+            "y": 82,
+            "scale": 0.7
+          },
+          {
+            "sprite": "House",
+            "x": 88,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "vet",
+          "definition": "A doctor for animals."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "The man who has the red house is a {{baker}}. He makes the bread that we eat every morning.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "House",
+            "x": 65,
+            "y": 55,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Sun",
+            "x": 88,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "baker",
+          "definition": "A person whose job is making bread and cakes."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "The boy who walks his dog past my window wants to be a {{pilot}}. He watches every plane in the sky.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Dog",
+            "x": 55,
+            "y": 80,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Window",
+            "x": 78,
+            "y": 40,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 15,
+            "y": 20,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "pilot",
+          "definition": "A person who flies an aeroplane."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "My favourite is the old lady who feeds the birds. She always sits on the same {{bench}}.",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Bench",
+            "x": 58,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Tree",
+            "x": 80,
+            "y": 50,
+            "scale": 1.1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "bench",
+          "definition": "A long seat for two or more people."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "A street is not just a line of houses. It is the people who turn it into a {{home}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "House",
+            "x": 25,
+            "y": 55,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Girl",
+            "x": 48,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Boy",
+            "x": 66,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 86,
+            "y": 50,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "home",
+          "definition": "The place where you belong, not just the building you sleep in."
+        }
+      ]
+    }
+  ]
+}

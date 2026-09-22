@@ -1,0 +1,317 @@
+{
+  "id": "lets-pretend",
+  "title": "Let's Pretend!",
+  "level": "A1",
+  "summary": "Today you can be anything you want. Can you be a cat, a tree and a star?",
+  "teachingMethod": "Drama-based",
+  "teachingMethodReason": "Drama-based rather than TPR: the reader adopts and sustains a character across the whole book and speaks in role (\"I am a cat. I can jump high!\"), which is language produced AS someone else - the defining feature of drama-based instruction. TPR (see lets-move-with-milo) asks for a physical response to a command with no role and no speech, and needs a caregiver giving the commands. This is deliberately solo-doable: a child can read it and perform it alone, so unlike the TPR book it stays visible to children. Not story-based - there is no problem, no sequence of events and no resolution, only a series of roles.",
+  "grammarFeatures": [
+    "\"I am a...\" for taking on a role",
+    "\"Can\" for ability (I can jump high)",
+    "Imperatives (Be a cat!)",
+    "Direct speech with quotation marks"
+  ],
+  "introFunFacts": [
+    "🎭 Today YOU are the actor! Read the words out loud and BE the cat, the tree and the star.",
+    "💪 Watch for the little word 'can' - it tells everyone what you are able to do!",
+    "💬 See the \"quotation marks\"? Those are the words for YOU to say out loud."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What can the cat do in this book?",
+      "options": [
+        {
+          "id": "jump",
+          "label": "Jump high",
+          "emoji": "🦘",
+          "correct": true
+        },
+        {
+          "id": "swim",
+          "label": "Swim in the sea",
+          "emoji": "🏊",
+          "correct": false
+        },
+        {
+          "id": "fly",
+          "label": "Fly to the moon",
+          "emoji": "🚀",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Which one is very tall?",
+      "options": [
+        {
+          "id": "cat",
+          "label": "The cat",
+          "emoji": "🐱",
+          "correct": false
+        },
+        {
+          "id": "tree",
+          "label": "The tree",
+          "emoji": "🌳",
+          "correct": true
+        },
+        {
+          "id": "star",
+          "label": "The star",
+          "emoji": "⭐",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Which one is hot and bright?",
+      "options": [
+        {
+          "id": "moon",
+          "label": "The moon",
+          "emoji": "🌙",
+          "correct": false
+        },
+        {
+          "id": "tree",
+          "label": "The tree",
+          "emoji": "🌳",
+          "correct": false
+        },
+        {
+          "id": "sun",
+          "label": "The sun",
+          "emoji": "☀️",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "When does the star shine?",
+      "options": [
+        {
+          "id": "night",
+          "label": "At night",
+          "emoji": "🌙",
+          "correct": true
+        },
+        {
+          "id": "morning",
+          "label": "In the morning",
+          "emoji": "🌅",
+          "correct": false
+        },
+        {
+          "id": "never",
+          "label": "It never shines",
+          "emoji": "🚫",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 35,
+        "y": 68,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Cat",
+        "x": 58,
+        "y": 78,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Tree",
+        "x": 80,
+        "y": 50,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Sun",
+        "x": 15,
+        "y": 15,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "Do you like to {{pretend}}? Today, you can be anything you want!",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 45,
+            "y": 70,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "pretend",
+          "definition": "To play at being something you are not."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Be a cat. Say: \"I am a cat. I can {{jump}} very high!\"",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Cat",
+            "x": 65,
+            "y": 78,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "jump",
+          "definition": "To push yourself up off the ground."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "Be a tree. Say: \"I am a tree. I am tall and {{strong}}.\"",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 70,
+            "y": 48,
+            "scale": 1.3
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "strong",
+          "definition": "Able to hold a lot, not weak."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Be the sun. Say: \"I am the sun. I am hot and {{bright}}!\"",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 72,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 78,
+            "y": 20,
+            "scale": 1.4
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "bright",
+          "definition": "Giving a lot of light."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "Be a star. Say: \"I am a star. I {{shine}} in the night sky.\"",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 72,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Star",
+            "x": 70,
+            "y": 25,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Moon",
+            "x": 85,
+            "y": 15,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "shine",
+          "definition": "To give out light."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "You can be so many things! What do you want to be now?",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 45,
+            "y": 70,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 80,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": []
+    }
+  ]
+}

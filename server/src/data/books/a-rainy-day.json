@@ -1,0 +1,329 @@
+{
+  "id": "a-rainy-day",
+  "title": "A Rainy Day",
+  "level": "A1",
+  "summary": "Mia wants to play outside, but it is raining. What can she do until the sun comes back?",
+  "teachingMethod": "Story-based",
+  "teachingMethodReason": "Meets the course's criteria for story-based instruction: a formulaic opening (\"This is Mia...\", the same opening the-red-ball uses), a clear problem (the rain stops her playing), a short series of events while she waits, and a resolution (the sun returns and she runs out). It is not TBL - the reader never does a task or reaches an outcome (Willis 1996/Nunan 2006) - and not CLIL, since weather here is a setting rather than content being taught. Chosen to carry the present continuous, which no other A1 book in the library uses: rain that is happening right now is the most natural context for it.",
+  "grammarFeatures": [
+    "Present continuous for what is happening now (is raining, is looking)",
+    "\"To be\" statements (Mia is sad)",
+    "Simple present for wants and likes (she wants to play)",
+    "Basic adjectives (sad, happy, wet)"
+  ],
+  "introFunFacts": [
+    "🌧️ Everything in this story is happening RIGHT NOW - look for words ending in '-ing'!",
+    "😀 Watch Mia's feelings change from the first page to the last one.",
+    "🐱 The cat does not mind the rain at all. See if you can spot why!"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What is the weather at the start?",
+      "options": [
+        {
+          "id": "rain",
+          "label": "It is raining",
+          "emoji": "🌧️",
+          "correct": true
+        },
+        {
+          "id": "snow",
+          "label": "It is snowing",
+          "emoji": "❄️",
+          "correct": false
+        },
+        {
+          "id": "wind",
+          "label": "It is very windy",
+          "emoji": "🌬️",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Why is Mia sad?",
+      "options": [
+        {
+          "id": "hungry",
+          "label": "She is hungry",
+          "emoji": "🍎",
+          "correct": false
+        },
+        {
+          "id": "outside",
+          "label": "She cannot play outside",
+          "emoji": "🏠",
+          "correct": true
+        },
+        {
+          "id": "lost",
+          "label": "She lost her ball",
+          "emoji": "⚽",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Where is the cat sleeping?",
+      "options": [
+        {
+          "id": "bed",
+          "label": "On Mia's bed",
+          "emoji": "🛏️",
+          "correct": false
+        },
+        {
+          "id": "tree",
+          "label": "Up in the tree",
+          "emoji": "🌳",
+          "correct": false
+        },
+        {
+          "id": "bench",
+          "label": "On the bench",
+          "emoji": "🪑",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How does Mia feel at the end?",
+      "options": [
+        {
+          "id": "happy",
+          "label": "Happy",
+          "emoji": "😄",
+          "correct": true
+        },
+        {
+          "id": "sad",
+          "label": "Still sad",
+          "emoji": "😢",
+          "correct": false
+        },
+        {
+          "id": "angry",
+          "label": "Angry",
+          "emoji": "😡",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "indoor",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 38,
+        "y": 70,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Window",
+        "x": 68,
+        "y": 40,
+        "scale": 1.3
+      },
+      {
+        "sprite": "Cat",
+        "x": 20,
+        "y": 80,
+        "scale": 0.7
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "This is Mia. Mia is looking out of the {{window}}. It is {{raining}}.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 70,
+            "y": 40,
+            "scale": 1.3
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "window",
+          "definition": "The glass in a wall that you look through."
+        },
+        {
+          "word": "raining",
+          "definition": "Water is falling from the clouds."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Mia is sad. She wants to play with her ball in the park.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 42,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Ball",
+            "x": 65,
+            "y": 85,
+            "scale": 0.7
+          },
+          {
+            "sprite": "Window",
+            "x": 80,
+            "y": 38,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 3,
+      "text": "Mia's cat is sleeping on the {{bench}} outside. The cat is not sad!",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Cat",
+            "x": 50,
+            "y": 75,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Bench",
+            "x": 65,
+            "y": 78,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 25,
+            "y": 20,
+            "scale": 1.1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "bench",
+          "definition": "A long seat for two or more people."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Now Mia is reading a book. The rain is {{falling}} on the window.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Book",
+            "x": 62,
+            "y": 78,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Window",
+            "x": 80,
+            "y": 38,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "falling",
+          "definition": "Coming down from a high place."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "Look! The sun is coming out. The rain is stopping.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 65,
+            "y": 40,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1.2
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 6,
+      "text": "Mia is running to the park with her ball. She is happy again!",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 42,
+            "y": 70,
+            "scale": 1.2
+          },
+          {
+            "sprite": "Ball",
+            "x": 62,
+            "y": 85,
+            "scale": 0.7
+          },
+          {
+            "sprite": "Tree",
+            "x": 80,
+            "y": 50,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    }
+  ]
+}

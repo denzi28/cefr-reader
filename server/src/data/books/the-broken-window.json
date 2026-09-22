@@ -1,0 +1,364 @@
+{
+  "id": "the-broken-window",
+  "title": "The Broken Window",
+  "level": "B1",
+  "summary": "The ball went through the window. Now Kerem and Ayse have to decide what to do.",
+  "teachingMethod": "Drama-based",
+  "teachingMethodReason": "Drama-based in the reader's-theatre sense: two characters argue their way to a decision almost entirely in dialogue, and the book is written to be performed aloud with a voice for each. Unlike mystery-missing-cat, where narration drives the events, here the narration only stages the exchanges and the conflict is carried by what the characters say to each other. It is not TBL - the reader never makes the decision, the characters do (compare bens-missing-backpack, where the reader chooses). Chosen to carry reported speech and the first conditional, both core B1 structures and both natural in an argument about what will happen next.",
+  "grammarFeatures": [
+    "First conditional for consequences (If we run away, nobody will know)",
+    "Reported speech (Ayse said that she was afraid)",
+    "Past simple narration around dialogue",
+    "Modal \"have to\" for obligation"
+  ],
+  "introFunFacts": [
+    "🎭 Two friends, one broken window. Read it out loud with a voice for Kerem and one for Ayse.",
+    "🔀 Watch for sentences that start with 'If' - they tell you what WILL happen if something else happens first.",
+    "🗣️ Some sentences say what a person said without using their exact words. Can you spot one?"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "How did the window break?",
+      "options": [
+        {
+          "id": "ball",
+          "label": "A ball hit it",
+          "emoji": "⚽",
+          "correct": true
+        },
+        {
+          "id": "wind",
+          "label": "The wind blew it",
+          "emoji": "🌬️",
+          "correct": false
+        },
+        {
+          "id": "cat",
+          "label": "The cat jumped on it",
+          "emoji": "🐱",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What did Kerem want to do first?",
+      "options": [
+        {
+          "id": "tell",
+          "label": "Tell the old man",
+          "emoji": "🗣️",
+          "correct": false
+        },
+        {
+          "id": "run",
+          "label": "Run away",
+          "emoji": "🏃",
+          "correct": true
+        },
+        {
+          "id": "fix",
+          "label": "Fix it himself",
+          "emoji": "🔧",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Why did Ayse want to tell the truth?",
+      "options": [
+        {
+          "id": "saw",
+          "label": "Somebody saw them",
+          "emoji": "👀",
+          "correct": false
+        },
+        {
+          "id": "rules",
+          "label": "It is a rule",
+          "emoji": "📋",
+          "correct": false
+        },
+        {
+          "id": "feel",
+          "label": "She would feel bad all week",
+          "emoji": "😟",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What did the old man ask them to do?",
+      "options": [
+        {
+          "id": "pay",
+          "label": "Pay him money",
+          "emoji": "💰",
+          "correct": false
+        },
+        {
+          "id": "leave",
+          "label": "Leave and never come back",
+          "emoji": "🚪",
+          "correct": false
+        },
+        {
+          "id": "help",
+          "label": "Help him clean it up",
+          "emoji": "🧹",
+          "correct": true
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      {
+        "sprite": "Boy",
+        "x": 30,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Girl",
+        "x": 50,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Ball",
+        "x": 68,
+        "y": 82,
+        "scale": 0.7
+      },
+      {
+        "sprite": "Window",
+        "x": 84,
+        "y": 42,
+        "scale": 1.1
+      },
+      {
+        "sprite": "House",
+        "x": 15,
+        "y": 55,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "The ball flew high over the {{fence}} and hit the old man's window. Crash!",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Ball",
+            "x": 50,
+            "y": 35,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Fence",
+            "x": 30,
+            "y": 76,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 75,
+            "y": 42,
+            "scale": 1.2
+          },
+          {
+            "sprite": "House",
+            "x": 88,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "fence",
+          "definition": "A wall of wood or wire around a garden."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "\"It was your ball,\" said Kerem. \"You have to tell him.\" Ayse said that she was too {{afraid}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 32,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 56,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Fence",
+            "x": 80,
+            "y": 76,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "afraid",
+          "definition": "Feeling frightened about what might happen."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "\"If we run away now, nobody will ever know,\" {{whispered}} Kerem. He looked at the empty street.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Girl",
+            "x": 58,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "House",
+            "x": 85,
+            "y": 55,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "whispered",
+          "definition": "Said something very quietly."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Ayse shook her head. \"If we say nothing, I will feel bad all week,\" she said {{quietly}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Boy",
+            "x": 62,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "Window",
+            "x": 85,
+            "y": 42,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "quietly",
+          "definition": "Without making much noise."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "They knocked on the door. Ayse told the old man that they had broken his window by {{accident}}.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Boy",
+            "x": 55,
+            "y": 70,
+            "scale": 1
+          },
+          {
+            "sprite": "House",
+            "x": 80,
+            "y": 55,
+            "scale": 1.1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "accident",
+          "definition": "Something bad that happens without anyone meaning it."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "The man smiled. He said that {{honest}} children were rare. Then he asked them to help him clean it up.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 32,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Boy",
+            "x": 52,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "House",
+            "x": 80,
+            "y": 55,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 14,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "honest",
+          "definition": "Telling the truth, even when it is hard."
+        }
+      ]
+    }
+  ]
+}

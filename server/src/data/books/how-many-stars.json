@@ -1,0 +1,345 @@
+{
+  "id": "how-many-stars",
+  "title": "How Many Stars?",
+  "level": "A1",
+  "summary": "Look out of the window at night. How many things can you count in the sky?",
+  "teachingMethod": "Theme-based",
+  "teachingMethodReason": "Theme-based rather than CLIL: a single theme (the night sky) organizes the vocabulary and recycles one fixed language pattern (\"There is / There are...\") across every page. That is the organizing thread the course's theme-based unit describes - topic-led vocabulary grouping with a repeated structure. It is NOT CLIL, because no subject content is actually taught: the book never explains why the moon is round or what a star is made of, and asks for no cause-and-effect reasoning (compare zoe-animal-homes, which teaches habitats). It is not story-based either - nothing happens, there is no problem and no resolution.",
+  "grammarFeatures": [
+    "\"There is\" and \"There are\" for saying what exists",
+    "Numbers with singular and plural nouns (one moon, two clouds)",
+    "Descriptive adjectives (round, grey, tall)",
+    "\"Can\" in questions (Can you count them?)"
+  ],
+  "introFunFacts": [
+    "🔢 This book is full of counting! Point at each thing and count out loud as you read.",
+    "1️⃣ 'There IS one moon' but 'There ARE two clouds' - we say 'are' when there is more than one!",
+    "🌙 Read this one at bedtime, then look out of your own window and count what YOU can see."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "How many moons are in the sky?",
+      "options": [
+        {
+          "id": "one",
+          "label": "One",
+          "emoji": "1️⃣",
+          "correct": true
+        },
+        {
+          "id": "two",
+          "label": "Two",
+          "emoji": "2️⃣",
+          "correct": false
+        },
+        {
+          "id": "ten",
+          "label": "Ten",
+          "emoji": "🔟",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What colour are the clouds?",
+      "options": [
+        {
+          "id": "white",
+          "label": "White",
+          "emoji": "🤍",
+          "correct": false
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "emoji": "☁️",
+          "correct": true
+        },
+        {
+          "id": "red",
+          "label": "Red",
+          "emoji": "🔴",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "How many trees are in the garden?",
+      "options": [
+        {
+          "id": "one",
+          "label": "One",
+          "emoji": "1️⃣",
+          "correct": false
+        },
+        {
+          "id": "two",
+          "label": "Two",
+          "emoji": "2️⃣",
+          "correct": false
+        },
+        {
+          "id": "three",
+          "label": "Three",
+          "emoji": "3️⃣",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Can you count all the stars?",
+      "options": [
+        {
+          "id": "many",
+          "label": "No, there are too many",
+          "emoji": "✨",
+          "correct": true
+        },
+        {
+          "id": "two",
+          "label": "Yes, there are only two",
+          "emoji": "2️⃣",
+          "correct": false
+        },
+        {
+          "id": "none",
+          "label": "There are no stars",
+          "emoji": "🚫",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "night",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 35,
+        "y": 70,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Star",
+        "x": 62,
+        "y": 28,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Moon",
+        "x": 82,
+        "y": 16,
+        "scale": 1
+      },
+      {
+        "sprite": "Tree",
+        "x": 15,
+        "y": 55,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "It is night. Look out of the {{window}}! What can you see?",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Window",
+            "x": 70,
+            "y": 40,
+            "scale": 1.3
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "window",
+          "definition": "The glass in a wall that you look through."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "There is one big {{moon}}. It is round and white.",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 30,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Moon",
+            "x": 70,
+            "y": 22,
+            "scale": 1.4
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "moon",
+          "definition": "The big round light in the night sky."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "There are two grey {{clouds}}. They are soft and slow.",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 30,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 55,
+            "y": 25,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 78,
+            "y": 30,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "clouds",
+          "definition": "Soft white or grey shapes in the sky."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "There are three tall {{trees}} in the garden. They are very dark.",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 25,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 50,
+            "y": 50,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 70,
+            "y": 52,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Tree",
+            "x": 88,
+            "y": 48,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "trees",
+          "definition": "Big plants with a hard brown body and green leaves."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "There are many, many {{stars}}! Can you {{count}} them all?",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 30,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Star",
+            "x": 55,
+            "y": 22,
+            "scale": 0.9
+          },
+          {
+            "sprite": "Star",
+            "x": 72,
+            "y": 32,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Star",
+            "x": 85,
+            "y": 18,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "stars",
+          "definition": "The tiny bright lights far away in the night sky."
+        },
+        {
+          "word": "count",
+          "definition": "To say numbers in order: one, two, three."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "The night sky is full of things. What can you see from your window?",
+      "scene": {
+        "background": "night",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Moon",
+            "x": 80,
+            "y": 18,
+            "scale": 1
+          },
+          {
+            "sprite": "Star",
+            "x": 60,
+            "y": 28,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": []
+    }
+  ]
+}

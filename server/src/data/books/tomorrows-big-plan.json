@@ -1,0 +1,355 @@
+{
+  "id": "tomorrows-big-plan",
+  "title": "Tomorrow's Big Plan",
+  "level": "A2",
+  "summary": "Ali and Zeynep are planning a big day out. What are they going to do?",
+  "teachingMethod": "General",
+  "teachingMethodReason": "Labelled General honestly, because it does not clear any of the other bars. There is no task with an unknown outcome for the reader to reach, so it is not TBL (Willis 1996/Nunan 2006). No subject content is taught and no cause-and-effect reasoning is required, so it is not CLIL. It has no problem, complication or resolution - the whole book is two friends making plans, and the day itself never arrives - so it is not story-based. It exists to carry the \"going to\" future, which no other book in the library uses, and which A2 learners need for talking about their own plans.",
+  "grammarFeatures": [
+    "\"Going to\" for future plans (we are going to make sandwiches)",
+    "Future time expressions (tomorrow, early in the morning, after lunch)",
+    "Direct speech with quotation marks",
+    "\"Before\" and \"after\" to order future events"
+  ],
+  "introFunFacts": [
+    "🔮 Nothing has happened yet! This whole book is about TOMORROW.",
+    "➡️ Watch for 'going to' - it means someone has already decided to do it.",
+    "🗓️ At the end, think about what YOU are going to do tomorrow."
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "When is the big day?",
+      "options": [
+        {
+          "id": "tomorrow",
+          "label": "Tomorrow",
+          "emoji": "➡️",
+          "correct": true
+        },
+        {
+          "id": "yesterday",
+          "label": "Yesterday",
+          "emoji": "⏪",
+          "correct": false
+        },
+        {
+          "id": "nextyear",
+          "label": "Next year",
+          "emoji": "📆",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What is Ali going to make?",
+      "options": [
+        {
+          "id": "cake",
+          "label": "A cake",
+          "emoji": "🎂",
+          "correct": false
+        },
+        {
+          "id": "sandwiches",
+          "label": "Sandwiches",
+          "emoji": "🥪",
+          "correct": true
+        },
+        {
+          "id": "soup",
+          "label": "Soup",
+          "emoji": "🍲",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What is Zeynep going to bring?",
+      "options": [
+        {
+          "id": "book",
+          "label": "Her book",
+          "emoji": "📖",
+          "correct": false
+        },
+        {
+          "id": "dog",
+          "label": "Her dog",
+          "emoji": "🐶",
+          "correct": false
+        },
+        {
+          "id": "ball",
+          "label": "Her ball",
+          "emoji": "⚽",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Why are they going to leave early?",
+      "options": [
+        {
+          "id": "bus",
+          "label": "To catch a bus",
+          "emoji": "🚌",
+          "correct": false
+        },
+        {
+          "id": "hot",
+          "label": "Before the sun gets too hot",
+          "emoji": "☀️",
+          "correct": true
+        },
+        {
+          "id": "school",
+          "label": "Because of school",
+          "emoji": "🏫",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      {
+        "sprite": "Boy",
+        "x": 32,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Girl",
+        "x": 52,
+        "y": 70,
+        "scale": 1.05
+      },
+      {
+        "sprite": "Bag",
+        "x": 70,
+        "y": 80,
+        "scale": 0.8
+      },
+      {
+        "sprite": "Tree",
+        "x": 85,
+        "y": 50,
+        "scale": 1
+      },
+      {
+        "sprite": "Sun",
+        "x": 14,
+        "y": 15,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "Tomorrow is Sunday, and Ali and Zeynep are going to have a very big day together.",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 55,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Table",
+            "x": 75,
+            "y": 78,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 2,
+      "text": "\"We are going to make {{sandwiches}},\" said Ali. \"I am going to put them in my bag.\"",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Table",
+            "x": 62,
+            "y": 78,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Bag",
+            "x": 80,
+            "y": 80,
+            "scale": 0.8
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "sandwiches",
+          "definition": "Food made of two pieces of bread with something inside."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "\"I am going to bring my ball,\" said Zeynep. \"Then we can play under the tall trees.\"",
+      "scene": {
+        "background": "indoor",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Ball",
+            "x": 62,
+            "y": 84,
+            "scale": 0.8
+          },
+          {
+            "sprite": "Window",
+            "x": 82,
+            "y": 40,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 4,
+      "text": "They are going to leave {{early}} in the morning, before the sun gets too hot.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 32,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Girl",
+            "x": 52,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "House",
+            "x": 78,
+            "y": 55,
+            "scale": 1
+          },
+          {
+            "sprite": "Sun",
+            "x": 90,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "early",
+          "definition": "Before the usual time; near the start of the day."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "After lunch, they are going to look for {{wild}} flowers near the old fence.",
+      "scene": {
+        "background": "park",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 32,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Girl",
+            "x": 50,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Flower",
+            "x": 70,
+            "y": 84,
+            "scale": 1
+          },
+          {
+            "sprite": "Fence",
+            "x": 85,
+            "y": 76,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "wild",
+          "definition": "Growing on its own, not planted by people."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "Tomorrow is going to be a wonderful day. What are you going to do tomorrow?",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Boy",
+            "x": 35,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Girl",
+            "x": 55,
+            "y": 70,
+            "scale": 1.05
+          },
+          {
+            "sprite": "Tree",
+            "x": 82,
+            "y": 50,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    }
+  ]
+}

@@ -1,0 +1,357 @@
+{
+  "id": "my-green-garden",
+  "title": "My Green Garden",
+  "level": "A1",
+  "summary": "What do plants need to grow? Come and see my garden!",
+  "teachingMethod": "CLIL",
+  "teachingMethodReason": "Meets Coyle, Hood & Marsh (2010)'s 4 C's Framework at the simplest level the library supports. Content - real biology (plants need water, light and soil to grow), not just garden vocabulary. Communication - \"need + noun\" and the simple present for general truths are the vehicle for that content. Cognition - the reader links a need to an outcome (the plant has all three things, so it grows), which is more than recall. Culture - the closing page notes that people grow plants everywhere in the world. Deliberately kept to three needs with one short sentence each, because zoe-animal-homes showed how quickly a CLIL book at A1 drifts above its level.",
+  "grammarFeatures": [
+    "Simple present tense for general facts",
+    "\"Need + noun\" to say what something must have",
+    "\"There are\" for saying what exists",
+    "Descriptive adjectives (green, dark, warm)"
+  ],
+  "introFunFacts": [
+    "🌱 This book tells you real science! Plants need three things, and you will learn all of them.",
+    "🧃 Watch for the word 'need' - it means you cannot live without that thing.",
+    "🔍 At the end, try to remember all three things a plant needs. Ready?"
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "question": "What do plants need to drink?",
+      "options": [
+        {
+          "id": "water",
+          "label": "Water",
+          "emoji": "💧",
+          "correct": true
+        },
+        {
+          "id": "milk",
+          "label": "Milk",
+          "emoji": "🥛",
+          "correct": false
+        },
+        {
+          "id": "juice",
+          "label": "Juice",
+          "emoji": "🧃",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What helps plants grow big?",
+      "options": [
+        {
+          "id": "moon",
+          "label": "The moon",
+          "emoji": "🌙",
+          "correct": false
+        },
+        {
+          "id": "sun",
+          "label": "The sun",
+          "emoji": "☀️",
+          "correct": true
+        },
+        {
+          "id": "wind",
+          "label": "The wind",
+          "emoji": "🌬️",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What is soil?",
+      "options": [
+        {
+          "id": "flower",
+          "label": "A kind of flower",
+          "emoji": "🌸",
+          "correct": false
+        },
+        {
+          "id": "animal",
+          "label": "A small animal",
+          "emoji": "🐛",
+          "correct": false
+        },
+        {
+          "id": "earth",
+          "label": "The dark earth",
+          "emoji": "🟤",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Do people grow plants in other countries?",
+      "options": [
+        {
+          "id": "world",
+          "label": "Yes, all over the world",
+          "emoji": "🌍",
+          "correct": true
+        },
+        {
+          "id": "here",
+          "label": "No, only here",
+          "emoji": "🏠",
+          "correct": false
+        },
+        {
+          "id": "winter",
+          "label": "Only in winter",
+          "emoji": "❄️",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "coverScene": {
+    "background": "day",
+    "items": [
+      {
+        "sprite": "Girl",
+        "x": 35,
+        "y": 70,
+        "scale": 1.1
+      },
+      {
+        "sprite": "Flower",
+        "x": 60,
+        "y": 80,
+        "scale": 1.2
+      },
+      {
+        "sprite": "Tree",
+        "x": 82,
+        "y": 52,
+        "scale": 1
+      },
+      {
+        "sprite": "Sun",
+        "x": 15,
+        "y": 15,
+        "scale": 1
+      }
+    ]
+  },
+  "pages": [
+    {
+      "index": 1,
+      "text": "This is my {{garden}}. There are many green {{plants}} here. I love them!",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 38,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Flower",
+            "x": 62,
+            "y": 82,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 82,
+            "y": 52,
+            "scale": 1
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "garden",
+          "definition": "A piece of land where you grow plants."
+        },
+        {
+          "word": "plants",
+          "definition": "Living green things that grow in the ground."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Plants need {{water}}. I give them water every day.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 38,
+            "y": 72,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Flower",
+            "x": 62,
+            "y": 82,
+            "scale": 1
+          },
+          {
+            "sprite": "Cloud",
+            "x": 20,
+            "y": 20,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "water",
+          "definition": "The clear liquid we drink."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "Plants need the {{sun}}. The warm sun helps them grow big.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Flower",
+            "x": 60,
+            "y": 80,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Sun",
+            "x": 82,
+            "y": 18,
+            "scale": 1.3
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "sun",
+          "definition": "The big hot star that gives us light."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Plants need {{soil}}. Soil is the dark earth under your feet.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 72,
+            "scale": 1
+          },
+          {
+            "sprite": "Flower",
+            "x": 60,
+            "y": 84,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 82,
+            "y": 52,
+            "scale": 0.9
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "soil",
+          "definition": "The dark earth that plants grow in."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "Look at my red flower! It has water, sun and soil.",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 35,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Flower",
+            "x": 62,
+            "y": 72,
+            "scale": 1.5
+          },
+          {
+            "sprite": "Sun",
+            "x": 85,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": []
+    },
+    {
+      "index": 6,
+      "text": "People grow plants all over the {{world}}. What can you grow?",
+      "scene": {
+        "background": "day",
+        "items": [
+          {
+            "sprite": "Girl",
+            "x": 40,
+            "y": 70,
+            "scale": 1.1
+          },
+          {
+            "sprite": "Flower",
+            "x": 65,
+            "y": 80,
+            "scale": 1
+          },
+          {
+            "sprite": "Tree",
+            "x": 85,
+            "y": 52,
+            "scale": 1
+          },
+          {
+            "sprite": "Sun",
+            "x": 15,
+            "y": 15,
+            "scale": 1
+          }
+        ]
+      },
+      "vocab": [
+        {
+          "word": "world",
+          "definition": "The Earth, and everything and everyone on it."
+        }
+      ]
+    }
+  ]
+}
