@@ -6,6 +6,7 @@ import { useAuth } from "../auth/AuthContext";
 import { useActiveProfile } from "../auth/ActiveProfileContext";
 import { listProfiles, type ChildProfile } from "../data/profiles";
 import { ParentPinModal } from "./ParentPinModal";
+import { SignOutConfirmModal } from "./SignOutConfirmModal";
 
 // A Netflix-style "who's reading?" switcher: tapping the current identity
 // slides up a list of Parent + every child profile. Picking a child just
@@ -39,6 +40,7 @@ export function ProfileSwitcher() {
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<ChildProfile[]>([]);
   const [pinModalOpen, setPinModalOpen] = useState(false);
+  const [signOutConfirmOpen, setSignOutConfirmOpen] = useState(false);
 
   useEffect(() => {
     if (!user || !open) return;
@@ -51,7 +53,8 @@ export function ProfileSwitcher() {
   // signed-out state to show here.
   if (loading || !user) return null;
 
-  async function handleQuickLogout() {
+  async function handleConfirmSignOut() {
+    setSignOutConfirmOpen(false);
     await signOut();
     navigate("/");
   }
@@ -80,7 +83,9 @@ export function ProfileSwitcher() {
 
   return (
     <>
-      <div className="fixed right-4 top-4 z-20 flex items-center gap-2">
+      {/* Sits in normal flow rather than fixed to the corner - overlaid on
+          a narrow phone it covered the page heading underneath it. */}
+      <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -97,12 +102,13 @@ export function ProfileSwitcher() {
           <span className="text-stone-400">▾</span>
         </button>
 
-        {/* Deliberately not behind the parent PIN - that lock exists to keep
-            a child out of the dashboard, not to keep anyone signed in. */}
+        {/* Confirms first, but deliberately not behind the parent PIN - that
+            lock exists to keep a child out of the dashboard, not to keep
+            anyone signed in. */}
         <motion.button
           whileTap={{ scale: 0.92 }}
           type="button"
-          onClick={handleQuickLogout}
+          onClick={() => setSignOutConfirmOpen(true)}
           aria-label="Log out"
           title="Log out"
           className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-stone-200 bg-white text-stone-400 shadow-sm transition hover:border-rose-300 hover:text-rose-500"
@@ -191,6 +197,12 @@ export function ProfileSwitcher() {
       )}
 
       <ParentPinModal open={pinModalOpen} onClose={() => setPinModalOpen(false)} onUnlock={handleUnlock} />
+
+      <SignOutConfirmModal
+        open={signOutConfirmOpen}
+        onCancel={() => setSignOutConfirmOpen(false)}
+        onConfirm={handleConfirmSignOut}
+      />
     </>
   );
 }

@@ -14,6 +14,7 @@ import { api } from "../api/client";
 import { LEVEL_ORDER } from "../data/levelMeta";
 import { LevelBadge } from "../components/LevelBadge";
 import { ParentPinSetup } from "../components/ParentPinSetup";
+import { SignOutConfirmModal } from "../components/SignOutConfirmModal";
 import type { CEFRLevel } from "../types/book";
 
 const AVATAR_CHOICES = ["🦊", "🐰", "🐼", "🦁", "🐸", "🦄", "🐨", "🐯"];
@@ -151,6 +152,7 @@ export function DashboardPage() {
   // or more advanced kid up from here.
   const [level, setLevel] = useState<string>("A1");
   const [changingPin, setChangingPin] = useState(false);
+  const [signOutConfirmOpen, setSignOutConfirmOpen] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -205,7 +207,7 @@ export function DashboardPage() {
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1">
           <button
-            onClick={() => signOut().then(() => navigate("/login"))}
+            onClick={() => setSignOutConfirmOpen(true)}
             className="font-body text-sm font-bold text-stone-400 hover:text-stone-600"
           >
             Sign out
@@ -328,6 +330,15 @@ export function DashboardPage() {
       >
         ← Back to books
       </Link>
+
+      <SignOutConfirmModal
+        open={signOutConfirmOpen}
+        onCancel={() => setSignOutConfirmOpen(false)}
+        onConfirm={() => {
+          setSignOutConfirmOpen(false);
+          signOut().then(() => navigate("/"));
+        }}
+      />
     </div>
   );
 }

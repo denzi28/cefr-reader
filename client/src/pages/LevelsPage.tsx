@@ -152,8 +152,10 @@ export function LevelsPage() {
   }, [methodFilter]);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
-      <ProfileSwitcher />
+    <div className="mx-auto max-w-5xl px-4 pb-10 pt-5">
+      <div className="mb-6 flex justify-end">
+        <ProfileSwitcher />
+      </div>
       <motion.header
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
