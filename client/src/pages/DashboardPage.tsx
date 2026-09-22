@@ -3,32 +3,13 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../auth/AuthContext";
 import { useActiveProfile } from "../auth/ActiveProfileContext";
-import {
-  createProfile,
-  deleteProfile,
-  listProfiles,
-  listProgressForProfile,
-  type ChildProfile,
-} from "../data/profiles";
-import { api } from "../api/client";
+import { createProfile, deleteProfile, listProfiles, type ChildProfile } from "../data/profiles";
 import { AVAILABLE_LEVELS } from "../data/levelMeta";
-import { LevelBadge } from "../components/LevelBadge";
+import { ChildProgressPanel } from "../components/ChildProgressPanel";
 import { ParentPinSetup } from "../components/ParentPinSetup";
 import { SignOutConfirmModal } from "../components/SignOutConfirmModal";
-import type { CEFRLevel } from "../types/book";
 
 const AVATAR_CHOICES = ["🦊", "🐰", "🐼", "🦁", "🐸", "🦄", "🐨", "🐯"];
-
-interface BookProgressRow {
-  bookId: string;
-  title: string;
-  level: CEFRLevel;
-  pageCount: number;
-  currentPageIndex: number;
-  completed: boolean;
-  quizCorrect: number | null;
-  quizTotal: number | null;
-}
 
 function ProfileCard({
   profile,
@@ -39,41 +20,6 @@ function ProfileCard({
   onActivate: () => void;
   onDelete: () => void;
 }) {
-  const [progress, setProgress] = useState<BookProgressRow[] | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    listProgressForProfile(profile.id)
-      .then(async (rows) => {
-        const withBooks = await Promise.all(
-          rows.map(async (row) => {
-            try {
-              const book = await api.getBook(row.book_id);
-              return {
-                bookId: row.book_id,
-                title: book.title,
-                level: book.level,
-                pageCount: book.pages.length,
-                currentPageIndex: row.current_page_index,
-                completed: row.completed,
-                quizCorrect: row.quiz_correct,
-                quizTotal: row.quiz_total,
-              };
-            } catch {
-              return null;
-            }
-          })
-        );
-        if (!cancelled) setProgress(withBooks.filter((b): b is BookProgressRow => b !== null));
-      })
-      .catch(() => {
-        if (!cancelled) setProgress([]);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [profile.id]);
-
   return (
     <motion.div
       layout
@@ -106,35 +52,7 @@ function ProfileCard({
         </button>
       </div>
 
-      <div className="mt-4 border-t border-stone-100 pt-3">
-        <p className="mb-2 font-body text-xs font-extrabold uppercase tracking-wide text-stone-400">
-          Reading progress
-        </p>
-        {progress === null && <p className="font-body text-xs text-stone-400">Loading…</p>}
-        {progress?.length === 0 && (
-          <p className="font-body text-xs text-stone-400">No books started yet.</p>
-        )}
-        {progress && progress.length > 0 && (
-          <ul className="space-y-1.5">
-            {progress.map((p) => (
-              <li key={p.bookId} className="flex items-center justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-2">
-                  <LevelBadge level={p.level} />
-                  <span className="truncate font-body text-sm text-stone-700">{p.title}</span>
-                </div>
-                <span
-                  className={`shrink-0 font-body text-xs font-extrabold ${
-                    p.completed ? "text-emerald-600" : "text-stone-400"
-                  }`}
-                >
-                  {p.completed ? "Finished 🎉" : `Page ${p.currentPageIndex + 1} of ${p.pageCount}`}
-                  {p.quizTotal != null && ` · Quiz: ${p.quizCorrect}/${p.quizTotal} ⭐`}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <ChildProgressPanel profileId={profile.id} />
     </motion.div>
   );
 }

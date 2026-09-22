@@ -135,11 +135,11 @@ export function ReaderPage() {
     });
   }
 
-  function handleQuizFinish(correct: number, total: number) {
+  function handleQuizFinish(correct: number, total: number, wrongQuestionIds: string[]) {
     setQuizResult({ correct, total });
     setPhase("score");
     if (activeProfile) {
-      saveQuizScore(activeProfile.id, book!.id, correct, total).catch(() => {});
+      saveQuizScore(activeProfile.id, book!.id, correct, total, wrongQuestionIds).catch(() => {});
     }
   }
 

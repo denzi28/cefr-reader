@@ -24,6 +24,9 @@ export interface ReadingProgress {
   completed: boolean;
   quiz_correct: number | null;
   quiz_total: number | null;
+  // Which questions were missed on the last attempt. null means the quiz
+  // predates this column (or was never taken); [] means a clean sweep.
+  quiz_wrong_ids: string[] | null;
   updated_at: string;
 }
 
@@ -96,11 +99,18 @@ export async function saveQuizScore(
   profileId: number,
   bookId: string,
   correct: number,
-  total: number
+  total: number,
+  wrongQuestionIds: string[]
 ): Promise<void> {
   const { error } = await supabase
     .from("reading_progress")
-    .update({ quiz_correct: correct, quiz_total: total, completed: true, updated_at: new Date().toISOString() })
+    .update({
+      quiz_correct: correct,
+      quiz_total: total,
+      quiz_wrong_ids: wrongQuestionIds,
+      completed: true,
+      updated_at: new Date().toISOString(),
+    })
     .eq("profile_id", profileId)
     .eq("book_id", bookId);
   if (error) throw error;
