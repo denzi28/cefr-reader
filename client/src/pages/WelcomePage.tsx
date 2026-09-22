@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAuth } from "../auth/AuthContext";
 
 // Kept deliberately short - a visitor should see the whole thing with one
 // scroll, not a long marketing page. A rotating feature carousel does the
@@ -34,6 +35,7 @@ const FEATURES = [
 ];
 
 export function WelcomePage() {
+  const { user, loading } = useAuth();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -82,25 +84,33 @@ export function WelcomePage() {
         </div>
       </div>
 
+      {/* The library is behind the front door, so the only way onward is
+          signing up or in - except for someone already signed in, who
+          would otherwise be stranded here with no way back to the books. */}
       <div className="mt-6 flex flex-col gap-2">
-        <Link
-          to="/signup"
-          className="rounded-2xl bg-sky-500 py-3 text-center font-extrabold text-white shadow-sm transition hover:bg-sky-600"
-        >
-          Create a Free Account
-        </Link>
-        <Link
-          to="/login"
-          className="rounded-2xl border-2 border-stone-200 bg-white py-3 text-center font-body font-bold text-stone-600 transition hover:bg-stone-50"
-        >
-          Sign In
-        </Link>
-        <Link
-          to="/levels"
-          className="mt-1 text-center font-body text-sm font-bold text-sky-600 hover:underline"
-        >
-          Just want to browse? See the books →
-        </Link>
+        {!loading && user ? (
+          <Link
+            to="/levels"
+            className="rounded-2xl bg-sky-500 py-3 text-center font-extrabold text-white shadow-sm transition hover:bg-sky-600"
+          >
+            Continue to the Books →
+          </Link>
+        ) : (
+          <>
+            <Link
+              to="/signup"
+              className="rounded-2xl bg-sky-500 py-3 text-center font-extrabold text-white shadow-sm transition hover:bg-sky-600"
+            >
+              Create a Free Account
+            </Link>
+            <Link
+              to="/login"
+              className="rounded-2xl border-2 border-stone-200 bg-white py-3 text-center font-body font-bold text-stone-600 transition hover:bg-stone-50"
+            >
+              Sign In
+            </Link>
+          </>
+        )}
       </div>
 
       <footer className="mt-6 text-center font-body text-xs text-stone-400">

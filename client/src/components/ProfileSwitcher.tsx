@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "../auth/AuthContext";
@@ -14,8 +14,26 @@ import { ParentPinModal } from "./ParentPinModal";
 // fix for not being able to get back to Parent mode once in a child's
 // profile, since nothing used to ever clear activeProfile except signing
 // out entirely.
+function PowerIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3v9" />
+      <path d="M6.6 6.6a8 8 0 1 0 10.8 0" />
+    </svg>
+  );
+}
+
 export function ProfileSwitcher() {
-  const { user, loading } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const { activeProfile, setActiveProfileId } = useActiveProfile();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -29,17 +47,13 @@ export function ProfileSwitcher() {
       .catch(() => setProfiles([]));
   }, [user, open]);
 
-  if (loading) return null;
+  // Every page this renders on is behind RequireAuth, so there's no
+  // signed-out state to show here.
+  if (loading || !user) return null;
 
-  if (!user) {
-    return (
-      <Link
-        to="/login"
-        className="fixed right-4 top-4 z-20 flex items-center gap-2 rounded-full border-2 border-stone-200 bg-white px-4 py-2 font-body text-sm font-extrabold text-stone-600 shadow-sm transition hover:border-sky-300 hover:text-sky-600"
-      >
-        👋 Sign in
-      </Link>
-    );
+  async function handleQuickLogout() {
+    await signOut();
+    navigate("/");
   }
 
   function handleSelectChild(profile: ChildProfile) {
@@ -66,21 +80,36 @@ export function ProfileSwitcher() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="fixed right-4 top-4 z-20 flex items-center gap-2 rounded-full border-2 border-stone-200 bg-white px-4 py-2 font-body text-sm font-extrabold text-stone-600 shadow-sm transition hover:border-sky-300 hover:text-sky-600"
-      >
-        {activeProfile ? (
-          <>
-            <span>{activeProfile.avatar_emoji}</span>
-            {activeProfile.name}
-          </>
-        ) : (
-          <>🧑 Parent</>
-        )}
-        <span className="text-stone-400">▾</span>
-      </button>
+      <div className="fixed right-4 top-4 z-20 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="flex items-center gap-2 rounded-full border-2 border-stone-200 bg-white px-4 py-2 font-body text-sm font-extrabold text-stone-600 shadow-sm transition hover:border-sky-300 hover:text-sky-600"
+        >
+          {activeProfile ? (
+            <>
+              <span>{activeProfile.avatar_emoji}</span>
+              {activeProfile.name}
+            </>
+          ) : (
+            <>🧑 Parent</>
+          )}
+          <span className="text-stone-400">▾</span>
+        </button>
+
+        {/* Deliberately not behind the parent PIN - that lock exists to keep
+            a child out of the dashboard, not to keep anyone signed in. */}
+        <motion.button
+          whileTap={{ scale: 0.92 }}
+          type="button"
+          onClick={handleQuickLogout}
+          aria-label="Log out"
+          title="Log out"
+          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-stone-200 bg-white text-stone-400 shadow-sm transition hover:border-rose-300 hover:text-rose-500"
+        >
+          <PowerIcon />
+        </motion.button>
+      </div>
 
       {createPortal(
         <AnimatePresence>

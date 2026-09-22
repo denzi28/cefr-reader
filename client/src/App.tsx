@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { AuthProvider } from "./auth/AuthContext";
 import { ActiveProfileProvider } from "./auth/ActiveProfileContext";
+import { RequireAuth } from "./auth/RequireAuth";
 import { WelcomePage } from "./pages/WelcomePage";
 import { LevelsPage } from "./pages/LevelsPage";
 import { LevelBooksPage } from "./pages/LevelBooksPage";
@@ -36,7 +37,9 @@ function AnimatedRoutes() {
           path="/levels"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <LevelsPage />
+              <RequireAuth>
+                <LevelsPage />
+              </RequireAuth>
             </motion.div>
           }
         />
@@ -44,7 +47,9 @@ function AnimatedRoutes() {
           path="/levels/:level"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <LevelBooksPage />
+              <RequireAuth>
+                <LevelBooksPage />
+              </RequireAuth>
             </motion.div>
           }
         />
@@ -52,7 +57,9 @@ function AnimatedRoutes() {
           path="/levels/:level/level-up-quiz"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <LevelUpQuizPage />
+              <RequireAuth>
+                <LevelUpQuizPage />
+              </RequireAuth>
             </motion.div>
           }
         />
@@ -60,7 +67,9 @@ function AnimatedRoutes() {
           path="/levels/:level/level-up-quiz/review"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <LevelQuizReviewPage />
+              <RequireAuth>
+                <LevelQuizReviewPage />
+              </RequireAuth>
             </motion.div>
           }
         />
@@ -68,7 +77,9 @@ function AnimatedRoutes() {
           path="/books/:id"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
-              <ReaderPage />
+              <RequireAuth>
+                <ReaderPage />
+              </RequireAuth>
             </motion.div>
           }
         />
