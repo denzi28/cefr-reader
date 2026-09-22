@@ -6,6 +6,8 @@
   "teachingMethod": "CLIL",
   "teachingMethodReason": "Meets Coyle, Hood & Marsh (2010)'s 4 C's Framework: Content - real earth-science knowledge (evaporation, condensation, precipitation as a repeating cycle), not just weather vocabulary; Communication - present-tense process description and \"when/because\" causal language are the vehicle for that content, with genuine technical terms (evaporation, condensation, precipitation) introduced because the content demands them; Cognition - the reader follows a cause-and-effect chain (heat -> vapor -> clouds -> rain -> repeat), a higher-order thinking skill beyond recall; Culture - the closing page (the cycle happens everywhere, from deserts to rainforests) is an intercultural/global-awareness note. Deliberately written in the simple present to describe a repeating process rather than the past-tense narrative this level's other books use (mystery-missing-cat, bens-missing-backpack), so the library covers a wider range of B1 grammar instead of repeating the same past-tense pattern.",
   "grammarFeatures": [
+    "Present perfect for experience (Have you ever wondered...?)",
+    "Indirect questions (where rain comes from)",
     "Simple present tense for describing a repeating process",
     "Time/causal clauses with \"when\" and \"because\"",
     "Simple passive voice (\"is called\")",
@@ -14,7 +16,8 @@
   "introFunFacts": [
     "🔁 A cycle goes round and round forever - so this story ends right back where it started!",
     "🏷️ Watch for 'is called' - that's how we give something its proper science name.",
-    "🌡️ 'WHEN water gets hot...' - the word 'when' tells you the exact moment something changes."
+    "🌡️ 'WHEN water gets hot...' - the word 'when' tells you the exact moment something changes.",
+    "🤔 'Have you EVER wondered...?' - that's how we ask about something at any time in your whole life!"
   ],
   "quiz": [
     {

@@ -9,7 +9,9 @@
     "Simple past tense",
     "Sequencing adverbs (First, Then, After, Finally)",
     "\"Want + to-infinitive\" (wanted to grow)",
-    "Time expressions (after a few days)"
+    "Time expressions (after a few days)",
+    "Result clauses with \"so\" (a sprout appeared, so Leo knew...)",
+    "Comparative adjectives (taller than Leo)"
   ],
   "introFunFacts": [
     "🌱 Big job in this book: YOU put the steps in the right order before the story shows you!",
@@ -103,7 +105,7 @@
     },
     {
       "index": 3,
-      "text": "First, Leo planted the {{seed}} in the soil.",
+      "text": "First, Leo planted the {{seed}} in the soil. He pushed it down {{gently}} and covered it with earth.",
       "scene": {
         "background": "day",
         "items": [
@@ -111,12 +113,15 @@
           { "sprite": "Flower", "x": 65, "y": 82, "scale": 0.6 }
         ]
       },
-      "vocab": [{ "word": "seed", "definition": "A tiny thing that grows into a plant." }],
+      "vocab": [
+        { "word": "seed", "definition": "A tiny thing that grows into a plant." },
+        { "word": "gently", "definition": "Softly and carefully, without pushing hard." }
+      ],
       "imageUrl": "/images/leo-grows-a-sunflower/page-3.jpg"
     },
     {
       "index": 4,
-      "text": "Then, he watered it every day.",
+      "text": "Then, he watered it every day, even when the sky was grey.",
       "scene": {
         "background": "day",
         "items": [
@@ -130,7 +135,7 @@
     },
     {
       "index": 5,
-      "text": "After a few days, a tiny {{sprout}} appeared!",
+      "text": "After a few days, a tiny green {{sprout}} appeared, so Leo knew his seed was alive.",
       "scene": {
         "background": "day",
         "items": [
@@ -143,7 +148,7 @@
     },
     {
       "index": 6,
-      "text": "Finally, a big {{sunflower}} bloomed! Leo was very {{proud}}.",
+      "text": "Finally, a big {{sunflower}} bloomed! It was taller than Leo, and he was very {{proud}} of it.",
       "scene": {
         "background": "day",
         "items": [

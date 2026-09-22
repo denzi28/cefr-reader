@@ -82,7 +82,7 @@
     },
     {
       "index": 2,
-      "text": "Fish live in the {{ocean}}. They swim in the water all day long.",
+      "text": "Fish live in the {{ocean}}. They swim in the water every day.",
       "scene": {
         "background": "day",
         "items": [
@@ -125,7 +125,7 @@
     },
     {
       "index": 5,
-      "text": "Bears live in the {{forest}}. There are many trees and plants there.",
+      "text": "Bears live in the {{forest}}. The forest has many trees and plants.",
       "scene": {
         "background": "day",
         "items": [
@@ -138,7 +138,7 @@
     },
     {
       "index": 6,
-      "text": "Every animal has a home. Animals live in many different homes all around the {{world}}!",
+      "text": "Every animal has a home. Animals live in many different homes in the {{world}}!",
       "scene": {
         "background": "day",
         "items": [

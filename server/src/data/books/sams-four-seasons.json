@@ -66,7 +66,7 @@
   "pages": [
     {
       "index": 1,
-      "text": "Sam has a big tree outside the window and watches it change all year long. There are four {{seasons}}: spring, summer, autumn, and winter.",
+      "text": "Sam has a big tree outside the window. He looks at it every day, and it changes all year long. There are four {{seasons}}: spring, summer, autumn, and winter.",
       "scene": {
         "background": "indoor",
         "items": [
@@ -80,7 +80,7 @@
     },
     {
       "index": 2,
-      "text": "In {{spring}}, the weather is mild. New leaves grow on the tree because the sun is {{warmer}}.",
+      "text": "In {{spring}}, the weather is warm. New leaves grow on the tree because the sun is {{warmer}}.",
       "scene": {
         "background": "day",
         "items": [

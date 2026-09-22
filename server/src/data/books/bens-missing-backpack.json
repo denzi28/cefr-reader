@@ -7,6 +7,7 @@
   "teachingMethodReason": "A genuine problem-solving task: on page 4 the reader must weigh the clues (the backpack isn't where it always is; his little sister was playing all morning) and choose ONE most-likely location before the story reveals the truth. This meets Willis (1996/2006)'s 'Problem solving' task type (analyzing, reasoning, decision making -> problems solved and evaluated) - unlike a story where a character solves a problem for the reader, here the reader makes the actual decision under real uncertainty (several plausible locations, only one is right). The following page's report stage reveals the answer and how the reader's guess compares, gently regardless of outcome.",
   "grammarFeatures": [
     "Simple past tense",
+    "Past continuous for an action in progress (was getting ready)",
     "Past modal \"couldn't\" for inability",
     "Contrastive connector \"but\"",
     "Making predictions and guesses (Where do you think...?)",
@@ -15,7 +16,8 @@
   "introFunFacts": [
     "🎒 Your turn to be the detective: YOU decide where the backpack is before the story tells you.",
     "🔀 Watch for the word 'but' - it warns you something surprising is coming next.",
-    "💬 See the \"quotation marks\"? They show the exact words someone said out loud."
+    "💬 See the \"quotation marks\"? They show the exact words someone said out loud.",
+    "⏳ 'Ben WAS GETTING ready' - this tells you he was in the middle of doing it when something happened!"
   ],
   "quiz": [
     {
@@ -129,7 +131,7 @@
     },
     {
       "index": 5,
-      "text": "Ben looked in his sister's room. There it was, hiding under a pile of toys! \"Sorry, Ben!\" she said with a {{giggle}}.",
+      "text": "Ben looked in his sister's room. {{There it was}}, hiding under a pile of toys! \"Sorry, Ben!\" she said with a {{giggle}}.",
       "scene": {
         "background": "indoor",
         "items": [
@@ -138,12 +140,15 @@
           { "sprite": "Bag", "x": 65, "y": 85, "scale": 0.6 }
         ]
       },
-      "vocab": [{ "word": "giggle", "definition": "A small, happy laugh." }],
+      "vocab": [
+        { "word": "There it was", "definition": "A way of saying \"and that is exactly where it was!\" when you finally find something." },
+        { "word": "giggle", "definition": "A small, happy laugh." }
+      ],
       "imageUrl": "/images/bens-missing-backpack/page-5.jpg"
     },
     {
       "index": 6,
-      "text": "Ben {{grabbed}} his backpack and ran to catch the bus. He made it just in time!",
+      "text": "Ben {{grabbed}} his backpack and ran to catch the bus. He {{made it}} just in time!",
       "scene": {
         "background": "day",
         "items": [
@@ -152,7 +157,10 @@
           { "sprite": "Sun", "x": 85, "y": 15, "scale": 1 }
         ]
       },
-      "vocab": [{ "word": "grabbed", "definition": "Took something quickly." }],
+      "vocab": [
+        { "word": "grabbed", "definition": "Took something quickly." },
+        { "word": "made it", "definition": "Got there in time. \"He made it\" means he was not late." }
+      ],
       "imageUrl": "/images/bens-missing-backpack/page-6.jpg"
     }
   ]
