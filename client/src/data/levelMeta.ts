@@ -29,4 +29,15 @@ export const LEVEL_META: Record<CEFRLevel, { label: string; description: string 
   },
 };
 
+// The full CEFR ladder, in order. Used for comparing levels (e.g. "is
+// this level unlocked yet?"), not for deciding what to show.
 export const LEVEL_ORDER: CEFRLevel[] = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+// The levels the app actually offers. B2 and above are written for
+// learners older than the children this app is for, so they're held back
+// rather than shown as empty levels - see PLANNED_LEVELS.
+export const AVAILABLE_LEVELS: CEFRLevel[] = ["A1", "A2", "B1"];
+
+// Announced on the levels page as coming later, so the jump from B1 to
+// nothing doesn't look like something is missing or broken.
+export const PLANNED_LEVELS: CEFRLevel[] = ["B2", "C1", "C2"];

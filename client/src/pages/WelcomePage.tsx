@@ -10,7 +10,7 @@ const FEATURES = [
   {
     emoji: "📖",
     title: "CEFR-Leveled Stories",
-    text: "Real picture books from A1 to C2, each one carefully leveled to how kids actually learn.",
+    text: "Real picture books from A1 to B1, each one carefully leveled to how kids actually learn.",
   },
   {
     emoji: "🎨",
@@ -51,7 +51,7 @@ export function WelcomePage() {
         <p className="text-5xl">🐣</p>
         <h1 className="mt-2 text-3xl font-extrabold text-stone-800 sm:text-4xl">Story Levels</h1>
         <p className="mt-2 font-body text-stone-500">
-          Picture books leveled to how kids actually learn English, from CEFR A1 to C2.
+          Picture books leveled to how kids actually learn English, from CEFR A1 to B1.
         </p>
       </header>
 

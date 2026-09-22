@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { api } from "../api/client";
 import type { BookSummary, LevelInfo, TeachingMethod } from "../types/book";
 import { LevelBadge } from "../components/LevelBadge";
+import { PLANNED_LEVELS } from "../data/levelMeta";
 import { BookCard } from "../components/BookCard";
 import { METHOD_META, METHOD_ORDER } from "../data/methodMeta";
 import { useActiveProfile } from "../auth/ActiveProfileContext";
@@ -166,7 +167,7 @@ export function LevelsPage() {
           🐣 Story Levels
         </h1>
         <p className="mt-3 font-body text-lg text-stone-500">
-          Pick a level to find picture books just right for you, from CEFR A1 to C2.
+          Pick a level to find picture books just right for you, from CEFR A1 to B1.
         </p>
       </motion.header>
 
@@ -245,6 +246,19 @@ export function LevelsPage() {
                 </motion.div>
               ))}
             </motion.div>
+          )}
+
+          {levels && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mx-auto mt-8 max-w-xl rounded-3xl border-2 border-dashed border-stone-200 bg-white/60 px-6 py-5 text-center font-body text-sm text-stone-500"
+            >
+              <span className="mr-1">🚧</span>
+              More levels are on the way! {PLANNED_LEVELS.join(", ")} are for older
+              readers, so we're saving those for later.
+            </motion.p>
           )}
         </>
       )}

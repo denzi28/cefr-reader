@@ -1,5 +1,5 @@
 import type { Book, BookSummary, LevelInfo } from "../types/book";
-import { LEVEL_META, LEVEL_ORDER } from "../data/levelMeta";
+import { AVAILABLE_LEVELS, LEVEL_META } from "../data/levelMeta";
 
 // This build reads the book library from a single static JSON file
 // (public/data/books.json, generated from server/src/data/books/*.json)
@@ -37,7 +37,7 @@ function toSummary(book: Book): BookSummary {
 export const api = {
   async getLevels(): Promise<LevelInfo[]> {
     const books = await loadBooks();
-    return LEVEL_ORDER.map((level) => ({
+    return AVAILABLE_LEVELS.map((level) => ({
       level,
       label: LEVEL_META[level].label,
       description: LEVEL_META[level].description,

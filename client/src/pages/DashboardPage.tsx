@@ -11,7 +11,7 @@ import {
   type ChildProfile,
 } from "../data/profiles";
 import { api } from "../api/client";
-import { LEVEL_ORDER } from "../data/levelMeta";
+import { AVAILABLE_LEVELS } from "../data/levelMeta";
 import { LevelBadge } from "../components/LevelBadge";
 import { ParentPinSetup } from "../components/ParentPinSetup";
 import { SignOutConfirmModal } from "../components/SignOutConfirmModal";
@@ -289,7 +289,7 @@ export function DashboardPage() {
             className="rounded-2xl border-2 border-stone-200 px-4 py-3 font-body text-stone-700 outline-none focus:border-sky-400"
           >
             <option value="">No level yet</option>
-            {LEVEL_ORDER.map((lvl) => (
+            {AVAILABLE_LEVELS.map((lvl) => (
               <option key={lvl} value={lvl}>
                 {lvl}
               </option>
