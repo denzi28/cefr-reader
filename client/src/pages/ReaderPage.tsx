@@ -77,7 +77,7 @@ export function ReaderPage() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-10 text-center">
         <p className="rounded-xl bg-rose-50 p-4 font-body text-rose-600">Couldn't load this book: {error}.</p>
-        <Link to="/" className="mt-4 inline-block font-body font-bold text-sky-600 hover:underline">
+        <Link to="/levels" className="mt-4 inline-block font-body font-bold text-sky-600 hover:underline">
           ← Back to levels
         </Link>
       </div>

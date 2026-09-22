@@ -45,7 +45,7 @@ export function ProfileSwitcher() {
   function handleSelectChild(profile: ChildProfile) {
     setActiveProfileId(profile.id);
     setOpen(false);
-    navigate("/");
+    navigate("/levels");
   }
 
   function handleSelectParent() {

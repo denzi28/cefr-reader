@@ -188,7 +188,7 @@ export function DashboardPage() {
 
   function handleActivate(profile: ChildProfile) {
     setActiveProfileId(profile.id);
-    navigate("/");
+    navigate("/levels");
   }
 
   return (
@@ -323,7 +323,7 @@ export function DashboardPage() {
       )}
 
       <Link
-        to="/"
+        to="/levels"
         className="mt-8 block text-center font-body text-sm font-bold text-sky-600 hover:underline"
       >
         ← Back to books

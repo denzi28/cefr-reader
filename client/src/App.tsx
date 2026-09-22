@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { AuthProvider } from "./auth/AuthContext";
 import { ActiveProfileProvider } from "./auth/ActiveProfileContext";
+import { WelcomePage } from "./pages/WelcomePage";
 import { LevelsPage } from "./pages/LevelsPage";
 import { LevelBooksPage } from "./pages/LevelBooksPage";
 import { LevelUpQuizPage } from "./pages/LevelUpQuizPage";
@@ -25,6 +26,14 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
+          element={
+            <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
+              <WelcomePage />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/levels"
           element={
             <motion.div {...pageTransition} transition={{ duration: 0.25, ease: "easeOut" }}>
               <LevelsPage />

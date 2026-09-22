@@ -26,7 +26,7 @@ export function LevelUpQuizPage() {
     return <p className="p-10 text-center font-body text-stone-400">Loading…</p>;
   }
 
-  if (!activeProfile) return <Navigate to="/" replace />;
+  if (!activeProfile) return <Navigate to="/levels" replace />;
 
   const cefrLevel = level as CEFRLevel;
   const quiz = LEVEL_UP_QUIZZES[cefrLevel];
