@@ -52,7 +52,7 @@ function ProfileCard({
         </button>
       </div>
 
-      <ChildProgressPanel profileId={profile.id} />
+      <ChildProgressPanel profileId={profile.id} childName={profile.name} />
     </motion.div>
   );
 }

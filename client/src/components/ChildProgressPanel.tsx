@@ -64,45 +64,98 @@ function CoverThumb({ book }: { book: BookSummary }) {
   );
 }
 
-function QuizMistakes({ bookId, wrongIds }: { bookId: string; wrongIds: string[] }) {
-  const [book, setBook] = useState<Book | null>(null);
+function BookDetail({
+  book,
+  progress,
+  childName,
+}: {
+  book: BookSummary;
+  progress: ReadingProgress | null;
+  childName: string;
+}) {
+  const [full, setFull] = useState<Book | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     // Cheap: every book comes from the same cached books.json fetch.
     api
-      .getBook(bookId)
-      .then((b) => !cancelled && setBook(b))
+      .getBook(book.id)
+      .then((b) => !cancelled && setFull(b))
       .catch(() => {});
     return () => {
       cancelled = true;
     };
-  }, [bookId]);
+  }, [book.id]);
 
-  if (!book?.quiz) return null;
-  const missed = book.quiz.filter((q) => wrongIds.includes(q.id));
-  if (missed.length === 0) return null;
+  const quizTotal = progress?.quiz_total ?? null;
+  const quizCorrect = progress?.quiz_correct ?? null;
+  const wrongIds = progress?.quiz_wrong_ids ?? null;
+  const missedCount = quizTotal != null && quizCorrect != null ? quizTotal - quizCorrect : 0;
+  const missed = full?.quiz?.filter((q) => wrongIds?.includes(q.id)) ?? [];
+
+  let quizBlock;
+  if (quizTotal == null) {
+    // Either the book has no quiz at all, or it was read before its quiz
+    // existed - say which, rather than leaving an empty panel.
+    quizBlock = (
+      <p className="font-body text-xs text-stone-500">
+        {full && !full.quiz
+          ? "This book doesn't have a quiz."
+          : progress
+            ? `No quiz score yet - ${childName} read this before the quiz was added, or stopped before the end.`
+            : "No quiz yet - this one hasn't been opened."}
+      </p>
+    );
+  } else if (missedCount === 0) {
+    quizBlock = (
+      <p className="font-body text-xs font-bold text-emerald-700">
+        Perfect score - all {quizTotal} questions right 🎉
+      </p>
+    );
+  } else if (missed.length > 0) {
+    quizBlock = (
+      <div className="space-y-2">
+        <p className="font-body text-xs font-bold text-amber-700">
+          Missed {missedCount} of {quizTotal}:
+        </p>
+        <ul className="space-y-2 rounded-xl bg-rose-50/70 p-3">
+          {missed.map((q) => {
+            const answer = q.options.find((o) => o.correct);
+            return (
+              <li key={q.id} className="font-body text-xs leading-relaxed text-stone-600">
+                <span className="font-bold text-rose-600">Missed:</span> {q.question}
+                {answer && (
+                  <span className="mt-0.5 block text-emerald-700">
+                    Correct answer: {answer.emoji} {answer.label}
+                  </span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  } else {
+    // Scored below full marks, but this attempt predates the column that
+    // records which questions were missed. Say so plainly instead of
+    // implying there were no mistakes.
+    quizBlock = (
+      <p className="font-body text-xs text-amber-700">
+        Missed {missedCount} of {quizTotal}. Which questions weren't saved for this attempt - they'll
+        show up here next time {childName} takes it.
+      </p>
+    );
+  }
 
   return (
-    <ul className="mt-2 space-y-2 rounded-xl bg-rose-50/70 p-3">
-      {missed.map((q) => {
-        const answer = q.options.find((o) => o.correct);
-        return (
-          <li key={q.id} className="font-body text-xs leading-relaxed text-stone-600">
-            <span className="font-bold text-rose-600">Missed:</span> {q.question}
-            {answer && (
-              <span className="mt-0.5 block text-emerald-700">
-                Correct answer: {answer.emoji} {answer.label}
-              </span>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+    <div className="mt-2 space-y-2 rounded-xl bg-stone-50 p-3">
+      <p className="font-body text-xs italic leading-relaxed text-stone-500">{book.summary}</p>
+      {quizBlock}
+    </div>
   );
 }
 
-function BookProgressRow({ row }: { row: BookRow }) {
+function BookProgressRow({ row, childName }: { row: BookRow; childName: string }) {
   const { book, progress } = row;
   const [open, setOpen] = useState(false);
 
@@ -110,11 +163,7 @@ function BookProgressRow({ row }: { row: BookRow }) {
   const finished = !!progress?.completed;
   const quizTotal = progress?.quiz_total ?? null;
   const quizCorrect = progress?.quiz_correct ?? null;
-  const wrongIds = progress?.quiz_wrong_ids ?? null;
   const missedCount = quizTotal != null && quizCorrect != null ? quizTotal - quizCorrect : 0;
-  // Only expandable when there's something more to show than the summary
-  // line already says.
-  const hasDetail = missedCount > 0 && !!wrongIds?.length;
 
   const statusText = finished
     ? "Finished 🎉"
@@ -122,46 +171,41 @@ function BookProgressRow({ row }: { row: BookRow }) {
       ? `Page ${(progress?.current_page_index ?? 0) + 1} of ${book.pageCount}`
       : "Not started yet";
 
-  const body = (
-    <>
-      <CoverThumb book={book} />
-      <div className="min-w-0 flex-1 text-left">
-        <p className={`truncate font-body text-sm font-bold ${started ? "text-stone-700" : "text-stone-400"}`}>
-          {book.title}
-        </p>
-        <p className={`font-body text-xs ${finished ? "text-emerald-600" : "text-stone-400"}`}>{statusText}</p>
-        {quizTotal != null && (
-          <p className="mt-0.5 font-body text-xs font-extrabold">
-            <span className={missedCount === 0 ? "text-emerald-600" : "text-amber-600"}>
-              Quiz {quizCorrect}/{quizTotal} {missedCount === 0 ? "⭐" : ""}
-            </span>
-            {missedCount > 0 && (
-              <span className="ml-1 font-normal text-stone-400">
-                {hasDetail ? (open ? "· hide mistakes" : "· see mistakes") : `· missed ${missedCount}`}
-              </span>
-            )}
-          </p>
-        )}
-      </div>
-    </>
-  );
-
   return (
     <li className="py-2">
-      {hasDetail ? (
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-          className="flex w-full items-center gap-3 rounded-xl text-left transition hover:bg-stone-50"
+      {/* Every row opens, whatever state it's in - a row that silently
+          does nothing when tapped reads as broken, and there's always
+          something worth saying (the summary at minimum). */}
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center gap-3 rounded-xl text-left transition hover:bg-stone-50"
+      >
+        <CoverThumb book={book} />
+        <div className="min-w-0 flex-1">
+          <p className={`truncate font-body text-sm font-bold ${started ? "text-stone-700" : "text-stone-400"}`}>
+            {book.title}
+          </p>
+          <p className={`font-body text-xs ${finished ? "text-emerald-600" : "text-stone-400"}`}>{statusText}</p>
+          {quizTotal != null && (
+            <p className="mt-0.5 font-body text-xs font-extrabold">
+              <span className={missedCount === 0 ? "text-emerald-600" : "text-amber-600"}>
+                Quiz {quizCorrect}/{quizTotal} {missedCount === 0 ? "⭐" : ""}
+              </span>
+            </p>
+          )}
+        </div>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="shrink-0 pr-1 font-body text-xs text-stone-300"
         >
-          {body}
-        </button>
-      ) : (
-        <div className="flex w-full items-center gap-3">{body}</div>
-      )}
+          ▾
+        </motion.span>
+      </button>
       <AnimatePresence initial={false}>
-        {open && hasDetail && (
+        {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -169,7 +213,7 @@ function BookProgressRow({ row }: { row: BookRow }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <QuizMistakes bookId={book.id} wrongIds={wrongIds ?? []} />
+            <BookDetail book={book} progress={progress} childName={childName} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -177,7 +221,7 @@ function BookProgressRow({ row }: { row: BookRow }) {
   );
 }
 
-function LevelGroupCard({ group }: { group: LevelGroup }) {
+function LevelGroupCard({ group, childName }: { group: LevelGroup; childName: string }) {
   const [open, setOpen] = useState(false);
   const total = group.rows.length;
   const pct = total === 0 ? 0 : Math.round((group.readCount / total) * 100);
@@ -227,7 +271,7 @@ function LevelGroupCard({ group }: { group: LevelGroup }) {
           >
             <ul className="divide-y divide-stone-100 border-t border-stone-100 px-3">
               {group.rows.map((row) => (
-                <BookProgressRow key={row.book.id} row={row} />
+                <BookProgressRow key={row.book.id} row={row} childName={childName} />
               ))}
             </ul>
           </motion.div>
@@ -237,7 +281,7 @@ function LevelGroupCard({ group }: { group: LevelGroup }) {
   );
 }
 
-export function ChildProgressPanel({ profileId }: { profileId: number }) {
+export function ChildProgressPanel({ profileId, childName }: { profileId: number; childName: string }) {
   const [groups, setGroups] = useState<LevelGroup[] | null>(null);
 
   useEffect(() => {
@@ -284,7 +328,7 @@ export function ChildProgressPanel({ profileId }: { profileId: number }) {
       {groups && groups.length > 0 && (
         <div className="space-y-2">
           {groups.map((group) => (
-            <LevelGroupCard key={group.level} group={group} />
+            <LevelGroupCard key={group.level} group={group} childName={childName} />
           ))}
         </div>
       )}
